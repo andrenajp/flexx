@@ -5,7 +5,7 @@
                 <img src="../../assets/images/back.svg">
             </ion-back-button>
         </ion-buttons>
-        <ion-title mode="ios">Create New Account</ion-title>
+        <ion-title mode="ios">Créer un Compte</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -14,8 +14,8 @@
             <img class="" src="../../assets/images/user.svg" height="32px" width="32px">
         </div>
         <ion-label>
-            <div class="name">Full Name</div>
-            <ion-input type="text" placeholder="Enter Your Name"></ion-input>
+            <div class="name">Nom complet</div>
+            <ion-input type="text" placeholder="Votre nom complet"></ion-input>
         </ion-label>
     </ion-item>
     <ion-item lines="none">
@@ -24,7 +24,7 @@
         </div>
         <ion-label>
             <div class="name">Email</div>
-            <ion-input type="email" placeholder="Enter Your Email"></ion-input>
+            <ion-input type="email" placeholder="Votre email"></ion-input>
         </ion-label>
     </ion-item>
     <ion-item lines="none">
@@ -32,14 +32,14 @@
             <img class="" src="../../assets/images/gender.svg" height="32px" width="32px">
         </div>
         <ion-label>
-            <div class="name">Select Gender</div>
+            <div class="name">Civilité</div>
             <ion-row class="ion-padding-top">
                 <ion-col size="4" class="ion-no-padding">
-                    <label class="container">Male
+                    <label class="container">M
                         <input type="radio" checked="checked" name="radio">
                         <span class="checkmark"></span>
                     </label></ion-col>
-                <ion-col size="4" class="ion-no-padding"> <label class="container">Female
+                <ion-col size="4" class="ion-no-padding"> <label class="container">F
                         <input type="radio" name="radio">
                         <span class="checkmark"></span>
                     </label></ion-col>
@@ -51,8 +51,8 @@
             <img class="" src="../../assets/images/padlock.svg" height="32px" width="32px">
         </div>
         <ion-label>
-            <div class="name">Password</div>
-            <ion-input type="password" placeholder="Enter Your Password"></ion-input>
+            <div class="name">Mot de passe</div>
+            <ion-input type="password" placeholder="Tapez votre mot de passe"></ion-input>
         </ion-label>
     </ion-item>
     <ion-item lines="none">
@@ -60,9 +60,9 @@
             <img class="" src="../../assets/images/padlock.svg" height="32px" width="32px">
         </div>
         <ion-label>
-            <div class="name">Confirm Password</div>
+            <div class="name">Confirmer mot de passe</div>
             <div class="password">
-                <ion-input type="password" placeholder="Re-enter Password"></ion-input>
+                <ion-input type="password" placeholder="Retaper le mot de passe"></ion-input>
             </div>
         </ion-label>
     </ion-item>
@@ -71,12 +71,13 @@
             <img class="" src="../../assets/images/phone.svg" height="32px" width="32px">
         </div>
         <ion-label>
-            <div class="name">Contact Number</div>
-            <ion-input type="number" placeholder="Enter Your Contact Number" [(ngModel)]="contact"> </ion-input>
+            <div class="name">Tel.</div>
+            <ion-input type="number" placeholder="0694******" [(ngModel)]="contact"> </ion-input>
         </ion-label>
     </ion-item>
-    <ion-button expand="full" (click)="verify()">Create New Account</ion-button>
+    <ion-button expand="full" (click)="verify()">Créer un nouveau compte</ion-button>
     <div class="ion-text-center">
-        <div class="message">Already have an account ? <span class="login" (click)="login()">Login</span> </div>
+        <div class="message">Vous avez déjà un compte ? <span class="login" (click)="login()">Connectez-vous !</span>
+        </div>
     </div>
 </ion-content>
