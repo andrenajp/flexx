@@ -1,0 +1,81 @@
+ion-header {
+    ion-toolbar {
+        ion-buttons {
+            font-size: 17px;
+            color: var(--ion-black);
+            ;
+        }
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+            ;
+        }
+    }
+}
+
+ion-content {
+    --background: var(--background-theme);
+    .note_div {
+        margin-top: 160px;
+        font-family: var(--regular-font);
+        font-size: 15px;
+        text-align: justify;
+        margin-bottom: 20px;
+        color: var(--gray-color);
+        padding: 31px;
+    }
+    .otp-input {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0;
+        ion-input {
+            --placeholder-color: black;
+            --placeholder-opacity: 1;
+            --background: white;
+            margin: 0;
+            border: 0.3px solid white;
+            box-shadow: 0px 0px 10px 1px #eeeeee;
+            --padding-start: 0;
+            --placeholder-font-style: var(--regular-font);
+            min-height: 60px;
+            min-width: 60px;
+            max-width: 60px;
+            max-height: 60px;
+            border-radius: 10px;
+            text-align: center;
+            color: var(--theme-font-color);
+            font-size: 30px;
+            font-family: var(--regular-font);
+            height: 48px;
+            display: block;
+            &.active {
+                background: var(--theme-color);
+                color: white;
+            }
+        }
+    }
+    ion-button {
+        --background: var(--theme-color);
+        --color: white;
+        margin: 18px;
+        height: 50px;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+        overflow: hidden;
+        border-radius: 15px;
+        text-transform: none;
+        font-family: var(--regular-font);
+    }
+    .message {
+        color: var(--gray-color);
+        font-family: var(--regular-font);
+        font-size: 13px;
+        //margin-bottom: 200px;
+    }
+    .resend {
+        font-family: var(--bold-font);
+        font-size: 13px;
+        color: var(--ion-black);
+    }
+}

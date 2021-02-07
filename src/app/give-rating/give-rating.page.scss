@@ -1,0 +1,95 @@
+ion-header {
+    ion-toolbar {
+        --background: #F1F1F1;
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+    }
+}
+
+ion-content {
+    .bottom {
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        position: relative;
+        padding-top: 25px;
+        ion-icon {
+            color: var(--fill-yellow);
+            margin-left: 5px;
+            width: 28px;
+            height: 28px;
+            background: var(--lht-yellow);
+            padding-left: 7px;
+            padding-right: 7px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            border-radius: 9px;
+        }
+        .rated_ic {
+            color: var(--fill-yellow);
+        }
+        .yellow-star {
+            color: var(--fill-yellow);
+        }
+        .gray-star {
+            color: var(--fill-gray);
+            background: var(--lht-gray);
+            padding-left: 7px;
+            padding-right: 7px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            border-radius: 9px;
+        }
+        .rate_h {
+            margin-top: 0;
+        }
+        .text_a {
+            margin: 0px 25px;
+        }
+    }
+    .experience {
+        background: #F1F1F1;
+        width: 250px;
+        height: auto;
+        margin: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 7px;
+        .question {
+            font-size: 13px;
+            font-family: var(--regular-font);
+            color: var(--gray-color);
+            text-align: left;
+            padding-left: 24px;
+            padding-right: 15px;
+        }
+        .answer {
+            padding-right: 15px;
+            ion-textarea {
+                font-size: 15px;
+                font-family: var(--regular-font);
+                padding-left: 15px;
+                --placeholder-color: black;
+                --placeholder-opacity: 1;
+                text-align: initial;
+                margin-top: -12px;
+            }
+        }
+    }
+    ion-button {
+        --background: var(--theme-color);
+        --color: white;
+        margin: 32px;
+        margin-top: 17px;
+        height: 50px;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+        text-transform: none;
+        overflow: hidden;
+        border-radius: 15px;
+        font-family: var(--regular-font);
+    }
+}

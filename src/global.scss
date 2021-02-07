@@ -1,0 +1,177 @@
+    /*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+    /* Core CSS required for Ionic components to work properly */
+    
+    @import "~@ionic/angular/css/core.css";
+    /* Basic CSS for apps built with Ionic */
+    
+    @import "~@ionic/angular/css/normalize.css";
+    @import "~@ionic/angular/css/structure.css";
+    @import "~@ionic/angular/css/typography.css";
+    @import '~@ionic/angular/css/display.css';
+    /* Optional CSS utils that can be commented out */
+    
+    @import "~@ionic/angular/css/padding.css";
+    @import "~@ionic/angular/css/float-elements.css";
+    @import "~@ionic/angular/css/text-alignment.css";
+    @import "~@ionic/angular/css/text-transformation.css";
+    @import "~@ionic/angular/css/flex-utils.css";
+    @font-face {
+        font-family: "ProximaNova-Regular";
+        src: url("assets/font/proxima_ssv/ProximaNova-Regular.otf");
+    }
+    
+    @font-face {
+        font-family: "ProximaNova-Thin";
+        src: url("assets/font/proxima_ssv/Proxima\ Nova\ Thin.otf");
+    }
+    
+    @font-face {
+        font-family: "ProximaNova-Black";
+        src: url("assets/font/proxima_ssv/Proxima\ Nova\ Black.otf");
+    }
+    
+    @font-face {
+        font-family: "ProximaNova-Bold";
+        src: url("assets/font/proxima_ssv/Proxima\ Nova\ Bold.otf");
+    }
+    
+    @font-face {
+        font-family: "ProximaNova-Extrabold";
+        src: url("assets/font/proxima_ssv/Proxima\ Nova\ Extrabold.otf");
+    }
+    
+    .giverate_modal {
+        --height: 432px;
+        --max-width: 307px;
+        padding: 0px 20px;
+        --border-radius: 20px;
+        --backdrop-opacity: var(--ion-backdrop-opacity, 0.1) !important;
+    }
+    
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-container-horizontal>.swiper-pagination-bullets {
+        bottom: 15px;
+        right: 0;
+        width: 100%;
+        margin-left: 110px;
+    }
+    
+    .swiper-pagination-bullet {
+        background: white !important;
+        opacity: 1;
+    }
+    
+    .swiper-pagination-bullet-active {
+        background: var(--theme-color) !important;
+    }
+    
+    .SharingPage {
+        padding: 0;
+        padding-top: 291px;
+        --backdrop-opacity: var(--ion-backdrop-opacity, 0.1) !important;
+    }
+    
+    .sc-ion-searchbar-ios-h {
+        --background: white !important;
+        --border-radius: 13px;
+        --box-shadow: none;
+        --cancel-button-color: var(--ion-color-primary, #3880ff);
+        --clear-button-color: var(--ion-color-step-600, #666666);
+        --color: var(--ion-text-color, #000);
+        --icon-color: var(--ion-color-step-600, #666666);
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        height: 60px;
+        contain: strict;
+    }
+    
+    .searchbar-input.sc-ion-searchbar-ios {
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 100%;
+        font-size: 13px;
+        font-family: var(--regular-font);
+        font-weight: 400;
+        contain: strict;
+        text-align: center;
+    }
+    
+    .searchbar-search-icon.sc-ion-searchbar-ios {
+        margin-left: calc(50% - 60px);
+        left: 27px;
+        top: 0;
+        position: absolute;
+        width: 22px;
+        height: 100%;
+        contain: strict;
+        margin-left: 12px;
+    }
+    
+    .switch-btn {
+        margin-right: 0px !important;
+        --margin-top: 0 !important;
+        --margin-bottom: 0 !important;
+        --margin-start: auto !important;
+        --margin-end: auto !important;
+        width: 100% !important;
+        text-align: center !important;
+        line-height: 0 !important;
+        float: left !important;
+        left: 13px !important;
+        font-size: 15px !important;
+        font-family: var(--bold-font) !important;
+        color: var(--black-color) !important;
+    }
+    
+    .today {
+        background: white !important;
+        color: var(--theme-color) !important;
+        p {
+            color: var(--theme-color) !important;
+        }
+    }
+    
+    .range-tick {
+        background: var(--theme-color) !important;
+        color: var(--ion-color-contrast) !important;
+    }
+    
+    .days .on-selected {
+        background-color: var(--theme-color) !important;
+        color: #fff;
+    }
+    
+    .title .forward {
+        color: black !important;
+    }
+    
+    .title .back {
+        color: black !important;
+    }
+    
+    checkbox-icon {
+        border-radius: var(--border-radius);
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: var(--transition);
+        border-width: var(--border-width);
+        border-style: var(--border-style);
+        border-color: var(--border-color);
+        background: var(--background);
+        box-sizing: border-box;
+        padding: 3px !important;
+    }

@@ -1,0 +1,126 @@
+ion-header {
+    ion-toolbar {
+        height: 55px;
+        ion-buttons {
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+    }
+}
+
+ion-content {
+    --background: var(--background-theme);
+    .detail_div {
+        height: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 6px;
+        background-color: white;
+        margin: 18px;
+        box-shadow: 0px 0px 10px 1px #eeeeee;
+        border-radius: 10px;
+        display: flex;
+        .salon_img {
+            height: 80px;
+            width: 80px;
+            border-radius: 12px;
+            margin-right: 12px;
+            margin-top: 11px;
+        }
+        ion-label {
+            padding-top: 10px;
+            .salon_name {
+                font-size: 15px;
+                font-family: var(--bold-font);
+                color: var(--ion-black);
+            }
+            .address {
+                font-size: 13px;
+                word-spacing: normal;
+                font-family: var(--regular-font);
+                color: var(--gray-color);
+                padding-right: 10px;
+                text-align: inherit;
+            }
+            .rate_div {
+                font-size: 13px;
+                font-family: var(--regular-font);
+                color: var(--ion-black);
+                .star_img {
+                    margin-bottom: -5px;
+                    margin-right: 2px;
+                }
+                .circle_icon {
+                    margin-left: 6px;
+                    margin-right: 6px;
+                }
+            }
+        }
+    }
+    .border_bottom {
+        border-bottom: 1px dashed #dddddd;
+        margin: 17px;
+    }
+    .main_head {
+        font-family: var(--extrabold-font);
+        font-size: 15px;
+        padding-bottom: 9px;
+        span {
+            font-family: var(--regular-font);
+            font-size: 13px;
+            color: var(--gray-color);
+        }
+        .total {
+            font-family: var(--bold-font);
+            font-size: 13px;
+            color: var(--theme-color);
+        }
+    }
+    .time {
+        font-family: var(--regular-font);
+        font-size: 13px;
+    }
+    ion-row {
+        padding-top: 10px;
+    }
+    .service_name {
+        font-family: var(--regular-font);
+        font-size: 15px;
+        span {
+            font-family: var(--regular-font);
+            font-size: 11px;
+            color: var(--gray-color);
+        }
+    }
+    .price {
+        font-family: var(--bold-font);
+        font-size: 13px;
+        text-align: center;
+    }
+    .cancel {
+        font-family: var(--regular-font);
+        font-size: 15px;
+        color: var(--theme-color);
+        padding-top: 26px;
+        padding-bottom: 26px;
+    }
+}
+
+ion-footer {
+    ion-button {
+        overflow: hidden;
+        font-size: 15px;
+        font-family: var(--regular-font);
+        text-transform: none;
+        margin: 0;
+        height: 50px;
+        --color: white;
+        --background: var(--theme-color);
+        --border-radius: none;
+    }
+}

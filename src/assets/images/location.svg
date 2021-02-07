@@ -1,0 +1,31 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="15.093"
+  height="18"
+  viewBox="0 0 15.093 18"
+>
+  <defs>
+    <linearGradient
+      id="linear-gradient"
+      x1="0.5"
+      x2="0.5"
+      y2="1"
+      gradientUnits="objectBoundingBox"
+    >
+      <stop offset="0" stop-color="#f05860" />
+      <stop offset="1" stop-color="#db494c" />
+    </linearGradient>
+  </defs>
+  <g id="pin" transform="translate(-41.347)">
+    <g id="Group_54" data-name="Group 54" transform="translate(41.347)">
+      <path
+        id="Path_78"
+        data-name="Path 78"
+        d="M54.23,2.21A7.546,7.546,0,1,0,43.557,12.882l4.963,4.963a.527.527,0,0,0,.746,0l4.963-4.963a7.546,7.546,0,0,0,0-10.672ZM51.263,9.916a3.352,3.352,0,1,1,.982-2.37A3.33,3.33,0,0,1,51.263,9.916Z"
+        transform="translate(-41.347)"
+        fill="url(#linear-gradient)"
+      />
+    </g>
+  </g>
+</svg>

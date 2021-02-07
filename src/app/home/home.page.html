@@ -1,0 +1,116 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-item lines="none">
+      <div slot="start" class="ion-no-margin ion-margin-end">
+        <img
+          class=""
+          src="../../assets/images/location.svg"
+          height="18px"
+          width="15px"
+        />
+      </div>
+      <ion-label>
+        <div class="name">Current Location</div>
+        <ion-input
+          type=""
+          placeholder="Park Avenue, New York, NY, USA"
+          readonly
+        ></ion-input>
+      </ion-label>
+      <div
+        slot="end"
+        class="ion-no-margin ion-margin-end"
+        (click)="setLocation()"
+      >
+        <img
+          class=""
+          src="../../assets/images/search.svg"
+          height="18px"
+          width="18px"
+        />
+      </div>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="main_head ion-padding-start">Explore Services</div>
+  <ion-row class="ion-padding-start ion-padding-top">
+    <div class="scroll">
+      <ion-col size="4" *ngFor="let service of services">
+        <img
+          class="my_img"
+          src="{{ service?.img }}"
+          width="98px"
+          height="126px"
+        />
+        <p class="name">{{ service?.name }}</p>
+      </ion-col>
+    </div>
+  </ion-row>
+  <div class="main_head ion-padding-start ion-padding-top">
+    Popular Salons Near By You
+  </div>
+  <ion-row class="ion-padding-start ion-padding-top">
+    <div class="scroll">
+      <ion-col
+        size="5"
+        *ngFor="let salon of salons"
+        (click)="salonProfile(salon)"
+      >
+        <img
+          class="my_img"
+          src="{{ salon?.img }}"
+          width="157px"
+          height="125px"
+        />
+        <p class="salon_name ion-padding-top">{{ salon?.name }}</p>
+        <div class="address">{{ salon?.address | slice:0:30 }}..</div>
+        <div class="rate_div">
+          <img
+            class="star_img"
+            src="../../assets/images/star.svg"
+            height="22px"
+            width="22px"
+          />
+          {{ salon?.rate }}
+          <img
+            class="circle_icon"
+            src="../../assets/images/circle.svg"
+            height="6px"
+            width="6px"
+          />
+          <span class="ion-text-right"> {{ salon?.km }}</span>
+        </div>
+      </ion-col>
+    </div>
+  </ion-row>
+  <div class="main_head ion-padding-start ion-padding-top">
+    Top At Your Town
+  </div>
+  <ion-item lines="none" *ngFor="let item of nearbysalon" (click)="location()">
+    <img slot="start" class="salon_img" src="{{ item?.img }}" />
+    <ion-label>
+      <p class="salon">{{ item?.name }}</p>
+      <p class="address">{{ item?.desc }}</p>
+      <div class="rate_div">
+        <div class="bottom --flex-row-j!sb">
+          <h3 class="rate_h">
+            <ion-icon
+              name="star"
+              [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'"
+            >
+            </ion-icon>
+            <span class="ion-margin-bottom">{{ item?.rate }}</span>
+            <img
+              class="circle_icon"
+              src="../../assets/images/circle.svg"
+              height="6px"
+              width="6px"
+            />
+            <span class="ion-text-right"> {{ item?.km }}</span>
+          </h3>
+        </div>
+      </div>
+    </ion-label>
+  </ion-item>
+</ion-content>

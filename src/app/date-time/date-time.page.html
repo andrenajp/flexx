@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="salon-profile" text="" mode="md">
+                <img src="../../assets/images/back.svg">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title mode="ios">My Account</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Select a Day
+        <div class="ion-padding-top ion-padding-start ion-padding-end">
+            <ion-calendar [(ngModel)]="date" (click)="onChange($event)" [type]="type" [format]="'YYYY-MM-DD'">
+            </ion-calendar>
+        </div>
+    </div>
+
+    <div class="main_head ion-padding-start ion-padding-bottom">Set The Time
+    </div>
+    <div class="ion-padding-horizontal">
+        <div>
+            <ion-row>
+                <div *ngIf="time?.length == 0" class="main_head ion-justify-content-center ion-margin-top">No Time Yet
+                </div>
+                <ion-col size="3" *ngFor="let slot of time">
+                    <div class="time-slot" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'" (click)="activeSlot(slot.start_time)">
+                        {{ slot.start_time }}
+
+                    </div>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-item lines="none">
+        <ion-label>
+            <p class="detail">17 Oct, 2020 - 07:00PM</p>
+        </ion-label>
+        <ion-button slot="end" expand="block" (click)="continue()">Continue</ion-button>
+    </ion-item>
+</ion-footer>

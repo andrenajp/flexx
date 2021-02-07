@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title mode="ios">Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="profile_div ion-text-center">
+        <div class="img_div">
+            <img src="../../assets/images/profile.png" class="user_img" height="111px" width="111px">
+            <img src="../../assets/images/back_img.svg" class="back_img">
+            <img src="../../assets/images/round.svg" class="camera_img" height="35px" width="35px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15.002" height="12.502" viewBox="0 0 15.002 12.502">
+                <g id="photo-camera" transform="translate(0 0)">
+                    <g id="Group_120" data-name="Group 120" transform="translate(0 0)">
+                        <g id="Group_119" data-name="Group 119">
+                            <path id="Path_55" data-name="Path 55"
+                                d="M13.439,43.917H11.071l-1.051-1.148a.31.31,0,0,0-.23-.1H5.213a.313.313,0,0,0-.231.1L3.931,43.917H1.563A1.565,1.565,0,0,0,0,45.48v8.126a1.565,1.565,0,0,0,1.563,1.563H13.439A1.565,1.565,0,0,0,15,53.606V45.48A1.565,1.565,0,0,0,13.439,43.917Zm-5.938,10a4.376,4.376,0,1,1,4.376-4.376A4.38,4.38,0,0,1,7.5,53.919Z"
+                                transform="translate(0 -42.667)" fill="#fff" />
+                        </g>
+                    </g>
+                    <g id="Group_122" data-name="Group 122" transform="translate(3.751 3.125)">
+                        <g id="Group_121" data-name="Group 121">
+                            <path id="Path_56" data-name="Path 56"
+                                d="M131.751,149.333a3.751,3.751,0,1,0,3.751,3.751A3.754,3.754,0,0,0,131.751,149.333Z"
+                                transform="translate(-128 -149.333)" fill="#fff" />
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <p class="name">Amelia Addison</p>
+        <p class="joining">Join at October 2019</p>
+    </div>
+    <ion-item lines="none" (click)="editProfile()">
+        <div>Edit Profile</div>
+    </ion-item>
+    <div class="border_bottom"></div>
+    <ion-item lines="none" (click)="shareWith()">
+        <div>Share With Friends</div>
+    </ion-item>
+    <div class="border_bottom"></div>
+    <ion-item lines="none" (click)="language()">
+        <div>Language</div>
+    </ion-item>
+    <div class="border_bottom"></div>
+    <ion-item lines="none" (click)="privacy()">
+        <div>Privacy Policy</div>
+    </ion-item>
+    <div class="border_bottom"></div>
+    <ion-item lines="none" (click)="terms()">
+        <div>Terms & Conditions</div>
+    </ion-item>
+    <div class="border_bottom"></div>
+    <ion-item lines="none" (click)="aboutUs()">
+        <div>About Us</div>
+    </ion-item>
+    <div class="border_bottom"></div>
+    <ion-item lines="none" (click)="logout()">
+        <div>Logout</div>
+    </ion-item>
+    <div class="border_bottom"></div>
+    <ion-item lines="none">
+        <div><span>Delete Account</span></div>
+    </ion-item>
+    <div class="border_bottom"></div>
+</ion-content>

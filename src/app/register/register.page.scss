@@ -1,0 +1,133 @@
+ion-header {
+    ion-toolbar {
+        height: 55px;
+        --background: var(--background-theme);
+        ion-buttons {
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+    }
+}
+
+ion-content {
+    --background: var(--background-theme);
+    --padding-top: 54px;
+    ion-item {
+        height: 80px;
+        width: 307px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: 10px;
+        border: 0.3px solid white;
+        box-shadow: 0px 0px 10px 1px #eeeeee;
+        border-radius: 15px;
+        ion-radio-group {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            margin-left: 12px;
+        }
+        ion-label {
+            padding-top: 15px;
+            padding-bottom: 18px;
+            margin: 0;
+        }
+        ion-input {
+            border: none;
+            font-family: var(--regular-font);
+            font-size: 15px;
+            --padding-start: 0;
+            --placeholder-opacity: 1;
+        }
+        .name {
+            color: var(--gray-color);
+            font-family: var(--regular-font);
+            font-size: 13px;
+        }
+        .gender {
+            font-family: var(--regular-font);
+            font-size: 15px;
+            padding-left: 7px;
+        }
+    }
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-family: var(--regular-font);
+        font-size: 15px;
+        color: var(--gray-color);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 18px;
+        width: 18px;
+        background-color: #eee;
+        border-radius: 50%;
+        // border: 2px solid #dddddd;
+        // background-color: #17A937;
+    }
+    .container:hover input~.checkmark {
+        background-color: var(--ion-black);
+    }
+    .container input:checked~.checkmark {
+        background-color: #17A937;
+    }
+    .checkmark:after {
+        content: "\2714";
+        position: absolute;
+        display: none;
+        background-color: #17A937;
+    }
+    .container input:checked~.checkmark:after {
+        display: block;
+    }
+    .container .checkmark:after {
+        top: 0px;
+        left: 4px;
+        // width: 6px;
+        height: 0px;
+        border-radius: 50%;
+        color: white;
+    }
+    .message {
+        color: var(--gray-color);
+        font-family: var(--regular-font);
+        margin-bottom: 64px;
+    }
+    .login {
+        color: var(--ion-black);
+        font-family: var(--bold-font);
+    }
+    ion-button {
+        --background: var(--theme-color);
+        --color: white;
+        margin: 18px;
+        height: 50px;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+        text-transform: none;
+        overflow: hidden;
+        border-radius: 15px;
+        font-family: var(--regular-font);
+    }
+}

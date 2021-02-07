@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="register" text="" mode="md">
+                <img src="../../assets/images/back.svg">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title mode="ios">Verification</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="ion-text-center note_div">
+        Set your 4 digit OTP here.
+    </div>
+    <div class="otp-input">
+        <ion-input maxlength="1" placeholder="1" type="tel" autofocus name="a" #a [(ngModel)]="otp.a" (keyup)="moveFocus($event, b, '') " [class.active]="otp.a">
+        </ion-input>
+        <ion-input #b name="b" placeholder="2" [class.active]="otp.b" [(ngModel)]="otp.b" type="tel" maxlength="1" (keyup)="moveFocus($event, c, a)"></ion-input>
+        <ion-input #c name="c" placeholder="3" [class.active]="otp.c" [(ngModel)]="otp.c" type="tel" maxlength="1" (keyup)="moveFocus($event, d, b)"></ion-input>
+        <ion-input #d name="d" placeholder="4" [class.active]="otp.d" [(ngModel)]="otp.d" type="tel" maxlength="1" (keyup)="moveFocus($event, '', c)"></ion-input>
+    </div>
+    <ion-button expand="full" (click)="continue()">Continue </ion-button>
+    <div class="ion-text-center">
+        <div class="message">Don't receive code? <span class="resend">Resend It</span></div>
+    </div>
+</ion-content>

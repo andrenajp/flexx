@@ -1,0 +1,95 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="" text="" mode="md" (click)="closeModal()">
+                <img src="../../assets/images/back.svg">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title mode="ios">Filter</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="main_head ion-padding-start ion-padding-top">Sort By
+    </div>
+    <ion-row class="ion-padding-top">
+        <ion-col size="6" class="ion-no-padding"> <label class="checkbox-button">
+        <input type="checkbox" class="checkbox-button__input" checked>
+        <span class="checkbox-button__control"></span>
+        Most Popular
+      </label></ion-col>
+        <ion-col class="ion-no-padding" size="6"> <label class="checkbox-button">
+        <input type="checkbox" class="checkbox-button__input">
+        <span class="checkbox-button__control"></span>
+        Price : Low to High
+      </label></ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col class="ion-no-padding" size="6"> <label class="checkbox-button">
+        <input type="checkbox" class="checkbox-button__input">
+        <span class="checkbox-button__control"></span>
+        Price : High to Low
+      </label></ion-col>
+    </ion-row>
+    <div class="border_bottom"></div>
+    <div class="main_head ion-padding-start ion-padding-top">Looking For
+    </div>
+    <ion-row class="ion-padding-top">
+        <ion-col size="3" class="ion-no-padding"> <label class="container">Both
+        <input type="radio" checked="checked" name="radio">
+        <span class="checkmark"></span>
+      </label></ion-col>
+        <ion-col size="3" class="ion-no-padding"> <label class="container">Female
+        <input type="radio" name="radio">
+        <span class="checkmark"></span>
+      </label></ion-col>
+        <ion-col size="3" class="ion-no-padding"> <label class="container">Male
+        <input type="radio" name="radio">
+        <span class="checkmark"></span>
+      </label></ion-col>
+    </ion-row>
+    <div class="border_bottom"></div>
+    <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Service
+    </div>
+    <ion-row class="ion-padding-bottom">
+        <ion-button mode="md" fill="outline">Hair Cutting
+        </ion-button>
+        <ion-button mode="md" fill="outline">Color Services
+        </ion-button>
+        <ion-button fill="outline" mode="md">Facials
+        </ion-button>
+        <ion-button fill="outline" mode="md">Hair Treatments
+        </ion-button>
+        <ion-button fill="outline" mode="md">Massage
+        </ion-button>
+        <ion-button fill="outline" mode="md">Threading
+        </ion-button>
+    </ion-row>
+    <div class="border_bottom"></div>
+    <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Rating<span class="ion-float-right ion-margin-end">
+      (3.0 & Above)</span>
+    </div>
+    <div class="bottom --flex-row-j!sb">
+        <h3 class="rate_h">
+            <ion-icon name="star" [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'" (click)="setRate(1)">
+            </ion-icon>
+            <ion-icon name="star" [ngClass]="rate >= 2 ? 'yellow-star' :'gray-star'" (click)="setRate(2)">
+            </ion-icon>
+            <ion-icon name="star" [ngClass]="rate >= 3 ? 'yellow-star' :'gray-star'" (click)="setRate(3)">
+            </ion-icon>
+            <ion-icon name="star" [ngClass]="rate >= 4 ? 'yellow-star' :'gray-star'" (click)="setRate(4)">
+            </ion-icon>
+            <ion-icon name="star" [ngClass]="rate >= 5 ? 'yellow-star' :'gray-star'" (click)="setRate(5)">
+            </ion-icon>
+        </h3>
+    </div>
+    <div class="border_bottom"></div>
+    <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Set Your Budget<span class="ion-float-right ion-margin-end">
+      $30 - $150</span>
+    </div>
+    <ion-range id="dual-range" dual-knobs>
+    </ion-range>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-button mode="md" class="apply" (click)="closeModal()">Cancel</ion-button>
+    <ion-button mode="md" class="apply" (click)="closeModal()">Apply</ion-button>
+</ion-footer>

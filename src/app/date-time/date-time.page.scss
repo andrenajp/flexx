@@ -1,0 +1,110 @@
+ion-header {
+    ion-toolbar {
+        height: 55px;
+        ion-buttons {
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+    }
+}
+
+ion-content {
+    --background: var(--background-theme);
+    .main_head {
+        font-family: var(--extrabold-font);
+        font-size: 15px;
+    }
+    ion-calendar {
+        padding: 8px 12px;
+        padding-left: 0;
+        margin-left: -10px;
+        box-sizing: border-box;
+        display: inline-block;
+        background-color: transparent;
+        width: 100%;
+        font-size: 15px;
+        font-family: var(--regular-font);
+    }
+    .segment_btn {
+        background: white;
+        border-radius: 25px;
+        color: black;
+        font-size: 16px;
+        font-family: var(--regular-font);
+        box-shadow: 0px 0px 10px 1px #eeeeee;
+        border-radius: 18px;
+        text-align: center;
+        padding: 5px;
+        height: 58px;
+        width: 77px;
+        padding-top: 11px;
+        padding-left: 11px;
+        padding-right: 11px;
+        p {
+            margin: 0;
+            padding: 0;
+            font-size: 11px;
+            font-family: var(--regular-font);
+            color: var(--gray-color)
+        }
+    }
+    hr {
+        background: rgba(0, 0, 0, 0.12);
+    }
+    .active {
+        background: var(--theme-color);
+        border-radius: 25px;
+        color: white;
+        font-size: 16px;
+        font-family: var(--regular-font);
+        box-shadow: 0px 0px 10px 1px #eeeeee;
+        border-radius: 18px;
+        text-align: center;
+        padding: 5px;
+        height: 58px;
+        width: 77px;
+        padding-top: 11px;
+        padding-left: 11px;
+        padding-right: 11px;
+        p {
+            margin: 0;
+            padding: 0;
+            font-size: 11px;
+            font-family: var(--regular-font);
+            color: white;
+        }
+    }
+}
+
+ion-footer {
+    ion-item {
+        .detail {
+            font-family: var(--regular-font);
+            font-size: 13px;
+            color: var(--gray-color);
+        }
+        .total_price {
+            font-family: var(--bold-font);
+            font-size: 20px;
+            color: var(--ion-black);
+        }
+        ion-button {
+            overflow: hidden;
+            font-size: 15px;
+            font-family: var(--regular-font);
+            text-transform: none;
+            margin: 0;
+            height: 40px;
+            --color: white;
+            --background: var(--theme-color);
+            --border-radius: 10px;
+            width: 110px;
+            margin-left: 14px;
+        }
+    }
+}

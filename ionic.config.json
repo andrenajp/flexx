@@ -1,0 +1,8 @@
+{
+  "name": "beautilocks",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "8fe1751c"
+}

@@ -1,0 +1,33 @@
+ion-header {
+    ion-toolbar {
+        height: 55px;
+        ion-buttons {
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+    }
+}
+
+ion-content {
+    --background: var(--background-theme);
+    div {
+        margin-top: 220px;
+        p {
+            margin: 0;
+            font-family: var(--regular-font);
+            font-size: 14px;
+            color: var(--gray-color);
+        }
+        span {
+            margin: 0;
+            font-family: var(--regular-font);
+            font-size: 14px;
+            color: var(--ion-black);
+        }
+    }
+}

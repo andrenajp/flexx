@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/profile" text="" mode="md">
+                <img src="../../assets/images/back.svg">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title mode="ios">Edit Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/user.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Full Name</div>
+            <ion-input type="text" value="Amelia Addison" placeholder="Enter Your Name"></ion-input>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/at.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Email</div>
+            <ion-input type="email" value="Ameliaaddison112@gmail.com" placeholder="Enter Your Email"></ion-input>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/gender.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Select Gender</div>
+            <ion-row class="ion-padding-top">
+                <ion-col size="4" class="ion-no-padding"> <label class="container">Male
+                        <input type="radio" checked="checked" name="radio">
+                        <span class="checkmark"></span>
+                    </label></ion-col>
+                <ion-col size="4" class="ion-no-padding"> <label class="container">Female
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label></ion-col>
+            </ion-row>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/padlock.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Password</div>
+            <ion-input type="password" value="********" placeholder="Enter Your Password"></ion-input>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/padlock.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Confirm Password</div>
+            <ion-input type="password" value="********" placeholder="Re-enter Password"></ion-input>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/phone.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Contact Number</div>
+            <ion-input type="number" value="00000 00000" placeholder="Enter Your Contact Number"></ion-input>
+        </ion-label>
+    </ion-item>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-button expand="full">Update Information</ion-button>
+</ion-footer>

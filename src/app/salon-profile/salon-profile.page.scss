@@ -1,0 +1,220 @@
+ion-header {
+    ion-toolbar {
+        height: 55px;
+        ion-buttons {
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+    }
+}
+
+ion-content {
+    --background: var(--background-theme);
+    .swiper-slide {
+        display: block;
+    }
+    .swiper-slide img {
+        max-height: 200px;
+        max-width: 100%;
+        min-width: 92%;
+        pointer-events: none;
+        margin-top: 15px;
+        border-radius: 15px;
+    }
+    .address {
+        font-size: 14px;
+        word-spacing: normal;
+        font-family: var(--regular-font);
+        color: var(--gray-color);
+        padding-right: 10px;
+        text-align: inherit;
+    }
+    .rate_div {
+        margin: 0;
+        padding-top: 5px;
+        font-size: 13px;
+        font-family: var(--regular-font);
+        color: var(--ion-black);
+        .star_img {
+            margin-bottom: -5px;
+            margin-right: 2px;
+        }
+        .circle_icon {
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+    }
+    .border_bottom {
+        border-bottom: 1px dashed #dddddd;
+        margin: 17px;
+    }
+    .border {
+        border-bottom: 1px dashed #dddddd;
+        margin-left: 17px;
+        margin-right: 17px;
+    }
+    .seg-button {
+        height: 6px;
+        background: var(--theme-color);
+        min-width: 57px;
+        margin-top: 14px;
+        margin-bottom: -7px;
+    }
+    .seg-button2 {
+        height: 6px;
+        background: var(--theme-color);
+        min-width: 56px;
+        margin-top: 14px;
+        margin-bottom: -7px;
+    }
+    .section {
+        width: 100%;
+        position: sticky;
+        ion-segment {
+            border-radius: 11px;
+            --background: transparent;
+            padding-left: 3px;
+            padding-right: 3px;
+            ion-segment-button {
+                max-width: fit-content;
+                margin-right: 3px;
+                --border-radius: 15px;
+                font-family: var(--bold-font);
+                font-size: 15px;
+                --color-checked: black;
+                --color: black;
+                --indicator-color: none;
+                --indicator-height: 10px;
+                text-transform: capitalize;
+                &:first-child {
+                    margin-left: 15px;
+                }
+                &:last-child {
+                    margin-right: 15px;
+                    margin-left: 18px;
+                }
+            }
+        }
+    }
+    .fix-segment {
+        position: fixed;
+        top: 55px;
+        width: -webkit-fill-available;
+        background: #fff;
+        padding: 10px 16px;
+        z-index: 10;
+    }
+    .main_head {
+        font-family: var(--extrabold-font);
+        font-size: 15px;
+    }
+    .review_head {
+        font-family: var(--regular-font);
+        font-size: 15px;
+        color: var(--gray-color);
+    }
+    .services {
+        padding-top: 10px;
+        background: #F1F1F1;
+        padding: 12px;
+        margin-left: 16px;
+        margin-right: 16px;
+        border-radius: 16px;
+        margin-bottom: 10px;
+    }
+    .service_name {
+        font-family: var(--regular-font);
+        font-size: 15px;
+        color: var(--gray-color);
+    }
+    .price {
+        font-family: var(--bold-font);
+        font-size: 15px;
+        text-align: center;
+    }
+    .inactive {
+        font-size: 19px;
+        color: var(--theme-color);
+    }
+    .active {
+        font-size: 19px;
+        color: white;
+        background: var(--theme-color);
+        border-radius: 15px;
+    }
+    ion-row {
+        // margin-bottom: 30px;
+        .rate_div {
+            font-size: 13px;
+            font-family: var(--regular-font);
+            color: var(--fill-yellow);
+            .star_img {
+                margin-right: 2px;
+                margin-bottom: 0;
+            }
+            .circle_icon {
+                margin-left: 6px;
+                margin-right: 6px;
+            }
+        }
+        .details_div {
+            background: #F1F1F1;
+            margin: -7px;
+            padding-top: 7px;
+            border-radius: 17px;
+            margin-left: -19px;
+        }
+    }
+    .name {
+        font-family: var(--regular-font);
+        font-size: 13px;
+        color: black;
+        span {
+            font-family: var(--regular-font);
+            font-size: 10px;
+            color: var(--gray-color);
+        }
+    }
+    .detail {
+        font-family: var(--regular-font);
+        font-size: 11px;
+        color: var(--gray-color);
+    }
+    ion-card {
+        background: #FAFAFA;
+        box-shadow: none;
+    }
+}
+
+ion-footer {
+    ion-item {
+        .detail {
+            font-family: var(--regular-font);
+            font-size: 13px;
+            color: var(--gray-color);
+        }
+        .total_price {
+            font-family: var(--bold-font);
+            font-size: 20px;
+            color: var(--ion-black);
+        }
+        ion-button {
+            overflow: hidden;
+            font-size: 15px;
+            font-family: var(--regular-font);
+            text-transform: none;
+            margin: 0;
+            height: 40px;
+            --color: white;
+            --background: var(--theme-color);
+            --border-radius: 10px;
+            width: 110px;
+            margin-left: 14px;
+        }
+    }
+}

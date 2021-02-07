@@ -1,0 +1,42 @@
+ion-header {
+    ion-toolbar {
+        height: 55px;
+        ion-buttons {
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+        ion-title {
+            font-family: var(--black-font);
+            font-size: 17px;
+            color: var(--ion-black);
+        }
+    }
+}
+
+ion-content {
+    --background: var(--background-theme);
+    ion-radio-group {
+        ion-item {
+            --background: transparent;
+            padding-top: 11px;
+            --background-activated: none;
+            div {
+                font-family: var(--regular-font);
+                font-size: 16px;
+                padding-left: 15px;
+                span {
+                    font-family: var(--regular-font);
+                    font-size: 10px;
+                }
+            }
+            ion-radio {
+                --color-checked: #20C060;
+            }
+        }
+        .border_bottom {
+            border-bottom: 1px dashed #dddddd;
+            margin-left: 17px;
+            margin-right: 17px;
+        }
+    }
+}

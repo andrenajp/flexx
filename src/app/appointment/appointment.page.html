@@ -1,0 +1,75 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title mode="ios">My Appointment</ion-title>
+    </ion-toolbar>
+    <div class="section">
+        <ion-segment mode="md" [(ngModel)]="selectAppointment" value="all">
+            <ion-segment-button mode="md" value="upcoming">Upcoming
+                <div *ngIf="selectAppointment == 'upcoming'" class="seg-button"></div>
+            </ion-segment-button>
+            <ion-segment-button mode="md" value="past">Past
+                <div *ngIf="selectAppointment == 'past'" class="seg-button2"></div>
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+</ion-header>
+<ion-content>
+    <div [ngSwitch]="selectAppointment">
+        <div *ngSwitchCase="'upcoming'">
+            <div class="salon-container" *ngFor="let item of upcoming">
+                <ion-item lines="none" class="ion-no-padding" (click)="detail()">
+                    <ion-thumbnail>
+                        <img src="{{ item?.img }}" height="80px" width="80px">
+                    </ion-thumbnail>
+                    <ion-label>
+                        <p class="salon_name">{{ item?.name }}</p>
+                        <p class="address">{{ item?.address }}</p>
+                        <div class="rate_div">
+                            <div class="bottom --flex-row-j!sb">
+                                <h3 class="rate_h">
+                                    <ion-icon name="star" [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'">
+                                    </ion-icon>
+                                    <span class="ion-margin-bottom">4.1</span>
+                                    <img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px">
+                                    <span class="ion-text-right">1.6</span>
+                                </h3>
+
+                            </div>
+                        </div>
+                    </ion-label>
+                </ion-item>
+                <hr>
+                <p class="date">{{ item?.date }}<span class="get_direction ion-float-right" (click)="direction()">Get
+                        Direction</span>
+                </p>
+            </div>
+        </div>
+        <div *ngSwitchCase="'past'">
+            <div class="salon-container" *ngFor="let item of past">
+                <ion-item lines="none" class="ion-no-padding" (click)="detail()">
+                    <ion-thumbnail>
+                        <img src="{{ item?.img }}" height="80px" width="80px">
+                    </ion-thumbnail>
+                    <ion-label>
+                        <p class="salon_name">{{ item?.name }}</p>
+                        <p class="address">{{ item?.address }}</p>
+                        <div class="rate_div">
+                            <div class="bottom --flex-row-j!sb">
+                                <h3 class="rate_h">
+                                    <ion-icon name="star" [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'">
+                                    </ion-icon>
+                                    <span class="ion-margin-bottom">4.1</span>
+                                    <img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px">
+                                    <span class="ion-text-right">1.6</span>
+                                </h3>
+
+                            </div>
+                        </div>
+                    </ion-label>
+                </ion-item>
+                <hr>
+                <p class="date">{{ item?.date }}<span class="ion-float-right" (click)="rating()">Give Rating</span></p>
+            </div>
+        </div>
+    </div>
+</ion-content>

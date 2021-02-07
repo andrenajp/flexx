@@ -1,0 +1,40 @@
+ion-content {
+    --background: var(--background-theme);
+    div {
+        margin-top: 125px;
+        .book_success {
+            font-family: var(--thin-font);
+            font-size: 25px;
+            color: var(--gray-color);
+            padding: 32px;
+        }
+        p {
+            margin: 0;
+            font-family: var(--regular-font);
+            font-size: 15px;
+            color: var(--gray-color);
+            text-align: center;
+            span {
+                margin: 0;
+                font-family: var(--regular-font);
+                font-size: 15px;
+                color: var(--theme-color);
+            }
+        }
+    }
+}
+
+ion-footer {
+    ion-button {
+        --background: white;
+        --color: var(--theme-color);
+        height: 50px;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+        text-transform: none;
+        overflow: hidden;
+        border-radius: none;
+        margin: 0;
+        font-family: var(--regular-font);
+    }
+}

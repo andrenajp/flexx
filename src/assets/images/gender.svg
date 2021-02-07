@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32.885" height="32.903" viewBox="0 0 32.885 32.903">
+  <g id="gender" transform="translate(-0.142)">
+    <g id="Group_23" data-name="Group 23" transform="translate(0.142)">
+      <g id="Group_22" data-name="Group 22" transform="translate(0)">
+        <path id="Path_73" data-name="Path 73" d="M17.484,8.955a8.671,8.671,0,1,0-10.02,8.566V27.2H3.931v2.569H7.464v3.4h2.569v-3.4h3.533V27.2H10.033V17.539A8.684,8.684,0,0,0,17.484,8.955Zm-8.671,6.1a6.1,6.1,0,1,1,6.1-6.1A6.109,6.109,0,0,1,8.813,15.056Z" transform="translate(-0.142 -0.266)" fill="#ddd"/>
+        <path id="Path_74" data-name="Path 74" d="M251.9,15.648V4.918l2.248,2.248,1.817-1.817L250.615,0l-5.349,5.349,1.817,1.817,2.248-2.248V15.667a8.673,8.673,0,1,0,2.569-.019Zm-1.22,14.686a6.1,6.1,0,1,1,6.1-6.1A6.109,6.109,0,0,1,250.679,30.334Z" transform="translate(-226.465)" fill="#ddd"/>
+      </g>
+    </g>
+  </g>
+</svg>
