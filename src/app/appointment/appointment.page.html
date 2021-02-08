@@ -1,13 +1,13 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
-        <ion-title mode="ios">My Appointment</ion-title>
+        <ion-title mode="ios">Mes resvations</ion-title>
     </ion-toolbar>
     <div class="section">
         <ion-segment mode="md" [(ngModel)]="selectAppointment" value="all">
-            <ion-segment-button mode="md" value="upcoming">Upcoming
+            <ion-segment-button mode="md" value="upcoming">A venir
                 <div *ngIf="selectAppointment == 'upcoming'" class="seg-button"></div>
             </ion-segment-button>
-            <ion-segment-button mode="md" value="past">Past
+            <ion-segment-button mode="md" value="past">Passer
                 <div *ngIf="selectAppointment == 'past'" class="seg-button2"></div>
             </ion-segment-button>
         </ion-segment>
@@ -30,7 +30,8 @@
                                     <ion-icon name="star" [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'">
                                     </ion-icon>
                                     <span class="ion-margin-bottom">4.1</span>
-                                    <img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px">
+                                    <img class="circle_icon" src="../../assets/images/circle.svg" height="6px"
+                                        width="6px">
                                     <span class="ion-text-right">1.6</span>
                                 </h3>
 
@@ -39,8 +40,8 @@
                     </ion-label>
                 </ion-item>
                 <hr>
-                <p class="date">{{ item?.date }}<span class="get_direction ion-float-right" (click)="direction()">Get
-                        Direction</span>
+                <p class="date">{{ item?.date }}<span class="get_direction ion-float-right" (click)="direction()">Voir
+                        sur la carte</span>
                 </p>
             </div>
         </div>
@@ -59,7 +60,8 @@
                                     <ion-icon name="star" [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'">
                                     </ion-icon>
                                     <span class="ion-margin-bottom">4.1</span>
-                                    <img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px">
+                                    <img class="circle_icon" src="../../assets/images/circle.svg" height="6px"
+                                        width="6px">
                                     <span class="ion-text-right">1.6</span>
                                 </h3>
 
@@ -68,7 +70,8 @@
                     </ion-label>
                 </ion-item>
                 <hr>
-                <p class="date">{{ item?.date }}<span class="ion-float-right" (click)="rating()">Give Rating</span></p>
+                <p class="date">{{ item?.date }}<span class="ion-float-right" (click)="rating()">Donnez une note</span>
+                </p>
             </div>
         </div>
     </div>
