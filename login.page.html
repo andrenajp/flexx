@@ -1,0 +1,48 @@
+<ion-content>
+    <img class="loginLogo" src="../../assets/images/beautilock.svg">
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/at.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Email</div>
+            <div class="">
+                <ion-input [(ngModel)]="loginForm.email" type="" placeholder="Votre email"></ion-input>
+            </div>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <div slot="start">
+            <img class="" src="../../assets/images/padlock.svg" height="32px" width="32px">
+        </div>
+        <ion-label>
+            <div class="name">Mot de passe</div>
+            <div class="">
+                <ion-input [(ngModel)]="loginForm.password" type="" placeholder="Votre mot de passe"></ion-input>
+            </div>
+        </ion-label>
+    </ion-item>
+    <div class="forgot_div ion-text-center">
+        <!-- <div class="remember ion-text-left ion-padding-start">
+            <div (click)="change()"> <img class="check ion-margin-start" [src]="check">Remember Me <span
+                    class="forgot ion-text-right ion-padding-end ion-margin-end" (click)="forgot()">Forgot
+                    Password?</span></div>
+        </div> -->
+        <div class="remember ion-text-center ion-padding-start">
+            <div> <span center (click)="forgot()">Vous avez
+                    oublié
+                    votre mot de passe ?</span></div>
+        </div>
+    </div>
+    <div>
+        <p>
+            <ion-button expand="full" (click)="login()">Connexion</ion-button>
+        </p>
+    </div>
+
+    <div class="ion-text-center" padding>
+        <div class="message">Pas encore de compte ? <span class="createNew" (click)="register()">Créer un
+                nouveau
+                compte !</span> </div>
+    </div>
+</ion-content>

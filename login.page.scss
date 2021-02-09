@@ -1,0 +1,81 @@
+ion-content {
+    --background: var(--background-theme);
+    .loginLogo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 73px;
+        margin-bottom: 72px;
+        height: 125px;
+        width: 195px;
+    }
+    ion-item {
+        height: 80px;
+        width: 307px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: 10px;
+        border: 0.3px solid white;
+        box-shadow: 0px 0px 10px 1px #eeeeee;
+        border-radius: 15px;
+        ion-label {
+            padding-top: 15px;
+            padding-bottom: 18px;
+            margin: 0;
+        }
+        ion-input {
+            border: none;
+            font-family: var(--regular-font);
+            font-size: 15px;
+            --padding-start: 0;
+            --placeholder-opacity: 1;
+        }
+        .name {
+            color: var(--gray-color);
+            font-family: var(--regular-font);
+            font-size: 13px;
+        }
+    }
+    .message {
+        color: var(--gray-color);
+        font-family: var(--regular-font);
+        margin-bottom: 64px;
+    }
+    .createNew {
+        color: var(--ion-black);
+        font-family: var(--bold-font);
+    }
+    .forgot_div {
+        padding-left: 14px;
+        padding-right: 20px;
+        .remember {
+            font-family: var(--regular-font);
+            font-size: 13px;
+        }
+        .forgot {
+            float: right;
+            font-family: var(--regular-font);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+    }
+    ion-button {
+        --background: var(--theme-color);
+        --color: white;
+        margin: 18px;
+        height: 50px;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+        text-transform: none;
+        overflow: hidden;
+        border-radius: 15px;
+        font-family: var(--regular-font);
+    }
+    .check {
+        height: 20px;
+        width: 20px;
+        margin-bottom: -4px;
+        margin-right: 6px;
+    }
+}
