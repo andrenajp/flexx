@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController, NavController } from '@ionic/angular';
+import axios from 'axios';
 
 import { LocationPage } from '../location/location.page';
 @Component({
@@ -83,7 +84,17 @@ export class HomePage {
 
   constructor(private nav: NavController, private modalCtrl: ModalController) {
   }
-  async ngOnInit() {
+  async ngOnInit() 
+  {
+    try 
+    {
+      const response = await axios.get('http://157.230.232.108/salons');
+      //this.salons = response.data;
+      console.log(response.data)
+    } catch (error)
+    {
+     console.log("");
+    }
 
   }
   salonProfile(salon) {

@@ -15,7 +15,7 @@
         </div>
         <ion-label>
             <div class="name">Nom complet</div>
-            <ion-input type="text" placeholder="Votre nom complet"></ion-input>
+            <ion-input [(ngModel)]="name" type="text" placeholder="Votre nom complet"></ion-input>
         </ion-label>
     </ion-item>
     <ion-item lines="none">
@@ -24,7 +24,7 @@
         </div>
         <ion-label>
             <div class="name">Email</div>
-            <ion-input type="email" placeholder="Votre email"></ion-input>
+            <ion-input [(ngModel)]="email" type="email" placeholder="Votre email"></ion-input>
         </ion-label>
     </ion-item>
     <ion-item lines="none">
@@ -52,7 +52,7 @@
         </div>
         <ion-label>
             <div class="name">Mot de passe</div>
-            <ion-input type="password" placeholder="Tapez votre mot de passe"></ion-input>
+            <ion-input [(ngModel)]="password" type="password" placeholder="Tapez votre mot de passe"></ion-input>
         </ion-label>
     </ion-item>
     <ion-item lines="none">
@@ -62,7 +62,7 @@
         <ion-label>
             <div class="name">Confirmer mot de passe</div>
             <div class="password">
-                <ion-input type="password" placeholder="Retaper le mot de passe"></ion-input>
+                <ion-input type="password" placeholder="Retaper le mot de passe"  [(ngModel)]="confirmpassword"></ion-input>
             </div>
         </ion-label>
     </ion-item>

@@ -7,6 +7,9 @@ import {
 } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Chart } from "chart.js";
+
+import axios from 'axios';
+
 @Component({
   selector: "app-salon-profile",
   templateUrl: "./salon-profile.page.html",
@@ -38,7 +41,10 @@ export class SalonProfilePage implements OnInit {
   fixSegment: any = 1;
   add = "../../assets/images/plus.svg";
   @ViewChild("barChart") barChart;
-  constructor(private nav: NavController) {}
+  constructor(
+    private nav: NavController,
+    private route: ActivatedRoute
+    ) {}
   bars: any;
   hairArray: any = [
     {
@@ -119,7 +125,19 @@ export class SalonProfilePage implements OnInit {
     this.createBarChart();
   }
   service() {}
-  ngOnInit() {}
+
+  async ngOnInit()
+  {
+    const idSalons =this.route.snapshot.paramMap.get("id");
+    try 
+    {
+      const response = await axios.get('http://157.230.232.108/salons/'+idSalons);
+
+    } catch (error)
+    {
+      console.log();
+    }
+  }
   ionViewWillEnter() {}
   continue() {
     this.nav.navigateForward("/date-time");
