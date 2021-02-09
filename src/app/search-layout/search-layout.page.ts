@@ -68,11 +68,15 @@ export class SearchLayoutPage implements OnInit {
     try 
     {
       const response = await axios.get('http://157.230.232.108/salons');
-      this.searchSalon = response.data;
+     //this.searchSalon = response.data;
     } catch (error)
     {
      console.log("");
     }
+  }
+
+  salonProfile(salon) {
+    this.nav.navigateForward("/salon-profile");
   }
 
 }

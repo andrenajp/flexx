@@ -128,6 +128,7 @@ export class SalonProfilePage implements OnInit {
 
   async ngOnInit()
   {
+    
     const idSalons =this.route.snapshot.paramMap.get("id");
     try 
     {

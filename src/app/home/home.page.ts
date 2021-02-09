@@ -89,11 +89,11 @@ export class HomePage {
     try 
     {
       const response = await axios.get('http://157.230.232.108/salons');
-      //this.salons = response.data;
+      this.salons = response.data;
       console.log(response.data)
     } catch (error)
     {
-     console.log("");
+     console.log(error.response);
     }
 
   }
