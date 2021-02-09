@@ -28,7 +28,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     SplashScreen,
     OneSignal,
     Geolocation,
-
+    
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
