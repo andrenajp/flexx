@@ -7,12 +7,16 @@ import {
 } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Chart } from "chart.js";
+
+import axios from 'axios';
+
 @Component({
   selector: "app-salon-profile",
   templateUrl: "./salon-profile.page.html",
   styleUrls: ["./salon-profile.page.scss"],
 })
 export class SalonProfilePage implements OnInit {
+  salon: any
   select = "service";
   changeIcon: string = "../../assets/images/down.svg";
   banner: any = [
@@ -37,8 +41,18 @@ export class SalonProfilePage implements OnInit {
   facialChange = "../../assets/images/down.svg";
   fixSegment: any = 1;
   add = "../../assets/images/plus.svg";
+  logo
+  thesalon
   @ViewChild("barChart") barChart;
-  constructor(private nav: NavController) {}
+  constructor(
+    private nav: NavController,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((res) => {
+      this.salon = res;
+      console.log(res)
+    });
+  }
   bars: any;
   hairArray: any = [
     {
@@ -118,9 +132,20 @@ export class SalonProfilePage implements OnInit {
   ionViewDidEnter() {
     this.createBarChart();
   }
-  service() {}
-  ngOnInit() {}
-  ionViewWillEnter() {}
+  service() { }
+
+  async ngOnInit() {
+
+
+    try {
+      const response = await axios.get('http://157.230.232.108/salons/' + this.salon.id);
+      this.thesalon = response.data
+      console.log(response)
+    } catch (error) {
+      console.log();
+    }
+  }
+  ionViewWillEnter() { }
   continue() {
     this.nav.navigateForward("/date-time");
   }

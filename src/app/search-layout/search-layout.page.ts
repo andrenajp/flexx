@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { FilterPage } from '../filter/filter.page';
+import axios from 'axios';
+
 
 @Component({
   selector: 'app-search-layout',
@@ -61,7 +63,20 @@ export class SearchLayoutPage implements OnInit {
     });
     return await modal.present();
   }
-  ngOnInit() {
+  async ngOnInit() 
+  {
+    try 
+    {
+      const response = await axios.get('http://157.230.232.108/salons');
+     //this.searchSalon = response.data;
+    } catch (error)
+    {
+     console.log("");
+    }
+  }
+
+  salonProfile(salon) {
+    this.nav.navigateForward("/salon-profile");
   }
 
 }

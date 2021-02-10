@@ -7,7 +7,7 @@
         <ion-label>
             <div class="name">Email</div>
             <div class="">
-                <ion-input type="" placeholder="Votre email"></ion-input>
+                <ion-input [(ngModel)]="loginForm.email" type="" placeholder="Votre email"></ion-input>
             </div>
         </ion-label>
     </ion-item>
@@ -18,7 +18,7 @@
         <ion-label>
             <div class="name">Mot de passe</div>
             <div class="">
-                <ion-input type="" placeholder="Votre mot de passe"></ion-input>
+                <ion-input [(ngModel)]="loginForm.password" type="" placeholder="Votre mot de passe"></ion-input>
             </div>
         </ion-label>
     </ion-item>

@@ -8,12 +8,20 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 
+import {AuthService} from './auth.service';
+import { IonicStorageModule } from '@ionic/storage';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,    
+    IonicStorageModule.forRoot()
+  ],
+  providers:[
+    AuthService,
   ],
   declarations: [LoginPage]
 })
