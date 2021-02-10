@@ -18,7 +18,7 @@
   <div class="main_head ion-padding-start">Explorer les services</div>
   <ion-row class="ion-padding-start ion-padding-top">
     <div class="scroll">
-      <ion-col size="4" *ngFor="let service of services">
+      <ion-col size="4" *ngFor="let service of services" (click)="listeSalons(service)">
         <img class="my_img" src="{{ service?.img }}" width="98px" height="126px" />
         <p class="name">{{ service?.name }}</p>
       </ion-col>
@@ -30,8 +30,8 @@
   <ion-row class="ion-padding-start ion-padding-top">
     <div class="scroll">
       <ion-col size="5" *ngFor="let salon of salons" (click)="salonProfile(salon)">
-        <img class="my_img" src="{{ salon?.img }}" width="157px" height="125px" />
-        <p class="salon_name ion-padding-top">{{ salon?.name }}</p>
+        <img class="my_img" src="http://157.230.232.108{{ salon?.Logo?.url }}" width="157px" height="125px" />
+        <p class="salon_name ion-padding-top">{{ salon?.name }} {{ salon?.logo?.id }}</p>
         <div class="address">{{ salon?.address | slice:0:30 }}..</div>
         <div class="rate_div">
           <img class="star_img" src="../../assets/images/star.svg" height="22px" width="22px" />

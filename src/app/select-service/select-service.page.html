@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="home" text="" mode="md">
+              <img src="../../assets/images/back.svg">
+          </ion-back-button>
+      </ion-buttons>
+      <ion-title mode="ios">
+          <p>Service {{service.name}}</p>
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="main_head ion-padding-start">Liste des salons ({{searchSalon.length}})<span class="ion-float-right ion-margin-end">
+          <!--<img (click)="filter()" src="../../assets/images/filter.svg" height="18px" width="18px">--> </span> 
+  </div>
+  <ion-item lines="none" *ngFor="let item of searchSalon"> 
+      <img slot="start" class="salon_img" src="{{ item?.img }}">
+      <ion-label>
+          <a class="salon_name" (click)="salonProfile(item)" >{{ item?.name }}</a>
+          <p class="address">{{ item?.address }}</p>
+
+          <div class="rate_div">
+              <div class="bottom --flex-row-j!sb">
+                  <h3 class="rate_h">
+                  <!--<ion-icon name="star" [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'">
+                      </ion-icon>-->
+                      <span class="ion-margin-bottom">{{ item?.rate }}</span>
+                      <img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px">
+                      <span class="ion-text-right"> {{ item?.km }}</span>
+                  </h3>
+
+              </div>
+          </div>
+      </ion-label>
+  </ion-item>
+</ion-content>
