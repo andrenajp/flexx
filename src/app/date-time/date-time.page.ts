@@ -80,17 +80,16 @@ export class DateTimePage implements OnInit {
     $event.preventdefault;
     this.dateRDV=moment(this.date).toDate();
   }
-  activeSlot(i) {
+  activeSlot(i,h) {
     this.selectTime = i;
     //Ajouter l'heure à la date avec moment ?
-  }
-  addHours(i)
-  {
-    this.dateRDV=moment(this.dateRDV).hours(i).toDate();
+    this.dateRDV=moment(this.dateRDV).hours(h).toDate();
+
   }
   continue() 
   {
-    this.appointServ.getdate(this.dateRDV);
-    this.nav.navigateForward('payment')
+    console.log(this.dateRDV)
+    //this.appointServ.getdate(this.dateRDV);
+    //this.nav.navigateForward('payment')
   }
 }
