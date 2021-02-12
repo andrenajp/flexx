@@ -22,7 +22,6 @@ export class SelectServicePage implements OnInit {
 
   async ngOnInit() {
 
-
     try 
     {
       const response = await axios.get('http://157.230.232.108/services/'+this.service.id);

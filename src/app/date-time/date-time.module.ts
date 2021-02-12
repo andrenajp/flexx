@@ -8,6 +8,7 @@ import { DateTimePageRoutingModule } from './date-time-routing.module';
 
 import { DateTimePage } from './date-time.page';
 import { CalendarModule } from 'ion2-calendar';
+import {AppointmentService} from '../Appointment/appointment.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,9 @@ import { CalendarModule } from 'ion2-calendar';
     IonicModule,
     DateTimePageRoutingModule,
     CalendarModule
+  ],
+  providers:[
+    AppointmentService
   ],
   declarations: [DateTimePage]
 })

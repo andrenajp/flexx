@@ -9,6 +9,7 @@ import { NavController } from "@ionic/angular";
 import { Chart } from "chart.js";
 
 import axios from 'axios';
+import {AppointmentService} from '../Appointment/appointment.service';
 
 @Component({
   selector: "app-salon-profile",
@@ -16,6 +17,7 @@ import axios from 'axios';
   styleUrls: ["./salon-profile.page.scss"],
 })
 export class SalonProfilePage implements OnInit {
+  salon:any={};
   select = "service";
   changeIcon: string = "../../assets/images/down.svg";
   banner: any = [
@@ -43,8 +45,14 @@ export class SalonProfilePage implements OnInit {
   @ViewChild("barChart") barChart;
   constructor(
     private nav: NavController,
-    private route: ActivatedRoute
-    ) {}
+    private router: Router,
+    private route: ActivatedRoute,
+    private appointServ:AppointmentService
+    ) {
+      this.route.queryParams.subscribe((res) => {
+        this.salon = res;
+      }); 
+    }
   bars: any;
   hairArray: any = [
     {
@@ -140,8 +148,12 @@ export class SalonProfilePage implements OnInit {
     }
   }
   ionViewWillEnter() {}
-  continue() {
-    this.nav.navigateForward("/date-time");
+  continue() 
+  {
+    this.appointServ.getSalon(this.salon.id);
+    this.router.navigate(["/select-employee"], {
+      queryParams:{id:this.salon.id},
+    });
   }
   back() {
     this.nav.navigateForward("tabs/home");

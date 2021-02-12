@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SelectEmployeePageRoutingModule } from './select-employee-routing.module';
 
 import { SelectEmployeePage } from './select-employee.page';
+import {AppointmentService} from '../Appointment/appointment.service';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   imports: [
@@ -14,6 +16,9 @@ import { SelectEmployeePage } from './select-employee.page';
     FormsModule,
     IonicModule,
     SelectEmployeePageRoutingModule
+  ],
+  providers:[
+    AppointmentService
   ],
   declarations: [SelectEmployeePage]
 })
