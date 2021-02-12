@@ -4,6 +4,7 @@ import { DirectionPage } from '../direction/direction.page';
 import { GiveRatingPage } from '../give-rating/give-rating.page';
 
 import axios from "axios";
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.page.html',
@@ -15,7 +16,11 @@ export class AppointmentPage implements OnInit {
   rate: any = 1;
   upcoming: any = [ ]
   past: any = [ ]
-  constructor(private modalCtrl: ModalController, private nav: NavController) { }
+  constructor(
+    private modalCtrl: ModalController, 
+    private nav: NavController,
+    private router: Router
+    ) { }
   ngOnInit() 
   {
     axios.get('http://157.230.232.108/appointments/').then(response => {
@@ -47,7 +52,10 @@ export class AppointmentPage implements OnInit {
     });
     return await modal.present();
   }
-  detail() {
-    this.nav.navigateForward('appointment-detail')
+  detail(appoint)
+  {
+    this.router.navigate(["/appointment-detail"],{
+      queryParams:{id:appoint.id},
+    });
   }
 }

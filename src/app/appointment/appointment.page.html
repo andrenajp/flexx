@@ -17,7 +17,7 @@
     <div [ngSwitch]="selectAppointment">
         <div *ngSwitchCase="'upcoming'">
             <div class="salon-container" *ngFor="let item of upcoming">
-                <ion-item lines="none" class="ion-no-padding" (click)="detail()">
+                <ion-item lines="none" class="ion-no-padding" (click)="detail(item)">
                     <ion-thumbnail>
                         <img src="http://157.230.232.108{{ item.salon?.Logo?.url }}" height="80px" width="80px">
                     </ion-thumbnail>
@@ -47,7 +47,7 @@
         </div>
         <div *ngSwitchCase="'past'">
             <div class="salon-container" *ngFor="let item of past">
-                <ion-item lines="none" class="ion-no-padding" (click)="detail()">
+                <ion-item lines="none" class="ion-no-padding" (click)="detail(item)">
                     <ion-thumbnail>
                         <img src="http://157.230.232.108{{ item.salon?.Logo?.url }}" height="80px" width="80px">
                     </ion-thumbnail>

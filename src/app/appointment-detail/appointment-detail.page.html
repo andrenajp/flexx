@@ -5,26 +5,26 @@
                 <img src="../../assets/images/back.svg">
             </ion-back-button>
         </ion-buttons>
-        <ion-title mode="ios">My Appointment</ion-title>
+        <ion-title mode="ios">Mon rendez-vous</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <div class="detail_div">
-        <img class="salon_img" src="../../assets/images/salon4.png" slot="start"><br>
+        <img class="salon_img" src="http://157.230.232.108{{ salon?.Logo?.url }}" slot="start"><br>
         <ion-label>
-            <p class="salon_name">Martha Salon</p>
-            <p class="address">463 W Broadway, New York, NY 10012, United States</p>
+            <p class="salon_name">{{ salon.name}}</p>
+            <p class="address">{{salon.address}}</p>
             <p class="rate_div">
                 <img class="star_img" src="../../assets/images/star.svg" height="22px" width="22px">4.5<img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px"><span class="ion-text-right">2.6km</span>
             </p>
         </ion-label>
     </div>
     <div class="border_bottom"></div>
-    <div class="main_head ion-padding-start">Appointment Time
+    <div class="main_head ion-padding-start">Heure du rendez-vous
     </div>
-    <div class="time ion-padding-start">05 Nov, 2020 - 10:00AM</div>
+    <div class="time ion-padding-start">{{ appointment?.appointment_date  | date:'dd-MM-yyyy HH:mm' }}</div>
     <div class="border_bottom"></div>
-    <div class="main_head ion-padding-start">Services You Selected
+    <div class="main_head ion-padding-start">Services que vous avez sélectionnés
     </div>
     <ion-row class="ion-padding-start">
         <ion-col size="10" class="service_name ion-no-padding">Face Bleach<br><span>(Facial)</span></ion-col>
