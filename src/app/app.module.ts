@@ -16,13 +16,14 @@ import { DirectionPageModule } from './direction/direction.module';
 import { LocationPageModule } from './location/location.module';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     FilterPageModule, GiveRatingPageModule, SharingPageModule, LanguagePageModule, DirectionPageModule, LocationPageModule,
-    HttpClientModule],
+    HttpClientModule,IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,

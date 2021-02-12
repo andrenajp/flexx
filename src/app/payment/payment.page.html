@@ -10,10 +10,10 @@
 </ion-header>
 <ion-content>
     <div class="detail_div">
-        <img class="salon_img" src="../../assets/images/salon4.png" slot="start"><br>
+        <img class="salon_img" src="http://157.230.232.108{{ salon?.Logo?.url }}" slot="start"><br>
         <ion-label>
-            <p class="salon_name">Martha Salon</p>
-            <p class="address">463 W Broadway, New York, NY 10012, United States</p>
+            <p class="salon_name">{{salon.name}}</p>
+            <p class="address">{{salon.address}}</p>
             <p class="rate_div">
                 <img class="star_img" src="../../assets/images/star.svg" height="22px" width="22px">4.0<img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px"><span class="ion-text-right">2.6km</span>
             </p>
@@ -24,13 +24,13 @@
     </div>
     <ion-item lines="none">
         <img slot="start" class="emp_img" src="../../assets/images/profile.png">
-        <ion-label>Elizabeth</ion-label>
+        <ion-label>{{emp.fullname}}</ion-label>
 
     </ion-item>
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start">Appointment Time
     </div>
-    <div class="time ion-padding-start">28 October, 2020 - 11:00AM</div>
+    <div class="time ion-padding-start">{{date}}</div>
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start">Services You Selected<span class="ion-float-end ion-padding-end" (click)="addNew()">+Add New
             Service</span>

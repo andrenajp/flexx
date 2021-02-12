@@ -91,7 +91,11 @@ const routes: Routes = [
   {
     path: 'select-employee',
     loadChildren: () => import('./select-employee/select-employee.module').then( m => m.SelectEmployeePageModule)
+  },  {
+    path: 'select-service',
+    loadChildren: () => import('./select-service/select-service.module').then( m => m.SelectServicePageModule)
   },
+
   // {
   //   path: 'location',
   //   loadChildren: () => import('./location/location.module').then( m => m.LocationPageModule)

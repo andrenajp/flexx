@@ -35,42 +35,27 @@ export class HomePage {
     km: '3.2km'
   }]
   rate: any = 1;
-  services: any = [{
-    img: '../../assets/images/haircut.png',
-    name: 'Hair Cutting',
-
-  }, {
-    img: '../../assets/images/color.png',
-    name: 'Color Services',
-
-  },
-  {
-    img: '../../assets/images/threading.png',
-    name: 'Threading',
-
-  },
-  {
-    img: '../../assets/images/massage.png',
-    name: 'Hair Treatments',
-
-  }, {
-    img: '../../assets/images/hairtreatment.png',
-    name: 'Hair treatment',
-
-  }];
-  salons: any = []
+  services: any = []
+  salons: any = [];
 
   constructor(private nav: NavController, private modalCtrl: ModalController, public router: Router) {
   }
   async ngOnInit() {
     try {
-      const response = await axios.get('http://157.230.232.108/salons');
-      this.salons = response.data;
-      console.log(response.data)
+      const salonsRep = await axios.get('http://157.230.232.108/salons');
+      this.salons = salonsRep.data;
+      const serviceRep = await axios.get('http://157.230.232.108/services');
+      this.services = serviceRep.data;
+
     } catch (error) {
       console.log(error.response);
     }
 
+  }
+  listeSalons(sercice: NavigationExtras) {
+    this.router.navigate(["/select-service"], {
+      queryParams: sercice,
+    });
   }
   salonProfile(salon: NavigationExtras) {
     console.log(salon);

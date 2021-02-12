@@ -18,7 +18,7 @@
   <div class="main_head ion-padding-start">Explorer les services</div>
   <ion-row class="ion-padding-start ion-padding-top">
     <div class="scroll">
-      <ion-col size="4" *ngFor="let service of services">
+      <ion-col size="4" *ngFor="let service of services" (click)="listeSalons(service)">
         <img class="my_img" src="{{ service?.img }}" width="98px" height="126px" />
         <p class="name">{{ service?.name }}</p>
       </ion-col>

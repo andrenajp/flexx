@@ -24,7 +24,7 @@
                 <div *ngIf="time?.length == 0" class="main_head ion-justify-content-center ion-margin-top">No Time Yet
                 </div>
                 <ion-col size="3" *ngFor="let slot of time">
-                    <div class="time-slot" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'" (click)="activeSlot(slot.start_time)">
+                    <div class="time-slot" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'" (click)="activeSlot(slot.start_time);addHours(slot.hours);">
                         {{ slot.start_time }}
 
                     </div>

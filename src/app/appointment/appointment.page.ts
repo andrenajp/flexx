@@ -2,60 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { DirectionPage } from '../direction/direction.page';
 import { GiveRatingPage } from '../give-rating/give-rating.page';
+
+import axios from "axios";
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.page.html',
   styleUrls: ['./appointment.page.scss'],
 })
 export class AppointmentPage implements OnInit {
+  appoint:any={};
   selectAppointment = 'upcoming';
   rate: any = 1;
-  upcoming: any = [{
-    img: '../../assets/images/salon4.png',
-    name: 'Martha Salon',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '15 Fev, 2021 - 10H00',
-    rate: '5.0',
-    km: '3.2km'
-  }, {
-    img: '../../assets/images/salon6.png',
-    name: 'Central City Bright',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '17 Fev, 2021 - 17:00',
-    rate: '5.0',
-    km: '3.2km'
-  }]
-  past: any = [{
-    img: '../../assets/images/salon2.png',
-    name: 'Bright & Light',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '20 Oct, 2020 - 08H00',
-    rate: '5.0',
-    km: '3.2km'
-  }, {
-    img: '../../assets/images/salon9.png',
-    name: 'Green Salon',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '19 Oct, 2020 - 08H00',
-    rate: '5.0',
-    km: '3.2km'
-  }, {
-    img: '../../assets/images/salon6.png',
-    name: 'Central City Bright',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '17 Oct, 2020 - 17H00',
-    rate: '5.0',
-    km: '3.2km'
-  }, {
-    img: '../../assets/images/salon7.png',
-    name: 'Beauty Plus',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '19 Oct, 2020 - 07H00',
-    rate: '5.0',
-    km: '3.2km'
-  },]
+  upcoming: any = [ ]
+  past: any = [ ]
   constructor(private modalCtrl: ModalController, private nav: NavController) { }
-  ngOnInit() {
+  ngOnInit() 
+  {
+    axios.get('http://157.230.232.108/appointments/').then(response => {
+      const appoints=response.data;
+      var idA;
+      let  appoint;
+      const today=new Date();
+      for(idA in appoints)
+      {
+        appoint=appoints[idA];
+        if(new Date(appoint.appointment_date).getTime() > today.getTime())
+          this.upcoming.push(appoint);
+        else
+          this.past.push(appoint);
+      }
+    });
   }
   async rating() {
     const modal = await this.modalCtrl.create({
