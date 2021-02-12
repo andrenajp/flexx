@@ -9,7 +9,7 @@ import { NavController } from "@ionic/angular";
 import { Chart } from "chart.js";
 
 import axios from 'axios';
-import {AppointmentService} from '../Appointment/appointment.service';
+import { AppointmentService } from '../Appointment/appointment.service';
 
 @Component({
   selector: "app-salon-profile",
@@ -17,7 +17,7 @@ import {AppointmentService} from '../Appointment/appointment.service';
   styleUrls: ["./salon-profile.page.scss"],
 })
 export class SalonProfilePage implements OnInit {
-  salon:any={};
+  salon: any = {};
   select = "service";
   changeIcon: string = "../../assets/images/down.svg";
   banner: any = [
@@ -42,17 +42,19 @@ export class SalonProfilePage implements OnInit {
   facialChange = "../../assets/images/down.svg";
   fixSegment: any = 1;
   add = "../../assets/images/plus.svg";
+  logo
+  thesalon
   @ViewChild("barChart") barChart;
   constructor(
     private nav: NavController,
     private router: Router,
     private route: ActivatedRoute,
-    private appointServ:AppointmentService
-    ) {
-      this.route.queryParams.subscribe((res) => {
-        this.salon = res;
-      }); 
-    }
+    private appointServ: AppointmentService
+  ) {
+    this.route.queryParams.subscribe((res) => {
+      this.salon = res;
+    });
+  }
   bars: any;
   hairArray: any = [
     {
@@ -132,27 +134,24 @@ export class SalonProfilePage implements OnInit {
   ionViewDidEnter() {
     this.createBarChart();
   }
-  service() {}
+  service() { }
 
-  async ngOnInit()
-  {
-    
-    const idSalons =this.route.snapshot.paramMap.get("id");
-    try 
-    {
-      const response = await axios.get('http://157.230.232.108/salons/'+idSalons);
+  async ngOnInit() {
 
-    } catch (error)
-    {
+
+    try {
+      const response = await axios.get('http://157.230.232.108/salons/' + this.salon.id);
+      this.thesalon = response.data
+      console.log(response)
+    } catch (error) {
       console.log();
     }
   }
-  ionViewWillEnter() {}
-  continue() 
-  {
+  ionViewWillEnter() { }
+  continue() {
     this.appointServ.getSalon(this.salon.id);
     this.router.navigate(["/select-employee"], {
-      queryParams:{id:this.salon.id},
+      queryParams: { id: this.salon.id },
     });
   }
   back() {

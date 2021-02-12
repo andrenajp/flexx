@@ -40,23 +40,19 @@ export class HomePage {
 
   constructor(private nav: NavController, private modalCtrl: ModalController, public router: Router) {
   }
-  async ngOnInit() 
-  {
-    try 
-    {
+  async ngOnInit() {
+    try {
       const salonsRep = await axios.get('http://157.230.232.108/salons');
-      this.salons = salonsRep.data;      
+      this.salons = salonsRep.data;
       const serviceRep = await axios.get('http://157.230.232.108/services');
       this.services = serviceRep.data;
-      
-    } catch (error)
-    {
+
+    } catch (error) {
       console.log(error.response);
     }
 
   }
-  listeSalons(sercice :NavigationExtras)
-  {
+  listeSalons(sercice: NavigationExtras) {
     this.router.navigate(["/select-service"], {
       queryParams: sercice,
     });

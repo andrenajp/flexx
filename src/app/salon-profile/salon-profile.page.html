@@ -5,49 +5,36 @@
         <img src="../../assets/images/back.svg" />
       </ion-back-button>
     </ion-buttons>
-    <ion-title mode="ios">Martha Salon</ion-title>
+    <ion-title mode="ios">{{salon?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <ion-slides pager="true">
-    <ion-slide *ngFor="let banner of banner">
+    <ion-slide *ngFor="let banner of thesalon?.slider">
       <div class="slide">
-        <img src="{{ banner?.img }}" height="200px" width="340px" />
+        <img src="http://157.230.232.108{{ banner?.url }}" height="200px" width="340px" />
       </div>
     </ion-slide>
   </ion-slides>
   <div class="address ion-padding-start ion-padding-top">
-    463 W Broadway, New York, NY 10012, United States
+    {{salon?.adresse}}
   </div>
   <p class="rate_div ion-padding-start">
-    <img
-      class="star_img"
-      src="../../assets/images/star.svg"
-      height="22px"
-      width="22px"
-    />4.1<img
-      class="circle_icon"
-      src="../../assets/images/circle.svg"
-      height="6px"
-      width="6px"
-    /><span class="ion-text-right">2.6km</span>
+    <img class="star_img" src="../../assets/images/star.svg" height="22px" width="22px" />{{salon?.rate}}<img
+      class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px" /><span
+      class="ion-text-right">2.6km</span>
   </p>
   <div class="border_bottom"></div>
   <div class="address ion-padding-start">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the
-    1500s, when an unknown printer took a galley of type and scrambled it to
-    make a type specimen book.
+    {{salon.description}}
   </div>
   <div class="border_bottom"></div>
   <div class="section" [ngClass]="{'fix-segment': fixSegment==2}">
     <ion-segment mode="md" [(ngModel)]="select" value="all">
-      <ion-segment-button mode="md" value="service"
-        >Service
+      <ion-segment-button mode="md" value="service">Service
         <div *ngIf="select == 'service'" class="seg-button"></div>
       </ion-segment-button>
-      <ion-segment-button mode="md" value="review"
-        >Review
+      <ion-segment-button mode="md" value="review">Review
         <div *ngIf="select == 'review'" class="seg-button2"></div>
       </ion-segment-button>
     </ion-segment>
@@ -56,32 +43,16 @@
   <div [ngSwitch]="select">
     <div *ngSwitchCase="'service'">
       <div>
-        <div
-          (click)="show()"
-          class="main_head ion-padding-start ion-padding-top ion-padding-bottom"
-        >
+        <div (click)="show()" class="main_head ion-padding-start ion-padding-top ion-padding-bottom">
           Hair Cut
-          <span class="ion-padding-start"
-            ><img [src]="hair" height="10px" width="15px"
-          /></span>
+          <span class="ion-padding-start"><img [src]="hair" height="10px" width="15px" /></span>
         </div>
         <div *ngIf="isShow">
-          <ion-row
-            class="services ion-padding-start"
-            *ngFor="let item of hairArray"
-          >
-            <ion-col size="9" class="service_name ion-no-padding"
-              >{{ item?.name }}</ion-col
-            >
-            <ion-col size="2" class="price ion-no-padding"
-              >{{ item?.price }}</ion-col
-            >
+          <ion-row class="services ion-padding-start" *ngFor="let item of hairArray">
+            <ion-col size="9" class="service_name ion-no-padding">{{ item?.name }}</ion-col>
+            <ion-col size="2" class="price ion-no-padding">{{ item?.price }}</ion-col>
             <ion-col size="1" class="ion-no-padding">
-              <img
-                src="../../assets/images/plus.svg"
-                height="18px"
-                width="18px"
-              />
+              <img src="../../assets/images/plus.svg" height="18px" width="18px" />
             </ion-col>
           </ion-row>
         </div>
@@ -97,32 +68,18 @@
         Total Review (810)
       </div>
 
-      <ion-row
-        class="ion-padding-top ion-margin-bottom"
-        *ngFor="let item of review "
-      >
+      <ion-row class="ion-padding-top ion-margin-bottom" *ngFor="let item of review ">
         <ion-col size="3" class="ion-no-padding ion-padding-start">
-          <img src="{{ item?.img }}" height="35px" width="35px" /><br /><span
-            class="rate_div"
-          >
-            <img
-              class="star_img"
-              src="../../assets/images/star.svg "
-              height="11px "
-              width="11px "
-            />
+          <img src="{{ item?.img }}" height="35px" width="35px" /><br /><span class="rate_div">
+            <img class="star_img" src="../../assets/images/star.svg " height="11px " width="11px " />
             {{ item?.rate }}
           </span>
         </ion-col>
-        <ion-col
-          size="9 "
-          class="details_div ion-padding-end ion-padding-start"
-        >
+        <ion-col size="9 " class="details_div ion-padding-end ion-padding-start">
           <ion-label>
             <p class="name ion-no-margin">
               {{ item?.name }}<span class="ion-float-right">
-                {{ item?.time }}</span
-              >
+                {{ item?.time }}</span>
             </p>
             <p class="detail ion-no-margin">{{ item?.desc }}</p>
           </ion-label>
@@ -137,8 +94,6 @@
       <p class="detail">Smoothed Out Pixie, Ruby Fusion, Cust...</p>
       <p class="total_price">$80</p>
     </ion-label>
-    <ion-button slot="end" expand="block" (click)="continue()"
-      >Continue</ion-button
-    >
+    <ion-button slot="end" expand="block" (click)="continue()">Continue</ion-button>
   </ion-item>
 </ion-footer>
