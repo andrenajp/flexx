@@ -1,152 +1,25 @@
-ion-header {
-    ion-toolbar {
-        height: 55px;
-        ion-item {
-            margin-bottom: 10px;
-            ion-input {
-                border: none;
-                font-family: var(--regular-font);
-                font-size: 15px;
-                --padding-start: 0;
-                --placeholder-opacity: 1;
-                margin-top: -9px;
-                min-width: 197px;
-            }
-            .name {
-                color: var(--gray-color);
-                font-family: var(--regular-font);
-                font-size: 13px;
-            }
-        }
-    }
-}
+.card-background-page {
 
-ion-content {
-    --background: var(--background-theme);
-    --padding-top: 25px;
-    .main_head {
-        font-family: var(--extrabold-font);
-        font-size: 15px;
+    ion-card {
+      position: relative;
+      text-align: center;
     }
-    .scroll {
-        display: flex;
-        overflow: scroll;
-        overflow-x: scroll;
-        overflow-y: hidden;
+  
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
     }
-    .my_img {
-        border-radius: 18px;
-        margin-left: -5px;
+  
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
     }
-    .name {
-        position: absolute;
-        top: 80px;
-        bottom: 0;
-        color: white;
-        padding-left: 8px;
-        padding-right: 50px;
-        font-size: 15px;
-        font-family: var(--regular-font);
-    }
-    p {
-        margin: 0;
-    }
-    .salon_name {
-        font-size: 15px;
-        font-family: var(--bold-font);
-        color: var(--ion-black);
-        margin: 0;
-        padding-top: 11px;
-    }
-    .salon {
-        font-size: 15px;
-        font-family: var(--bold-font);
-        color: var(--ion-black);
-    }
-    .address {
-        font-size: 13px;
-        font-family: var(--regular-font);
-        color: var(--gray-color);
-        padding-right: 10px;
-    }
-    .rate_div {
-        font-size: 13px;
-        font-family: var(--regular-font);
-        color: var(--ion-black);
-        .star_img {
-            margin-bottom: -5px;
-            margin-right: 2px;
-        }
-        .circle_icon {
-            margin-left: 6px;
-            margin-right: 6px;
-        }
-        .bottom {
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-            position: relative;
-            padding-top: 10px;
-            ion-icon {
-                color: var(--fill-yellow);
-                width: 18px;
-                height: 16px;
-                background: var(--lht-yellow);
-                padding-left: 3px;
-                padding-right: 3px;
-                padding-top: 4px;
-                padding-bottom: 4px;
-                border-radius: 9px;
-                margin-bottom: -5px;
-                margin-right: 5px;
-            }
-            .rated_ic {
-                color: var(--fill-yellow);
-            }
-            .yellow-star {
-                color: var(--fill-yellow);
-            }
-            .gray-star {
-                color: var(--fill-gray);
-                background: var(--lht-gray);
-                padding-left: 3px;
-                padding-right: 3px;
-                padding-top: 4px;
-                padding-bottom: 4px;
-                border-radius: 9px;
-                margin-bottom: -5px;
-                margin-right: 5px;
-                width: 18px;
-                height: 16px;
-            }
-            .rate_h {
-                margin-top: 0;
-            }
-            .text_a {
-                margin: 0px 25px;
-            }
-        }
-    }
-    ion-item {
-        margin-left: 17px;
-        margin: 17px;
-        border: 0.3px solid white;
-        box-shadow: 0px 0px 10px 1px #eeeeee;
-        border-radius: 18px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        background: white;
-        padding-left: 5px;
-        .salon_img {
-            border-radius: 12px;
-            height: 80px;
-            width: 80px;
-            margin-right: 13px;
-            margin-left: -8px;
-        }
-        ion-label {
-            padding-top: 15px;
-            padding-bottom: 18px;
-            margin: 0;
-        }
-    }
-}
+  
+  }
