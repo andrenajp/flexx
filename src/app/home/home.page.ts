@@ -46,6 +46,7 @@ export class HomePage {
       this.salons = salonsRep.data;
       const serviceRep = await axios.get('http://157.230.232.108/services');
       this.services = serviceRep.data;
+      console.log(this.services)
 
     } catch (error) {
       console.log(error.response);
