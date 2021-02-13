@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import * as moment from "moment";
 import axios from 'axios';
-import {AppointmentService} from '../Appointment/appointment.service';
+import { AppointmentService } from '../Appointment/appointment.service';
 
 
 @Component({
@@ -15,19 +15,19 @@ export class DateTimePage implements OnInit {
   idEmp;
   horaires;
   date: any;
+  dateAff: any;
   type: 'string';
-  dateRDV:Date;
+  dateRDV: Date;
   selectTime: any
   constructor(
     private nav: NavController,
     private route: ActivatedRoute,
-    private router:Router,
-    private appointServ:AppointmentService
-  ) 
-  {
+    private router: Router,
+    private appointServ: AppointmentService
+  ) {
     this.route.queryParams.subscribe((res) => {
-      this.idEmp=res.id;
-    }); 
+      this.idEmp = res.id;
+    });
   }
   time: any = [
     {
@@ -64,30 +64,26 @@ export class DateTimePage implements OnInit {
       start_time: '19:00',
       hours: 19
     }]
-  async ngOnInit() 
-  {
-    try 
-    {
-      const response = await axios.get('http://157.230.232.108/employees/'+this.idEmp);
+  async ngOnInit() {
+    try {
+      const response = await axios.get('http://157.230.232.108/employees/' + this.idEmp);
       this.horaires = response.data.horaires;
-    } catch (error)
-    {
+    } catch (error) {
       console.log(error.response);
-    }     
+    }
   }
-  onChange($event) 
-  {
+  onChange($event) {
     $event.preventdefault;
-    this.dateRDV=moment(this.date).toDate();
+    this.dateRDV = moment(this.date).toDate();
+    this.dateAff = moment(this.date).toDate().toLocaleString('fr-FR');
   }
-  activeSlot(i,h) {
+  activeSlot(i, h) {
     this.selectTime = i;
     //Ajouter l'heure à la date avec moment ?
-    this.dateRDV=moment(this.dateRDV).hours(h).toDate();
-
+    this.dateRDV = moment(this.dateRDV).hours(h).toDate();
+    this.dateAff = moment(this.date).toDate().toLocaleString('fr-FR');
   }
-  continue() 
-  {
+  continue() {
     console.log(this.dateRDV)
     //this.appointServ.getdate(this.dateRDV);
     //this.nav.navigateForward('payment')

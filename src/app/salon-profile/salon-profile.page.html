@@ -20,10 +20,19 @@
     {{salon?.adresse}}
   </div>
   <p class="rate_div ion-padding-start">
-    <img class="star_img" src="../../assets/images/star.svg" height="22px" width="22px" />{{salon?.rate}}<img
-      class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px" /><span
-      class="ion-text-right">2.6km</span>
-  </p>
+    <span class="rate_h">
+      <ion-icon name="star" [ngClass]="salon?.rate >= 1 ? 'yellow-star' :'gray-star'">
+      </ion-icon>
+      <ion-icon name="star" [ngClass]="salon?.rate >= 2 ? 'yellow-star' :'gray-star'">
+      </ion-icon>
+      <ion-icon name="star" [ngClass]="salon?.rate >= 3 ? 'yellow-star' :'gray-star'">
+      </ion-icon>
+      <ion-icon name="star" [ngClass]="salon?.rate >= 4 ? 'yellow-star' :'gray-star'">
+      </ion-icon>
+      <ion-icon name="star" [ngClass]="salon?.rate >= 5 ? 'yellow-star' :'gray-star'">
+      </ion-icon><span class="ion-text-right">2.6km</span>
+    </span>
+
   <div class="border_bottom"></div>
   <div class="address ion-padding-start">
     {{salon.description}}
@@ -34,7 +43,7 @@
       <ion-segment-button mode="md" value="service">Service
         <div *ngIf="select == 'service'" class="seg-button"></div>
       </ion-segment-button>
-      <ion-segment-button mode="md" value="review">Review
+      <ion-segment-button mode="md" value="review">Avis
         <div *ngIf="select == 'review'" class="seg-button2"></div>
       </ion-segment-button>
     </ion-segment>

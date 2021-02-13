@@ -5,26 +5,28 @@
                 <img src="../../assets/images/back.svg">
             </ion-back-button>
         </ion-buttons>
-        <ion-title mode="ios">My Account</ion-title>
+        <ion-title mode="ios">Mon Rendez-vous</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Select a Day
+    <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Sélectionnez le jour
         <div class="ion-padding-top ion-padding-start ion-padding-end">
-            <ion-calendar [(ngModel)]="date" (click)="onChange($event)" [type]="type" [format]="'YYYY-MM-DD'">
+            <ion-calendar [(ngModel)]="date" (click)="onChange($event)" [type]="type" [format]="'DD-MM-YYYY'">
             </ion-calendar>
         </div>
     </div>
 
-    <div class="main_head ion-padding-start ion-padding-bottom">Set The Time
+    <div class="main_head ion-padding-start ion-padding-bottom">Sélectionnez l'heure
     </div>
     <div class="ion-padding-horizontal">
         <div>
             <ion-row>
-                <div *ngIf="time?.length == 0" class="main_head ion-justify-content-center ion-margin-top">No Time Yet
+                <div *ngIf="time?.length == 0" class="main_head ion-justify-content-center ion-margin-top">Pas encore
+                    d'horaire
                 </div>
                 <ion-col size="3" *ngFor="let slot of time">
-                    <div class="time-slot" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'" (click)="activeSlot(slot.start_time,slot.hours);">
+                    <div class="time-slot" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'"
+                        (click)="activeSlot(slot.start_time,slot.hours);">
                         {{ slot.start_time }}
 
                     </div>
@@ -36,7 +38,7 @@
 <ion-footer class="ion-no-border">
     <ion-item lines="none">
         <ion-label>
-            <p class="detail">17 Oct, 2020 - 07:00PM</p>
+            <p class="detail">{{dateAff}}</p>
         </ion-label>
         <ion-button slot="end" expand="block" (click)="continue()">Continue</ion-button>
     </ion-item>
