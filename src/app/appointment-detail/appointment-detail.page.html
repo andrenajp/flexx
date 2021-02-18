@@ -26,25 +26,12 @@
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start">Services que vous avez sélectionnés
     </div>
-    <ion-row class="ion-padding-start">
-        <ion-col size="10" class="service_name ion-no-padding">Face Bleach<br><span>(Facial)</span></ion-col>
+    <ion-row class="ion-padding-start" *ngFor="let s of service">
+        <ion-col size="10" class="service_name ion-no-padding">{{s.name}}<br><span>(Facial)</span></ion-col>
         <ion-col size="2" class="price ion-no-padding">$30</ion-col>
     </ion-row>
-    <ion-row class="ion-padding-start">
-        <ion-col size="10" class="service_name ion-no-padding">Hair Styling<br><span>(Hair Cutting)</span></ion-col>
-        <ion-col size="2" class="price ion-no-padding">$40</ion-col>
-    </ion-row>
-    <ion-row class="ion-padding-start">
-        <ion-col size="10" class="service_name ion-no-padding">Hair Coloring<br><span>(Color Services)</span></ion-col>
-        <ion-col size="2" class="price ion-no-padding">$17</ion-col>
-    </ion-row>
-    <ion-row class="ion-padding-start">
-        <ion-col size="10" class="service_name ion-no-padding">Massage<br><span>(Massage)</span></ion-col>
-        <ion-col size="2" class="price ion-no-padding">$50</ion-col>
-    </ion-row>
     <div class="border_bottom"></div>
-    <div class="main_head ion-padding-start">Payment Details<span class="ion-float-end ion-padding-end">Self Pay at
-            Shop</span>
+    <div class="main_head ion-padding-start">Détails de paiement<span class="ion-float-end ion-padding-end">Paiement en magasin</span>
     </div>
     <ion-row class="ion-padding-start">
         <ion-col size="10" class="service_name ion-no-padding">Total Bill</ion-col>

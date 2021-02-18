@@ -75,17 +75,17 @@ export class DateTimePage implements OnInit {
   onChange($event) {
     $event.preventdefault;
     this.dateRDV = moment(this.date).toDate();
-    this.dateAff = moment(this.date).toDate().toLocaleString('fr-FR');
+    this.dateAff = moment(this.dateRDV).toDate().toLocaleString('fr-FR');
   }
   activeSlot(i, h) {
     this.selectTime = i;
     //Ajouter l'heure à la date avec moment ?
     this.dateRDV = moment(this.dateRDV).hours(h).toDate();
-    this.dateAff = moment(this.date).toDate().toLocaleString('fr-FR');
+    this.dateAff = moment(this.dateRDV).toDate().toLocaleString('fr-FR');
+    console.log(this.dateAff)
   }
   continue() {
-    console.log(this.dateRDV)
-    //this.appointServ.getdate(this.dateRDV);
-    //this.nav.navigateForward('payment')
+    this.appointServ.getdate(this.dateRDV);
+    this.nav.navigateForward('payment')
   }
 }

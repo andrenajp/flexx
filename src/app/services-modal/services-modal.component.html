@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-title mode="ios">Selection des services</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">close</ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let service of services">
+      <ion-label>{{service?.name}}</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="select[service.id]"  [checked]="alreadySelect(service.id)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="addServices()" class="ion-margin-top" >Ajouter</ion-button>
+</ion-content>

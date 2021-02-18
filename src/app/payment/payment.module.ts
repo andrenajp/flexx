@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PaymentPageRoutingModule } from './payment-routing.module';
 
 import { PaymentPage } from './payment.page';
+import { ServicesModalComponent } from '../services-modal/services-modal.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { PaymentPage } from './payment.page';
     IonicModule,
     PaymentPageRoutingModule
   ],
-  declarations: [PaymentPage]
+  declarations: [PaymentPage,ServicesModalComponent],
+  entryComponents:[ServicesModalComponent]
 })
 export class PaymentPageModule {}

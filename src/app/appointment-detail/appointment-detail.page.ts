@@ -13,7 +13,7 @@ export class AppointmentDetailPage implements OnInit {
   appointment:any={};
   salon:any={};
   emp:any={};
-  service:any={};
+  service:any=[];
   constructor(
     private nav: NavController, 
     private modal: ModalController,
@@ -32,6 +32,7 @@ export class AppointmentDetailPage implements OnInit {
         this.appointment=response.data;
         this.salon=response.data.salon;
         this.emp=response.data.employee;
+        this.service=response.data.services;
       });
     }); 
   }
