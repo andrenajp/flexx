@@ -3,6 +3,7 @@ import { ModalController, NavController } from '@ionic/angular';
 
 import axios from 'axios';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-appointment-detail',
@@ -14,10 +15,12 @@ export class AppointmentDetailPage implements OnInit {
   salon:any={};
   emp:any={};
   service:any=[];
+  price:Number=0;
   constructor(
     private nav: NavController, 
     private modal: ModalController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public alertController: AlertController
   ) 
   {
 
@@ -33,13 +36,39 @@ export class AppointmentDetailPage implements OnInit {
         this.salon=response.data.salon;
         this.emp=response.data.employee;
         this.service=response.data.services;
+        for(var i in this.service)
+        {
+          this.price=this.price + this.service[i].price;
+        }
       });
     }); 
   }
 
-  cancel()
+  async cancelAppoint()
   {
-    
+
+    const alert = await this.alertController.create({
+      header: 'Annuler le rendez-vous',
+      message: 'voulez-vous vraiment annuler votre rendez vous ?',
+      buttons: [
+        {
+          text:'Oui',
+          role:'confirmation',
+          handler:()=>{
+            axios.delete('http://157.230.232.108/appointments/'+this.appointment.id).then(response => {
+              this.nav.navigateForward('tabs/appointment');
+          });
+          }
+        },
+        {
+          text:'Annuler',
+          role:'cancel',
+          handler:()=>{
+            
+          }
+        }]
+    });
+    await alert.present();
   }
 
 }

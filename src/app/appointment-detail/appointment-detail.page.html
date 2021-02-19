@@ -28,22 +28,24 @@
     </div>
     <ion-row class="ion-padding-start" *ngFor="let s of service">
         <ion-col size="10" class="service_name ion-no-padding">{{s.name}}<br><span>(Facial)</span></ion-col>
-        <ion-col size="2" class="price ion-no-padding">$30</ion-col>
+        <ion-col size="2" class="price ion-no-padding">{{s.price}}</ion-col>
     </ion-row>
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start">Détails de paiement<span class="ion-float-end ion-padding-end">Paiement en magasin</span>
     </div>
     <ion-row class="ion-padding-start">
-        <ion-col size="10" class="service_name ion-no-padding">Total Bill</ion-col>
-        <ion-col size="2" class="price ion-no-padding">$137</ion-col>
+        <ion-col size="10" class="service_name ion-no-padding">Facture totale</ion-col>
+        <ion-col size="2" class="price ion-no-padding">{{price}}€</ion-col>
     </ion-row>
     <ion-row class="ion-padding-start">
-        <ion-col size="10" class="service_name ion-no-padding">Service Charge</ion-col>
-        <ion-col size="2" class="price ion-no-padding">$5</ion-col>
+        <ion-col size="10" class="service_name ion-no-padding">Frais de service</ion-col>
+        <ion-col size="2" class="price ion-no-padding">5€</ion-col>
     </ion-row>
-    <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">$142</span>
+    <div class="main_head ion-padding-start ion-padding-top">Total<span class="total ion-float-end ion-padding-end">{{price}}€</span>
     </div>
-    <div class="cancel ion-text-center ion-padding-top ion-padding-bottom">Cancel Appointment</div>
+    <div class="cancel ion-text-center ion-padding-top ion-padding-bottom">
+        <ion-button expand="full" color="danger" (click)="cancelAppoint()">Annuler le rendez-vous</ion-button>
+    </div>
 </ion-content>
 <ion-footer class="ion-no-border">
     <ion-button expand="full">Get Direction</ion-button>

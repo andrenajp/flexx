@@ -26,12 +26,16 @@ export class AppointmentService {
   }
   setAppointment(salon,emp,date,s)
   {
+    let idService=[];
+    for (var i in s)
+      idService.push({"id":s[i].id});
+    
     axios
     .post('http://157.230.232.108/appointments', {
       appointment_date:date,
       salon: {"id":salon},
       employee: {"id":emp},
-      services:s
+      services:idService
     })
     .then(response => {
       console.log(response);
@@ -40,5 +44,6 @@ export class AppointmentService {
     this.storage.remove("appoint_Emp");
     this.storage.remove("appoint_Emp");
     this.storage.remove("appoint_services");
+
   }
 }

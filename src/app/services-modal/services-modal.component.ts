@@ -12,9 +12,7 @@ export class ServicesModalComponent implements OnInit {
   select:any=[];
   constructor(private modalCtrl:ModalController) { }
 
-  ngOnInit() {
-    console.log(this.serviceSelect)
-  }
+  ngOnInit() { }
 
   closeModal()
   {
@@ -28,12 +26,10 @@ export class ServicesModalComponent implements OnInit {
 
   alreadySelect(id):boolean
   {
-    var res=false;
     for(var i in this.serviceSelect)
-    {
       if(this.serviceSelect[i].id==id)
-        res=true; 
-    }
-    return res;
+        return true; 
+
+    return false;
   }
 }

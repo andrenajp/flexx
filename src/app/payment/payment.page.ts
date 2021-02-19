@@ -20,7 +20,10 @@ export class PaymentPage implements OnInit {
   emp:any={};
   service:any={};
   serviceSelect:any=[];
+  nameServiceSelect:any=[];
   date:Date;
+  price:Number=0;
+  serviceCharge:Number=5;
   constructor(
     private nav: NavController,
     private readonly storage:Storage,
@@ -45,23 +48,18 @@ export class PaymentPage implements OnInit {
     });
     this.storage.get('appoint_date').then((val) => {
       this.date=val;
-      
-      console.log(this.date)
+
     });
 
   }
   makePayment() 
   {
-    for( var i in this.serviceSelect)
-    {
-
-    }
     this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
-    console.log(this.salon.id,this.emp.id,this.date)
     this.nav.navigateForward('booking-success')
   }
   async addNew() 
   {
+    //Problème aux ajouts possibilité d'ajouter le même service deux fois
     const modal = await this.modalCtrl.create({
       component:ServicesModalComponent,
       componentProps:{ services:this.service,serviceSelect:this.serviceSelect}
@@ -69,11 +67,15 @@ export class PaymentPage implements OnInit {
 
     await modal.present();
     const {data:s ,role} =await modal.onDidDismiss();
+    
     if(role === "ajouter")
     {
       for(var idS in s)      
-        if (s[idS])    
-          this.serviceSelect.push({"id":Number(idS)})   
+        if (s[idS])
+          axios.get('http://157.230.232.108/services/'+Number(idS)).then(response => {
+            this.serviceSelect.push({"id":Number(response.data.id),"name":response.data.name,"price":response.data.price})
+            this.price=this.price +response.data.price;
+          });
     }
   }
 
@@ -81,10 +83,8 @@ export class PaymentPage implements OnInit {
   {
       const indexOf=this.serviceSelect.indexOf(service);
       if (indexOf > -1) {
-        this.serviceSelect.splice(indexOf, 1);
+        await this.serviceSelect.splice(indexOf, 1);
       }
-
-      console.log(this.serviceSelect); 
   }
-
+  
 }

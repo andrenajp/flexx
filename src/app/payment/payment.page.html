@@ -35,24 +35,24 @@
     <div class="main_head ion-padding-start">Services sélectionnés<span class="ion-float-end ion-padding-end" (click)="addNew()">+Ajouter un nouveau service</span>
     </div>
     <ion-row class="ion-padding-start" *ngFor="let service of serviceSelect">
-        <ion-col size="9" class="service_name ion-no-padding"><br><span>(Facial)</span></ion-col>
-        <ion-col size="2" class="price ion-no-padding">$30</ion-col>
+        <ion-col size="9" class="service_name ion-no-padding">{{service.name}}<br><span>facial</span></ion-col>
+        <ion-col size="2" class="price ion-no-padding">{{service.price}}€</ion-col>
         <ion-col size="1" class="ion-no-padding" (click)="removeService(service)"><img src="../../assets/images/minus.svg" height="18px" width="18px">
         </ion-col>
     </ion-row>
 
     <div class="border_bottom"></div>
-    <div class="main_head ion-padding-start">Payment Details
+    <div class="main_head ion-padding-start">Détails de paiement
     </div>
     <ion-row class="ion-padding-start">
-        <ion-col size="10" class="service_name ion-no-padding">Total Bill</ion-col>
-        <ion-col size="2" class="price ion-no-padding">$80</ion-col>
+        <ion-col size="10" class="service_name ion-no-padding">Facture totale</ion-col>
+        <ion-col size="2" class="price ion-no-padding">{{price}}€</ion-col>
     </ion-row>
     <ion-row class="ion-padding-start">
         <ion-col size="10" class="service_name ion-no-padding">Service Charge</ion-col>
-        <ion-col size="2" class="price ion-no-padding">$5</ion-col>
+        <ion-col size="2" class="price ion-no-padding">5€</ion-col>
     </ion-row>
-    <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">$85</span>
+    <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">{{price}}</span>
     </div>
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start ">Select Payment Method
