@@ -32,15 +32,16 @@
     </div>
     <div class="time ion-padding-start">{{date  | date:'dd-MM-yyyy HH:mm' }}</div>
     <div class="border_bottom"></div>
-    <div class="main_head ion-padding-start">Services sélectionnés<span class="ion-float-end ion-padding-end" (click)="addNew()">+Ajouter un nouveau service</span>
+    <div class="main_head ion-padding-start">Services sélectionnés<!--<span class="ion-float-end ion-padding-end" (click)="addNew()">+Ajouter un nouveau service</span>-->
     </div>
+    
     <ion-row class="ion-padding-start" *ngFor="let service of serviceSelect">
         <ion-col size="9" class="service_name ion-no-padding">{{service.name}}<br><span>facial</span></ion-col>
         <ion-col size="2" class="price ion-no-padding">{{service.price}}€</ion-col>
         <ion-col size="1" class="ion-no-padding" (click)="removeService(service)"><img src="../../assets/images/minus.svg" height="18px" width="18px">
         </ion-col>
     </ion-row>
-
+    
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start">Détails de paiement
     </div>
@@ -50,9 +51,9 @@
     </ion-row>
     <ion-row class="ion-padding-start">
         <ion-col size="10" class="service_name ion-no-padding">Service Charge</ion-col>
-        <ion-col size="2" class="price ion-no-padding">5€</ion-col>
+        <ion-col size="2" class="price ion-no-padding">{{serviceCharge}}€</ion-col>
     </ion-row>
-    <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">{{price}}</span>
+    <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">{{ totalPrice }}€</span>
     </div>
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start ">Select Payment Method
@@ -95,7 +96,7 @@
 
     <ion-row>
         <ion-col size="6">
-            <div class="total ion-text-left ion-margin-start ion-margin-top">Total : $85</div>
+            <div class="total ion-text-left ion-margin-start ion-margin-top">Total :{{ totalPrice }}€</div>
         </ion-col>
         <ion-col size="6">
             <ion-button expand="block" (click)="makePayment()">Make a Payment</ion-button>

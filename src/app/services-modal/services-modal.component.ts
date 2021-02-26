@@ -12,7 +12,13 @@ export class ServicesModalComponent implements OnInit {
   select:any=[];
   constructor(private modalCtrl:ModalController) { }
 
-  ngOnInit() { }
+  ngOnInit()
+  {
+    for(var i in this.serviceSelect)
+    {
+      this.select[this.serviceSelect[i].id]=true;
+    }
+  }
 
   closeModal()
   {
@@ -22,14 +28,5 @@ export class ServicesModalComponent implements OnInit {
   addServices()
   {
     this.modalCtrl.dismiss(this.select,'ajouter');
-  }
-
-  alreadySelect(id):boolean
-  {
-    for(var i in this.serviceSelect)
-      if(this.serviceSelect[i].id==id)
-        return true; 
-
-    return false;
   }
 }

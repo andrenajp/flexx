@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { FilterPage } from '../filter/filter.page';
 import axios from 'axios';
+import { Router,NavigationExtras} from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,11 @@ export class SearchLayoutPage implements OnInit {
   searchSalon: any = [ ]
   rate: any = 1;
 
-  constructor(private nav: NavController, private modal: ModalController) { }
+  constructor(
+    private nav: NavController, 
+    private modal: ModalController,
+     public router: Router
+    ) { }
 
   async filter() {
     const modal = await this.modal.create({
@@ -34,8 +39,10 @@ export class SearchLayoutPage implements OnInit {
     }
   }
 
-  salonProfile(salon) {
-    this.nav.navigateForward("/salon-profile");
+  salonProfile(salon:NavigationExtras) {
+    this.router.navigate(["/salon-profile"], {
+      queryParams: salon,
+    });
   }
 
 }

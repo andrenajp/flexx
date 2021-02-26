@@ -20,10 +20,10 @@ export class PaymentPage implements OnInit {
   emp:any={};
   service:any={};
   serviceSelect:any=[];
-  nameServiceSelect:any=[];
   date:Date;
   price:Number=0;
   serviceCharge:Number=5;
+  totalPrice:Number=0;
   constructor(
     private nav: NavController,
     private readonly storage:Storage,
@@ -46,6 +46,13 @@ export class PaymentPage implements OnInit {
     this.storage.get('appoint_Emp').then((val) => {
       this.emp=JSON.parse(val);
     });
+    this.storage.get('appoint_services').then((val) => {
+      
+      this.serviceSelect=val;
+      for(var i in this.serviceSelect)
+        this.price=Number(this.price) + Number(this.serviceSelect[i].price);
+      this.totalPrice=Number(this.price) + Number(this.serviceCharge);
+    });
     this.storage.get('appoint_date').then((val) => {
       this.date=val;
 
@@ -57,34 +64,16 @@ export class PaymentPage implements OnInit {
     this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
     this.nav.navigateForward('booking-success')
   }
-  async addNew() 
-  {
-    //Problème aux ajouts possibilité d'ajouter le même service deux fois
-    const modal = await this.modalCtrl.create({
-      component:ServicesModalComponent,
-      componentProps:{ services:this.service,serviceSelect:this.serviceSelect}
-    });
-
-    await modal.present();
-    const {data:s ,role} =await modal.onDidDismiss();
-    
-    if(role === "ajouter")
-    {
-      for(var idS in s)      
-        if (s[idS])
-          axios.get('http://157.230.232.108/services/'+Number(idS)).then(response => {
-            this.serviceSelect.push({"id":Number(response.data.id),"name":response.data.name,"price":response.data.price})
-            this.price=this.price +response.data.price;
-          });
-    }
-  }
+  
 
   async removeService(service)
   {
       const indexOf=this.serviceSelect.indexOf(service);
       if (indexOf > -1) {
+        this.totalPrice=Number(this.totalPrice) - Number(service.price);
+        this.price=Number(this.price) - Number(service.price)
         await this.serviceSelect.splice(indexOf, 1);
       }
   }
-  
+
 }

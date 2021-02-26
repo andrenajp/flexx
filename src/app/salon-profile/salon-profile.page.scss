@@ -15,6 +15,7 @@ ion-header {
 
 ion-content {
     --background: var(--background-theme);
+    
     .swiper-slide {
         display: block;
     }
@@ -188,6 +189,24 @@ ion-content {
     ion-card {
         background: #FAFAFA;
         box-shadow: none;
+    }
+    
+    .service-list {
+        img{
+            height: 65px;
+            width: 65px;
+            //border-radius: 50px;
+        }
+        .selected{
+            border: 5px solid green;
+        }
+        .service-name{
+            font-family: var(--regular-font);
+            font-size: 11px;
+            text-align: justify;
+            font-style: italic;
+            color: var(--gray-color);
+        }
     }
 }
 

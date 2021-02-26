@@ -21,9 +21,9 @@ export class AppointmentPage implements OnInit {
     private nav: NavController,
     private router: Router
     ) { }
-  ngOnInit() 
+  async ngOnInit() 
   {
-    axios.get('http://157.230.232.108/appointments/').then(response => {
+    await axios.get('http://157.230.232.108/appointments/').then(response => {
       const appoints=response.data;
       var idA;
       let  appoint;

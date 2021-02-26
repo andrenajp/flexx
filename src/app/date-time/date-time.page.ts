@@ -26,7 +26,7 @@ export class DateTimePage implements OnInit {
     private appointServ: AppointmentService
   ) {
     this.route.queryParams.subscribe((res) => {
-      this.idEmp = res.id;
+      this.idEmp = res;
     });
   }
   time: any = [
@@ -65,12 +65,6 @@ export class DateTimePage implements OnInit {
       hours: 19
     }]
   async ngOnInit() {
-    try {
-      const response = await axios.get('http://157.230.232.108/employees/' + this.idEmp);
-      this.horaires = response.data.horaires;
-    } catch (error) {
-      console.log(error.response);
-    }
   }
   onChange($event) {
     $event.preventdefault;
@@ -85,7 +79,7 @@ export class DateTimePage implements OnInit {
     console.log(this.dateAff)
   }
   continue() {
-    this.appointServ.getdate(this.dateRDV);
+    this.appointServ.setAppointDate(this.dateRDV);
     this.nav.navigateForward('payment')
   }
 }

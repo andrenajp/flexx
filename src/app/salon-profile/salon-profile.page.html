@@ -33,76 +33,101 @@
       </ion-icon><span class="ion-text-right">2.6km</span>
     </span>
 
-  <div class="border_bottom"></div>
-  <div class="address ion-padding-start">
-    {{salon.description}}
-  </div>
-  <div class="border_bottom"></div>
-  <div class="section" [ngClass]="{'fix-segment': fixSegment==2}">
-    <ion-segment mode="md" [(ngModel)]="select" value="all">
-      <ion-segment-button mode="md" value="service">Service
-        <div *ngIf="select == 'service'" class="seg-button"></div>
-      </ion-segment-button>
-      <ion-segment-button mode="md" value="review">Avis
-        <div *ngIf="select == 'review'" class="seg-button2"></div>
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-  <div class="border"></div>
-  <div [ngSwitch]="select">
-    <div *ngSwitchCase="'service'">
-      <div>
-        <div (click)="show()" class="main_head ion-padding-start ion-padding-top ion-padding-bottom">
-          Hair Cut
-          <span class="ion-padding-start"><img [src]="hair" height="10px" width="15px" /></span>
-        </div>
-        <div *ngIf="isShow">
-          <ion-row class="services ion-padding-start" *ngFor="let item of hairArray">
-            <ion-col size="9" class="service_name ion-no-padding">{{ item?.name }}</ion-col>
-            <ion-col size="2" class="price ion-no-padding">{{ item?.price }}</ion-col>
-            <ion-col size="1" class="ion-no-padding">
-              <img src="../../assets/images/plus.svg" height="18px" width="18px" />
-            </ion-col>
-          </ion-row>
-        </div>
-      </div>
+    <div class="border_bottom"></div>
+    <div class="address ion-padding-start">
+      {{salon.description}}
     </div>
-    <div [hidden]="select !='review'">
-      <ion-card mode="ios ">
-        <ion-card-content>
-          <canvas #barChart></canvas>
-        </ion-card-content>
-      </ion-card>
-      <div class="review_head ion-padding-start ion-padding-bottom">
-        Total Review (810)
-      </div>
+    <div class="border_bottom"></div>
+    <div class="section" [ngClass]="{'fix-segment': fixSegment==2}">
+      <ion-segment mode="md" [(ngModel)]="select" value="all">
+        <ion-segment-button mode="md" value="service">Service
+          <div *ngIf="select == 'service'" class="seg-button"></div>
+        </ion-segment-button>
+        <ion-segment-button mode="md" value="review">Avis
+          <div *ngIf="select == 'review'" class="seg-button2"></div>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div class="border"></div>
+    <div [ngSwitch]="select">
+      <div *ngSwitchCase="'service'">
+        <div>
+          <div class=" service-list">
+            <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
+              <ion-slide *ngFor="let service of services">
+        
+                <ion-card (click)="addService(service)">
+                  <ion-card-header>
+                    <ion-thumbnail>
+                      <img  [ngClass]="{'selected' : isServSelect(service)}" src="http://157.230.232.108{{ service?.image.url }}">            
+                    </ion-thumbnail>  
+                  </ion-card-header>
+                  <ion-card-content>
+                    <P  class="service-name">{{service?.name}}</P>
+                  </ion-card-content>
+                </ion-card>
+        
+              </ion-slide>
+            </ion-slides>
 
-      <ion-row class="ion-padding-top ion-margin-bottom" *ngFor="let item of review ">
-        <ion-col size="3" class="ion-no-padding ion-padding-start">
-          <img src="{{ item?.img }}" height="35px" width="35px" /><br /><span class="rate_div">
-            <img class="star_img" src="../../assets/images/star.svg " height="11px " width="11px " />
-            {{ item?.rate }}
-          </span>
-        </ion-col>
-        <ion-col size="9 " class="details_div ion-padding-end ion-padding-start">
-          <ion-label>
-            <p class="name ion-no-margin">
-              {{ item?.name }}<span class="ion-float-right">
-                {{ item?.time }}</span>
-            </p>
-            <p class="detail ion-no-margin">{{ item?.desc }}</p>
-          </ion-label>
-        </ion-col>
-      </ion-row>
+              <div> 
+                <ion-radio-group [(ngModel)]="empSelect">
+                  <ion-list-header>
+                    <ion-label>Liste des employés</ion-label>
+                  </ion-list-header>
+        
+                  <ion-item *ngFor="let emp of employee">
+                    <ion-label>{{emp?.fullname}}</ion-label>
+                    <ion-radio [value]="emp" color="success" slot="end"></ion-radio>
+                  </ion-item>
+        
+                </ion-radio-group> 
+            </div>
+            <ion-button slot="start" expand="block" (click)="reserver()">Prendre rendez-vous</ion-button>
+
+          </div>
+
+        </div>
+      </div>
+      <div [hidden]="select !='review'">
+        <ion-card mode="ios ">
+          <ion-card-content>
+            <canvas #barChart></canvas>
+          </ion-card-content>
+        </ion-card>
+        <div class="review_head ion-padding-start ion-padding-bottom">
+          Total Review (810)
+        </div>
+
+        <ion-row class="ion-padding-top ion-margin-bottom" *ngFor="let item of review ">
+          <ion-col size="3" class="ion-no-padding ion-padding-start">
+            <img src="{{ item?.img }}" height="35px" width="35px" /><br /><span class="rate_div">
+              <img class="star_img" src="../../assets/images/star.svg " height="11px " width="11px " />
+              {{ item?.rate }}
+            </span>
+          </ion-col>
+          <ion-col size="9 " class="details_div ion-padding-end ion-padding-start">
+            <ion-label>
+              <p class="name ion-no-margin">
+                {{ item?.name }}<span class="ion-float-right">
+                  {{ item?.time }}</span>
+              </p>
+              <p class="detail ion-no-margin">{{ item?.desc }}</p>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </div>
     </div>
-  </div>
+                   
+    <ion-fab vertical="center"  horizontal="end"  slot="fixed"> 
+      <ion-fab-button color="success" (click)="call()"> 
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </ion-fab-button>   
+    </ion-fab>
+
 </ion-content>
+
 <ion-footer class="ion-no-border">
   <ion-item lines="none">
-    <ion-label>
-      <p class="detail">Smoothed Out Pixie, Ruby Fusion, Cust...</p>
-      <p class="total_price">$80</p>
-    </ion-label>
-    <ion-button slot="end" expand="block" (click)="continue()">Continue</ion-button>
   </ion-item>
 </ion-footer>

@@ -41,7 +41,7 @@ export class SelectEmployeePage implements OnInit {
   }
   schedule() 
   {
-    this.appointServ.getEmp(this.selectEmp);
+    this.appointServ.setAppointEmp(this.selectEmp);
     this.router.navigate(["/date-time"], {
       queryParams:{id:this.selectEmp.id},
     });

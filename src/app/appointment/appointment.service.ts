@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import  axios  from 'axios';
-import { BehaviorSubject, Observable, from, of, throwError } from "rxjs";
 import {Storage} from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
@@ -10,18 +9,23 @@ export class AppointmentService {
 
   constructor(private readonly storage:Storage) { }
 
-  getSalon(salon)
+  setAppointSalon(salon)
   {
     this.storage.set('appoint_salon',salon);
   }
-  getEmp(emp)
+  setAppointEmp(emp)
   {
     this.storage.set('appoint_Emp',JSON.stringify(emp));
 
   }
-  getdate(date)
+  setAppointDate(date)
   {
     this.storage.set('appoint_date',date);
+
+  }
+  setAppointService(serv)
+  {
+    this.storage.set('appoint_services',serv);
 
   }
   setAppointment(salon,emp,date,s)
