@@ -19,7 +19,12 @@
     <div class="salon-item"  *ngFor="let item of searchSalon" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;">
         <ion-avatar>
             <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
-        </ion-avatar> 
+        </ion-avatar>
+        <ion-fab vertical="top" horizontal="end" slot="fixed">
+            <ion-fab-button (click)="direction(item)">
+              <ion-icon name="location-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
         <div class="salon-infos">
             <div>
                 <a class="salon-name" (click)="salonProfile(item)" >{{ item?.name }}</a>                        

@@ -40,7 +40,7 @@
                     </ion-label>
                 </ion-item>
                 <hr>
-                <p class="date">{{ item?.appointment_date  | date:'dd-MM-yyyy HH:mm' }}<span class="get_direction ion-float-right" (click)="direction()">Voir
+                <p class="date">{{ item?.appointment_date  | date:'dd-MM-yyyy HH:mm' }}<span class="get_direction ion-float-right" (click)="direction(item.salon)">Voir
                         sur la carte</span>
                 </p>
             </div>

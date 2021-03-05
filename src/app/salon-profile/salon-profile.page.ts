@@ -221,6 +221,10 @@ export class SalonProfilePage implements OnInit {
       await this.servicesSelect.push(service);
   }
 
+  selectEmp(emp)
+  {
+    this.empSelect=emp;
+  }
   isServSelect(service)
   {
     const indexOf=this.servicesSelect.indexOf(service);

@@ -1,7 +1,7 @@
 <ion-content>
     <div>
         <ion-buttons slot="start" (click)="back()">
-            <ion-back-button defaultHref="/tabs/appoitment" text="" mode="md">
+            <ion-back-button defaultHref="{{pathBack}}" text="" mode="md">
                 <img src="../../assets/images/back.svg">
             </ion-back-button>
         </ion-buttons>
@@ -10,8 +10,8 @@
     <ion-item lines="none">
         <img slot="start" class="salon_img" src="../../assets/images/salon1.png">
         <ion-label>
-            <p class="salon_name">Martha Salon</p>
-            <p class="address">463 W Broadway, New York, NY 10012, United States </p>
+            <p class="salon_name">{{salon?.name}}</p>
+            <p class="address">{{salon?.address}}</p>
             <div class="rate_div">
                 <div class="bottom --flex-row-j!sb">
                     <h3 class="rate_h">

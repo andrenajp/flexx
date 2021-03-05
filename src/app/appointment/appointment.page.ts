@@ -45,10 +45,11 @@ export class AppointmentPage implements OnInit {
     });
     return await modal.present();
   }
-  async direction() {
+  async direction(salon) {
     const modal = await this.modalCtrl.create({
       component: DirectionPage,
       cssClass: 'DirectionPage',
+      componentProps:{"salon" : salon,"pathBack": "/tabs/appointment"}   
     });
     return await modal.present();
   }

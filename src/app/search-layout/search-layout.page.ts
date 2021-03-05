@@ -3,6 +3,8 @@ import { ModalController, NavController } from '@ionic/angular';
 import { FilterPage } from '../filter/filter.page';
 import axios from 'axios';
 import { Router,NavigationExtras} from '@angular/router';
+import { DirectionPage } from '../direction/direction.page';
+
 
 
 @Component({
@@ -43,6 +45,14 @@ export class SearchLayoutPage implements OnInit {
     this.router.navigate(["/salon-profile"], {
       queryParams: salon,
     });
+  }
+  async direction(salon) {
+    const modal = await this.modal.create({
+      component: DirectionPage,
+      cssClass: 'DirectionPage',
+      componentProps:{"salon" : salon,"pathBack":"/tabs/search-layout"}   
+    });
+    return await modal.present();
   }
 
 }

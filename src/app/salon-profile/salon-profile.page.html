@@ -69,19 +69,23 @@
         
               </ion-slide>
             </ion-slides>
-
-              <div> 
-                <ion-radio-group [(ngModel)]="empSelect">
-                  <ion-list-header>
-                    <ion-label>Liste des employés</ion-label>
-                  </ion-list-header>
-        
-                  <ion-item *ngFor="let emp of employee">
-                    <ion-label>{{emp?.fullname}}</ion-label>
-                    <ion-radio [value]="emp" color="success" slot="end"></ion-radio>
-                  </ion-item>
-        
-                </ion-radio-group> 
+            <div>
+              <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
+                <ion-slide *ngFor="let emp of employee">
+          
+                  <ion-card (click)="selectEmp(emp)">
+                    <ion-card-header>
+                      <ion-thumbnail>
+                        <img  [ngClass]="{'selected' : emp==empSelect}" src="">            
+                      </ion-thumbnail>  
+                    </ion-card-header>
+                    <ion-card-content>
+                      <P  class="service-name">{{emp?.fullname}}</P>
+                    </ion-card-content>
+                  </ion-card>
+          
+                </ion-slide>
+              </ion-slides>
             </div>
             <ion-button slot="start" expand="block" (click)="reserver()">Prendre rendez-vous</ion-button>
 
