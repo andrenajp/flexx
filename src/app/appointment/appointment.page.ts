@@ -23,8 +23,10 @@ export class AppointmentPage implements OnInit {
     ) { }
   async ngOnInit() 
   {
-    await axios.get('http://157.230.232.108/appointments/').then(response => {
-      const appoints=response.data;
+    try 
+    {
+      const res=await axios.get('http://157.230.232.108/appointments/');
+      const appoints=res.data;
       var idA;
       let  appoint;
       const today=new Date();
@@ -35,8 +37,10 @@ export class AppointmentPage implements OnInit {
           this.upcoming.push(appoint);
         else
           this.past.push(appoint);
-      }
-    });
+      } 
+
+    }catch(error){ console.log(error.response)} 
+
   }
   async rating() {
     const modal = await this.modalCtrl.create({

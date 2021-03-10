@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import * as moment from "moment";
-import axios from 'axios';
 import { AppointmentService } from '../Appointment/appointment.service';
 
 

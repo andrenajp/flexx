@@ -38,7 +38,9 @@ export class HomePage {
   services: any = []
   salons: any = [];
 
-  constructor(private nav: NavController, private modalCtrl: ModalController, public router: Router) {
+  constructor(private nav: NavController, private modalCtrl: ModalController, public router: Router)
+  {
+    console.log("Acceuil");
   }
   async ngOnInit() {
     try {
@@ -46,12 +48,11 @@ export class HomePage {
       this.salons = salonsRep.data;
       const serviceRep = await axios.get('http://157.230.232.108/services');
       this.services = serviceRep.data;
-      console.log(this.services)
+      console.log("Init Salon")
 
     } catch (error) {
       console.log(error.response);
     }
-
   }
   listeSalons(sercice: NavigationExtras) {
     this.router.navigate(["/select-service"], {
@@ -59,7 +60,6 @@ export class HomePage {
     });
   }
   salonProfile(salon: NavigationExtras) {
-    console.log(salon);
     this.router.navigate(["/salon-profile"], {
       queryParams: salon,
     });

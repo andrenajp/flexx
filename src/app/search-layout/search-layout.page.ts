@@ -4,6 +4,7 @@ import { FilterPage } from '../filter/filter.page';
 import axios from 'axios';
 import { Router,NavigationExtras} from '@angular/router';
 import { DirectionPage } from '../direction/direction.page';
+import { LocationPage } from '../location/location.page';
 
 
 
@@ -13,6 +14,7 @@ import { DirectionPage } from '../direction/direction.page';
   styleUrls: ['./search-layout.page.scss'],
 })
 export class SearchLayoutPage implements OnInit {
+  salons:any=[];
   searchSalon: any = [ ]
   rate: any = 1;
 
@@ -34,7 +36,7 @@ export class SearchLayoutPage implements OnInit {
     try 
     {
       const response = await axios.get('http://157.230.232.108/salons');
-     this.searchSalon = response.data;
+      this.salons = response.data;
     } catch (error)
     {
      console.log("");
@@ -46,13 +48,23 @@ export class SearchLayoutPage implements OnInit {
       queryParams: salon,
     });
   }
-  async direction(salon) {
+  async location(salon) {
     const modal = await this.modal.create({
-      component: DirectionPage,
-      cssClass: 'DirectionPage',
-      componentProps:{"salon" : salon,"pathBack":"/tabs/search-layout"}   
+      component: LocationPage,
+      cssClass: 'LocationPage',
+      componentProps:{"salons" : this.searchSalon,"salon":salon }   
     });
     return await modal.present();
   }
 
+  async search(s)
+  {
+    try
+    {
+      const response = await axios.get('http://157.230.232.108/salons?_where[name_contains]=%'+s+'%');
+      this.searchSalon=response.data;
+      
+    }
+    catch(error){console.log(error.response)}
+  }
 }

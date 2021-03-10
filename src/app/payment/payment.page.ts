@@ -24,6 +24,26 @@ export class PaymentPage implements OnInit {
   price:Number=0;
   serviceCharge:Number=5;
   totalPrice:Number=0;
+  payment:any=[
+    {
+      "name":"Paypal",
+      "icon":"../../assets/images/paypal.svg"
+    },
+    {
+      "name":"Razorpay",
+      "icon":"../../assets/images/razorpay.svg"
+    },
+    {
+      "name":"Stripe",
+      "icon":"../../assets/images/stripe.svg"
+    },
+    {
+      "name":"COD",
+      "icon":"../../assets/images/cod.svg"
+    },
+    
+  ];
+  paymentWith:any;
   constructor(
     private nav: NavController,
     private readonly storage:Storage,
@@ -61,11 +81,26 @@ export class PaymentPage implements OnInit {
   }
   makePayment() 
   {
-    this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
-    this.nav.navigateForward('booking-success')
+    if(this.pay())
+    {
+      this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
+      this.nav.navigateForward('booking-success');
+    }
   }
   
+  private pay()
+  {
+    var res=false;
+    if(this.paymentWith=="paypal")
+    {
+      
+    }
+    else if(this.paymentWith=="paypal")
+    {
 
+    }
+    return res;
+  }
   async removeService(service)
   {
       const indexOf=this.serviceSelect.indexOf(service);

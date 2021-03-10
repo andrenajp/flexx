@@ -135,12 +135,16 @@ export class SalonProfilePage implements OnInit {
     this.createBarChart();
   }
 
-  async ngOnInit() {
-    await axios.get('http://157.230.232.108/salons/'+this.salon.id).then(response => {
-      this.thesalon = response.data
-      this.employee=response.data.employees;
-      this.services=response.data.services;
-    });
+  async ngOnInit() 
+  {
+    try
+    {
+     const res= await axios.get('http://157.230.232.108/salons/'+this.salon.id);
+        this.thesalon = res.data
+        this.employee=res.data.employees;
+        this.services=res.data.services;
+    }catch(error){console.log(error.response)}
+
   }
 
   ionViewWillEnter() { }

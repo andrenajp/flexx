@@ -38,8 +38,8 @@
     <ion-row class="ion-padding-start" *ngFor="let service of serviceSelect">
         <ion-col size="9" class="service_name ion-no-padding">{{service.name}}<br><span>facial</span></ion-col>
         <ion-col size="2" class="price ion-no-padding">{{service.price}}€</ion-col>
-        <ion-col size="1" class="ion-no-padding" (click)="removeService(service)"><img src="../../assets/images/minus.svg" height="18px" width="18px">
-        </ion-col>
+        <!--<ion-col size="1" class="ion-no-padding" (click)="removeService(service)"><img src="../../assets/images/minus.svg" height="18px" width="18px">
+        </ion-col>-->
     </ion-row>
     
     <div class="border_bottom"></div>
@@ -56,36 +56,14 @@
     <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">{{ totalPrice }}€</span>
     </div>
     <div class="border_bottom"></div>
-    <div class="main_head ion-padding-start ">Select Payment Method
+    <div class="main_head ion-padding-start ">Sélectionnez le mode de paiement
     </div>
     <div class="payment_method ion-margin-horizontal">
-        <div class="pay_div">
-            <div><img src="../../assets/images/paypal.svg" height="22px" width="22px">
-                <p>PayPal</p>
+        <div class="pay_div" >
+            <div *ngFor="let pay of payment"><img src="{{pay.icon}}" height="22px" width="22px">
+                <p>{{pay.name}}</p>
                 <label class="container">
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div><img src="../../assets/images/razorpay.svg" height="22px" width="22px">
-                <p>Razorpay</p>
-                <label class="container">
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div> <img src="../../assets/images/stripe.svg" height="22px" width="22px">
-                <p>Stripe</p>
-                <label class="container">
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div> <img src="../../assets/images/cod.svg" height="22px" width="22px">
-                <p>COD
-                </p>
-                <label class="container">
-                    <input type="radio" checked="checked" name="radio">
+                    <input type="radio" name="radio" [ngModel]=paymentWith>
                     <span class="checkmark"></span>
                 </label>
             </div>

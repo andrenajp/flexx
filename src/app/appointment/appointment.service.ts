@@ -34,20 +34,20 @@ export class AppointmentService {
     for (var i in s)
       idService.push({"id":s[i].id});
     
-    axios
-    .post('http://157.230.232.108/appointments', {
-      appointment_date:date,
-      salon: {"id":salon},
-      employee: {"id":emp},
-      services:idService
-    })
-    .then(response => {
-      console.log(response);
-    });
-    this.storage.remove("appoint_salon");
-    this.storage.remove("appoint_Emp");
-    this.storage.remove("appoint_Emp");
-    this.storage.remove("appoint_services");
+    try
+    {
+      axios.post('http://157.230.232.108/appointments', {
+        appointment_date:date,
+        salon: {"id":salon},
+        employee: {"id":emp},
+        services:idService
+      });
+      this.storage.remove("appoint_salon");
+      this.storage.remove("appoint_Emp");
+      this.storage.remove("appoint_Emp");
+      this.storage.remove("appoint_services");
+    }catch(error){console.log(error.response)}
+
 
   }
 }

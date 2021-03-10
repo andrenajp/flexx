@@ -6,7 +6,7 @@
             </ion-back-button>
         </ion-buttons>
         <ion-title mode="ios">
-            <ion-input type="text" placeholder="Tapez quelque chose..."></ion-input>
+            <ion-input type="text" (ionChange)='search($event.target.value)' placeholder="Tapez quelque chose..."></ion-input>
         </ion-title>
         <img src="../../assets/images/close.svg" slot="end" height="16px" width="16px" class="ion-margin-end">
     </ion-toolbar>
@@ -21,7 +21,7 @@
             <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
         </ion-avatar>
         <ion-fab vertical="top" horizontal="end" slot="fixed">
-            <ion-fab-button (click)="direction(item)">
+            <ion-fab-button (click)="location(item)">
               <ion-icon name="location-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>

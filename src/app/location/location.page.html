@@ -1,15 +1,15 @@
 <ion-content>
     <div>
         <ion-buttons slot="start" (click)="back()">
-            <ion-back-button defaultHref="/tabs/appoitment" text="" mode="md">
+            <ion-back-button defaultHref="/tabs/search-layout" text="" mode="md">
                 <img src="../../assets/images/back.svg">
             </ion-back-button>
         </ion-buttons>
     </div>
     <div id="map8" class="map"></div>
     <div class="scroll-container">
-        <div class="scroll-div" *ngFor="let item of location" (click)="details()">
-            <ion-item lines="none">
+        <div class="scroll-div" *ngFor="let item of salons"(click)="details(item)">
+            <ion-item lines="none" >
                 <img slot="start" class="salon_img" src="{{ item?.img }}">
                 <ion-label>
                     <p class="salon_name">{{ item?.name }}</p>
@@ -19,9 +19,9 @@
                             <h3 class="rate_h">
                                 <ion-icon name="star" [ngClass]="rate >= 1 ? 'yellow-star' :'gray-star'">
                                 </ion-icon>
-                                <span class="ion-margin-bottom">{{ item?.rate }}</span>
+                                <span class="ion-margin-bottom"> 5.0</span>
                                 <img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px">
-                                <span class="ion-text-right"> {{ item?.km }}</span>
+                                <span class="ion-text-right"> 2.0 </span>
                             </h3>
 
                         </div>

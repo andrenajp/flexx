@@ -30,6 +30,7 @@
     "axios": "^0.21.1",
     "cordova-android": "9.0.0",
     "ion2-calendar": "^3.0.0-rc.0",
+    "mapbox-gl": "^2.1.1",
     "moment": "^2.29.1",
     "ng-chartjs": "^0.2.1",
     "rxjs": "~6.5.5",
@@ -74,9 +75,7 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
+      "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-geolocation": {}
     },
