@@ -17,6 +17,7 @@ export class SearchLayoutPage implements OnInit {
   salons:any=[];
   searchSalon: any = [ ]
   rate: any = 1;
+  filtre:any=null;
 
   constructor(
     private nav: NavController, 
@@ -24,23 +25,24 @@ export class SearchLayoutPage implements OnInit {
      public router: Router
     ) { }
 
-  async filter() {
+  async filter() 
+  {
     const modal = await this.modal.create({
       component: FilterPage,
       cssClass: 'Filter_modal',
+      componentProps:{"filtre":this.filtre}
     });
-    return await modal.present();
+    await modal.present();
+    const {data:s ,role} =await modal.onDidDismiss();
+    if(role=="Filtre")
+    {
+      this.filtre=s;
+      this.addFiltre();
+    }
   }
   async ngOnInit() 
   {
-    try 
-    {
-      const response = await axios.get('http://157.230.232.108/salons');
-      this.salons = response.data;
-    } catch (error)
-    {
-     console.log("");
-    }
+      this.search("");
   }
 
   salonProfile(salon:NavigationExtras) {
@@ -61,10 +63,32 @@ export class SearchLayoutPage implements OnInit {
   {
     try
     {
-      const response = await axios.get('http://157.230.232.108/salons?_where[name_contains]=%'+s+'%');
+      const response = await axios.get('http://157.230.232.108/salons?_where[address_contains]=%'+s+'%');
       this.searchSalon=response.data;
-      
+
     }
     catch(error){console.log(error.response)}
+  }
+
+  async addFiltre()
+  { 
+    var filtreS="[services_in]=";
+    for(var i=0;i<this.filtre.servicesSelect.length;i++)
+    {
+      if((this.filtre.servicesSelect.length-i) >1 )
+        filtreS+=this.filtre.servicesSelect[i]+"&_where[services_in]=";
+      else
+        filtreS+=this.filtre.servicesSelect[i];
+
+    }
+    var clientèle;
+    if(this.filtre.SF=="Homme & Femme")
+      clientèle="Homme_Femme";
+    else 
+      clientèle=this.filtre.SF;
+
+    const response = await axios.get('http://157.230.232.108/salons?_where'+filtreS+"&rate_gte="+this.filtre.rate+
+    "&client_type="+clientèle);
+    this.searchSalon=response.data;
   }
 }

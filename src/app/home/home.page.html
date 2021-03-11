@@ -1,12 +1,12 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-item lines="none">
-      <div slot="start" class="ion-no-margin ion-margin-end">
+      <div slot="start" class="ion-no-margin ion-margin-end" (click)="geolocaliseMoi()">
         <img class="" src="../../assets/images/location.svg" height="18px" width="15px" />
       </div>
       <ion-label>
         <div class="name">Localisation actuelle</div>
-        <ion-input type="" placeholder="Avenue de la liberté, Cayenne" readonly></ion-input>
+        <ion-input type="" placeholder="{{position}}" readonly></ion-input>
       </ion-label>
       <div slot="end" class="ion-no-margin ion-margin-end" (click)="setLocation()">
         <img class="" src="../../assets/images/search.svg" height="18px" width="18px" />
@@ -15,9 +15,18 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card *ngFor="let salon of salons" (click)="salonProfile(salon)">
-    <img src="http://157.230.232.108{{ salon?.Logo?.url }}" />
-    <div class="card-title">{{ salon?.name }}</div>
-    <div class="card-subtitle">{{ salon?.km}}</div>
-  </ion-card>
+  <div class="salon-item"  *ngFor="let item of salons" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;">
+    <ion-avatar>
+        <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
+    </ion-avatar>
+    <div class="salon-infos">
+        <div>
+            <a class="salon-name" (click)="salonProfile(item)" >{{ item?.name }}</a>                        
+            <p class="salon-addr">{{ item?.address }}</p>
+        </div>                           
+    </div>    
+</div>
+
+
+
 </ion-content>

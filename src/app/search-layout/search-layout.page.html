@@ -1,12 +1,12 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button defaultHref="login" text="" mode="md">
+            <ion-back-button defaultHref="tabs/home" text="" mode="md">
                 <img src="../../assets/images/back.svg">
             </ion-back-button>
         </ion-buttons>
         <ion-title mode="ios">
-            <ion-input type="text" (ionChange)='search($event.target.value)' placeholder="Tapez quelque chose..."></ion-input>
+            <ion-input type="text" min="3" (ionChange)='search($event.target.value)' placeholder="Ville"></ion-input>
         </ion-title>
         <img src="../../assets/images/close.svg" slot="end" height="16px" width="16px" class="ion-margin-end">
     </ion-toolbar>

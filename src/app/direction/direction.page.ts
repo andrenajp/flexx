@@ -44,7 +44,6 @@ export class DirectionPage implements OnInit {
     axios.get('https://api-adresse.data.gouv.fr/search/?q='+this.salon.address+"&limit=1").then(response => {
       this.longitude=response.data.features[0].geometry.coordinates[0];
       this.latitude=response.data.features[0].geometry.coordinates[1];
-      console.log(this.latitude,this.longitude);
       this.drawMap();
   });
 

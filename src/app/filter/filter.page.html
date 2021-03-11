@@ -31,43 +31,37 @@
       </label></ion-col>
   </ion-row>
   <div class="border_bottom"></div>
+
+
   <div class="main_head ion-padding-start ion-padding-top">Service pour
   </div>
   <ion-row class="ion-padding-top">
-    <ion-col size="3" class="ion-no-padding"> <label class="container">Les deux
-        <input type="radio" checked="checked" name="radio">
+    <ion-col size="3" class="ion-no-padding" *ngFor="let item of servicesFor"> 
+      <label class="container">{{item}}
+        <input *ngIf="item==serviceFor" type="radio" [value]="item" [(ngModel)]="serviceFor"checked="checked" name="radio">
+        <input *ngIf="item!=serviceFor" type="radio" [value]="item" [(ngModel)]="serviceFor" name="radio">
         <span class="checkmark"></span>
-      </label></ion-col>
-    <ion-col size="3" class="ion-no-padding"> <label class="container">F
-        <input type="radio" name="radio">
-        <span class="checkmark"></span>
-      </label></ion-col>
-    <ion-col size="3" class="ion-no-padding"> <label class="container">M
-        <input type="radio" name="radio">
-        <span class="checkmark"></span>
-      </label></ion-col>
+      </label>
+    </ion-col>
   </ion-row>
+
+
+
+
   <div class="border_bottom"></div>
   <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Services
   </div>
   <ion-row class="ion-padding-bottom">
-    <ion-button mode="md" fill="outline">Coupe de cheveux
-    </ion-button>
-    <ion-button mode="md" fill="outline">Services couleur
-    </ion-button>
-    <ion-button fill="outline" mode="md">Soins du visage
-    </ion-button>
-    <ion-button fill="outline" mode="md">Traitements capillaires
-    </ion-button>
-    <ion-button fill="outline" mode="md">Massage
-    </ion-button>
-    <ion-button fill="outline" mode="md">Threading
-    </ion-button>
+    <div class="service-filtre" *ngFor="let item of services"> 
+      <ion-button  mode="md" fill="outline" [ngClass]="{'selected' : isServSelect(item?.id)}" (click)="addServiceFiltre(item?.id)">{{ item?.name }}</ion-button>
+    </div>
   </ion-row>
+
+
   <div class="border_bottom"></div>
   <div class="main_head ion-padding-start ion-padding-top ion-padding-bottom">Avis<span
       class="ion-float-right ion-margin-end">
-      (3.0 et plus)</span>
+      ({{rate}}.0 et plus)</span>
   </div>
   <div class="bottom --flex-row-j!sb">
     <h3 class="rate_h">
@@ -93,5 +87,5 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-button mode="md" class="apply" (click)="closeModal()">Annueler</ion-button>
-  <ion-button mode="md" class="apply" (click)="closeModal()">Valider</ion-button>
+  <ion-button mode="md" class="apply" (click)="setFiltre()">Valider</ion-button>
 </ion-footer>

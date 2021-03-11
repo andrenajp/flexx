@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController, NavController } from '@ionic/angular';
+import { environment } from 'src/environments/environment.prod';
+
 import axios from 'axios';
 
 import { LocationPage } from '../location/location.page';
@@ -11,44 +13,26 @@ import { LocationPage } from '../location/location.page';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  nearbysalon: any = [{
-    img: '../../assets/images/salon4.png',
-    name: 'Martha Salon',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '05 Nov, 2020 - 10:00AM',
-    rate: '5.0',
-    km: '3.2km'
-  }, {
-    img: '../../assets/images/salon2.png',
-    name: 'Central City Bright',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '07 Nov, 2020 - 07:00PM',
-    rate: '5.0',
-    km: '3.2km'
-  },
-  {
-    img: '../../assets/images/salon5.png',
-    name: 'Ozivia Salon',
-    address: '463 W Broadway, New York, NY 10012, United...',
-    date: '07 Nov, 2020 - 07:00PM',
-    rate: '5.0',
-    km: '3.2km'
-  }]
+  nearbysalon: any = [ ];
+  position:string="";
   rate: any = 1;
   services: any = []
   salons: any = [];
 
-  constructor(private nav: NavController, private modalCtrl: ModalController, public router: Router)
+  constructor(private nav: NavController, 
+              private modalCtrl: ModalController,
+              public router: Router,
+              private geolocation:Geolocation
+              ){  }
+
+  async ngOnInit() 
   {
-    console.log("Acceuil");
-  }
-  async ngOnInit() {
-    try {
+    try 
+    {
       const salonsRep = await axios.get('http://157.230.232.108/salons');
       this.salons = salonsRep.data;
       const serviceRep = await axios.get('http://157.230.232.108/services');
       this.services = serviceRep.data;
-      console.log("Init Salon")
 
     } catch (error) {
       console.log(error.response);
@@ -64,14 +48,31 @@ export class HomePage {
       queryParams: salon,
     });
   }
-  setLocation() {
+  setLocation() 
+  {
     this.nav.navigateForward('set-location')
+    
   }
-  async location() {
+  async location() 
+  {
     const modal = await this.modalCtrl.create({
       component: LocationPage,
       cssClass: 'LocationPage',
     });
     return await modal.present();
+  }
+
+  geolocaliseMoi()
+  {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      const lat=resp.coords.latitude;
+      const long=resp.coords.longitude;
+      axios.get('https://api-adresse.data.gouv.fr/reverse/?lon='+long+'&lat='+lat).then((response)=>{
+        this.position=response.data.features[0].properties.street+" , "+response.data.features[0].properties.city;
+      });
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+     
   }
 }

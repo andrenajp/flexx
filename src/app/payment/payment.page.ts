@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 import axios from 'axios';
@@ -7,8 +6,6 @@ import {AppointmentService} from '../appointment/appointment.service';
 import {Storage} from '@ionic/storage';
 
 import { ModalController } from '@ionic/angular';
-import { ServicesModalComponent } from '../services-modal/services-modal.component';
-
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.page.html',

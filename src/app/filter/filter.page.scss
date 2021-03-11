@@ -147,10 +147,7 @@ ion-content {
         --padding-end: 10px;
         text-transform: none;
     }
-    ion-button:hover {
-        --border-color: var(--theme-color);
-        --color: var(--in-black);
-    }
+
     span {
         font-family: var(--regular-font);
         font-size: 15px;
@@ -202,6 +199,13 @@ ion-content {
         --knob-background: var(--theme-color);
         --bar-background-active: black;
         --bar-background: #dddddd;
+    }
+    .service-filtre 
+    {
+        .selected{
+            --border-color: var(--theme-color);
+            --color: var(--in-black);
+        }
     }
 }
 

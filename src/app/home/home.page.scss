@@ -1,25 +1,60 @@
 .card-background-page {
 
-    ion-card {
-      position: relative;
-      text-align: center;
-    }
-  
-    .card-title {
-      position: absolute;
-      top: 36%;
-      font-size: 2.0em;
-      width: 100%;
-      font-weight: bold;
-      color: #fff;
-    }
-  
-    .card-subtitle {
-      font-size: 1.0em;
-      position: absolute;
-      top: 52%;
-      width: 100%;
-      color: #fff;
-    }
-  
+  ion-card {
+    position: relative;
+    text-align: center;
   }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+}
+
+ion-content{
+
+.salon-item
+{
+    height: 170px;
+    margin-left: 17px;
+    margin: 17px;
+    border: 0.75px solid black;
+    position: relative;
+    .salon-infos
+    {
+        height: 50px;
+        width: 100%;
+        background-color: var(--ion-black);
+        opacity: .75;
+        position: absolute;
+        bottom: 0;
+        .salon-name
+        {
+            font-size: 13px;
+            
+            font-family: var(--bold-font);
+            color: white;
+        }
+        .salon-addr
+        {
+            font-size: 11px;
+            font-style: oblique;
+            font-family: var(--regular-font);
+            color: var(--gray-color);
+            padding-right: 10px;
+        }
+    }
+}
+}
