@@ -190,7 +190,28 @@ ion-content {
         background: #FAFAFA;
         box-shadow: none;
     }
-    
+    .salon-info {
+        height: 100px;
+        width: 90%;
+        margin-left: 5%;
+        box-shadow: inset; 
+        border-radius: 15px;
+        box-shadow: inset 0 0 1em white, 0 0 2em rgba(128, 128, 128,0.4);
+        opacity: .75;
+        position: relative;
+        ion-badge{ 
+            position: absolute;
+            right: 0;
+            color: white;
+            .white-star {
+                color: var(--fill-white);
+            }
+        }
+        .address{
+            position: absolute;
+            bottom: 0;
+        }
+    }
     .service-list {
         img{
             height: 65px;
@@ -208,6 +229,7 @@ ion-content {
             color: var(--gray-color);
         }
     }
+
 }
 
 ion-footer {
@@ -223,7 +245,7 @@ ion-footer {
             color: var(--ion-black);
         }
         ion-button {
-            overflow: hidden;
+            overflow:hidden;
             font-size: 15px;
             font-family: var(--regular-font);
             text-transform: none;
@@ -238,6 +260,3 @@ ion-footer {
     }
     
 }
-.yellow-star {
-            color: var(--fill-yellow);
-        }

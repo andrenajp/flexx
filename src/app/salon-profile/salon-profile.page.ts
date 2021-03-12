@@ -137,12 +137,14 @@ export class SalonProfilePage implements OnInit {
 
   async ngOnInit() 
   {
+    
     try
     {
      const res= await axios.get('http://157.230.232.108/salons/'+this.salon.id);
         this.thesalon = res.data
         this.employee=res.data.employees;
         this.services=res.data.services;
+        this.logo=res.data.Logo;
     }catch(error){console.log(error.response)}
 
   }
