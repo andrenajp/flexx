@@ -78,11 +78,9 @@ export class PaymentPage implements OnInit {
   }
   makePayment() 
   {
-    if(this.pay())
-    {
       this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
       this.nav.navigateForward('booking-success');
-    }
+    
   }
   
   private pay()

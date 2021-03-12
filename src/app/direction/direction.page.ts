@@ -40,28 +40,22 @@ export class DirectionPage implements OnInit {
   }
   async ngOnInit() 
   {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat=resp.coords.latitude
+      this.long=resp.coords.longitude
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+
     mapboxgl.accessToken =environment.mapboxKey;
     axios.get('https://api-adresse.data.gouv.fr/search/?q='+this.salon.address+"&limit=1").then(response => {
       this.longitude=response.data.features[0].geometry.coordinates[0];
       this.latitude=response.data.features[0].geometry.coordinates[1];
       this.drawMap();
+
   });
 
   }
-
-  
-  getItinéraire()
-  {
-    if(this.platform.is("android"))
-    {
-
-    }
-    else if(this.platform.is("ios"))
-    {
-      
-    }
-  }
-
   drawMap()
   {
     this.map = new mapboxgl.Map({
@@ -71,6 +65,8 @@ export class DirectionPage implements OnInit {
       zoom: 18 // starting zoom
       });
       new mapboxgl.Marker({color:"red"}).setLngLat([this.longitude, this.latitude]).addTo(this.map);
+      new mapboxgl.Marker({color:"red"}).setLngLat([this.long, this.lat]).addTo(this.map);
+
       this.map.addControl(
         new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -78,6 +74,51 @@ export class DirectionPage implements OnInit {
         },
         trackUserLocation: true
         })
-        );
+      );
+        this.getRoute([this.longitude,this.latitude]);
+
   }
+
+
+  // create a function to make a directions request
+  getRoute(end) 
+  {
+
+    axios.get('https://api.mapbox.com/directions/v5/mapbox/cycling/' + this.long + ',' + this.lat + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken)
+      .then((response)=>{ 
+        
+          if (this.map.getSource('route')) 
+            this.map.getSource('route').setData(response.data.routes[0].geometry);
+          else {
+            this.map.addLayer({
+                id: 'route',
+                type: 'line',
+                source: {
+                  type: 'geojson',
+                  data: {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: response.data.routes[0].geometry
+                  }
+                },
+                layout: {
+                  'line-join': 'round',
+                  'line-cap': 'round'
+                },
+                paint: {
+                  'line-color': '#3887be',
+                  'line-width': 5,
+                  'line-opacity': 0.75
+                }
+              });
+            }
+      });
+      
+  }
+
+  
 }
+
+
+
+

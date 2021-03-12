@@ -4,6 +4,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import axios from 'axios';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { DirectionPage } from '../direction/direction.page';
 
 @Component({
   selector: 'app-appointment-detail',
@@ -69,6 +70,16 @@ export class AppointmentDetailPage implements OnInit {
         }]
     });
     await alert.present();
+  }
+
+  async getDirection()
+  {
+    const modal = await this.modal.create({
+      component: DirectionPage,
+      cssClass: 'DirectionPage',
+      componentProps:{"salon" : this.salon,"pathBack": "/tabs/appointment"}   
+    });
+    return await modal.present();
   }
 
 }
