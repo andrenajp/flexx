@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 import axios from 'axios';
-import {AppointmentService} from '../appointment/appointment.service';
 import {Storage} from '@ionic/storage';
 
 import { ModalController } from '@ionic/angular';
@@ -44,7 +43,6 @@ export class PaymentPage implements OnInit {
   constructor(
     private nav: NavController,
     private readonly storage:Storage,
-    private appointRdv:AppointmentService,
     public modalCtrl:ModalController
     )
   {
@@ -78,8 +76,8 @@ export class PaymentPage implements OnInit {
   }
   makePayment() 
   {
-      this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
-      this.nav.navigateForward('booking-success');
+      //this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
+      //this.nav.navigateForward('booking-success');
     
   }
   
@@ -106,4 +104,26 @@ export class PaymentPage implements OnInit {
       }
   }
 
+
+  setAppointment(salon,emp,date,s)
+  {
+    let idService=[];
+    for (var i in s)
+      idService.push({"id":s[i].id});
+    
+    try
+    {
+      axios.post('http://157.230.232.108/appointments', {
+        appointment_date:date,
+        salon: {"id":salon},
+        employee: {"id":emp},
+        services:idService
+      });
+      this.storage.remove("appoint_salon");
+      this.storage.remove("appoint_Emp");
+      this.storage.remove("appoint_Emp");
+      this.storage.remove("appoint_services");
+    }catch(error){console.log(error.response)}
+ 
+  }
 }

@@ -8,26 +8,7 @@ import {Storage} from '@ionic/storage';
 export class AppointmentService {
 
   constructor(private readonly storage:Storage) { }
-
-  setAppointSalon(salon)
-  {
-    this.storage.set('appoint_salon',salon);
-  }
-  setAppointEmp(emp)
-  {
-    this.storage.set('appoint_Emp',JSON.stringify(emp));
-
-  }
-  setAppointDate(date)
-  {
-    this.storage.set('appoint_date',date);
-
-  }
-  setAppointService(serv)
-  {
-    this.storage.set('appoint_services',serv);
-
-  }
+  
   setAppointment(salon,emp,date,s)
   {
     let idService=[];

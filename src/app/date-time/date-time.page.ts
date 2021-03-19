@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import * as moment from "moment";
-import { AppointmentService } from '../Appointment/appointment.service';
 
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-date-time',
@@ -22,7 +22,7 @@ export class DateTimePage implements OnInit {
     private nav: NavController,
     private route: ActivatedRoute,
     private router: Router,
-    private appointServ: AppointmentService
+    private readonly storage:Storage
   ) {
     this.route.queryParams.subscribe((res) => {
       this.idEmp = res;
@@ -77,8 +77,9 @@ export class DateTimePage implements OnInit {
     this.dateAff = moment(this.dateRDV).toDate().toLocaleString('fr-FR');
     console.log(this.dateAff)
   }
-  continue() {
-    this.appointServ.setAppointDate(this.dateRDV);
+  continue() 
+  {
+    this.storage.set('appoint_date',this.dateRDV);
     this.nav.navigateForward('payment')
   }
 }

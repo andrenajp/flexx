@@ -9,9 +9,8 @@ import { NavController } from "@ionic/angular";
 import { Chart } from "chart.js";
 
 import axios from 'axios';
-import { AppointmentService } from '../Appointment/appointment.service';
 import { AlertController } from '@ionic/angular';
-
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: "app-salon-profile",
@@ -43,8 +42,8 @@ export class SalonProfilePage implements OnInit {
     private nav: NavController,
     private router: Router,
     private route: ActivatedRoute,
-    private appointServ: AppointmentService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private readonly storage:Storage
   ) {
     this.route.queryParams.subscribe((res) => {
       this.salon = res;
@@ -166,9 +165,9 @@ export class SalonProfilePage implements OnInit {
     }
     else
     {   
-      this.appointServ.setAppointSalon(this.salon.id);
-      this.appointServ.setAppointService(this.servicesSelect);
-      this.appointServ.setAppointEmp(this.empSelect);
+      this.storage.set('appoint_salon',this.salon);
+      this.storage.set('appoint_Emp',JSON.stringify(this.empSelect));
+      this.storage.set('appoint_services',this.servicesSelect);
 
       this.router.navigate(["/date-time"], {
         queryParams: { 
@@ -176,12 +175,6 @@ export class SalonProfilePage implements OnInit {
         },
       });
     }
-  }
-  continue() {
-    this.appointServ.setAppointSalon(this.salon.id);
-    this.router.navigate(["/select-employee"], {
-      queryParams: { id: this.salon.id },
-    });
   }
 
   back() {

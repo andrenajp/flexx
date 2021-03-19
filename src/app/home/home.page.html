@@ -15,18 +15,56 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="salon-item"  *ngFor="let item of salons" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;">
-    <ion-avatar>
-        <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
-    </ion-avatar>
-    <div class="salon-infos">
-        <div>
-            <a class="salon-name" (click)="salonProfile(item)" >{{ item?.name }}</a>                        
-            <p class="salon-addr">{{ item?.address }}</p>
-        </div>                           
-    </div>    
-</div>
+
+  <div [ngSwitch]="select">
+
+    <div *ngSwitchCase="'salon'">
+
+      <div class="salon-item"  *ngFor="let item of salons" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;">
+        <ion-avatar>
+            <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
+        </ion-avatar>
+        <div class="salon-infos">
+            <div>
+                <a class="salon-name" (click)="salonProfile(item)" >{{ item?.name }}</a>                        
+                <p class="salon-addr">{{ item?.address }}</p>
+            </div>                           
+        </div>    
+    </div> 
+
+    </div>
+
+    <div [hidden]="select !='barber'">
+      
+      <div class="salon-item"  *ngFor="let item of barbeurs" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;">
+        <ion-avatar>
+            <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
+        </ion-avatar>
+        <div class="salon-infos">
+            <div>
+                <a class="salon-name" (click)="barbeurProfile(item)" >{{ item?.name }}</a>
+                <p class="salon-addr">{{ item?.address }}</p>
+            </div>                           
+        </div>    
+    </div> 
+    
+    </div>
+  </div>
 
 
 
 </ion-content>
+
+<ion-footer>
+  <div class="section" [ngClass]="{'fix-segment': fixSegment==2}">
+    <ion-segment mode="md" [(ngModel)]="select" value="all">
+      <ion-segment-button mode="md" value="salon">Salon
+        <div *ngIf="select == 'salon'" class="seg-button"></div>
+      </ion-segment-button>
+      <ion-segment-button mode="md" value="barber">Barbeur
+        <div *ngIf="select == 'barber'" class="seg-button2"></div>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="border"></div>
+</ion-footer>

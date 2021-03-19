@@ -89,11 +89,12 @@ const routes: Routes = [
     loadChildren: () => import('./set-location/set-location.module').then(m => m.SetLocationPageModule)
   },
   {
-    path: 'select-employee',
-    loadChildren: () => import('./select-employee/select-employee.module').then( m => m.SelectEmployeePageModule)
-  },  {
     path: 'select-service',
     loadChildren: () => import('./select-service/select-service.module').then( m => m.SelectServicePageModule)
+  },
+  {
+    path: 'barbeur-profile',
+    loadChildren: () => import('./barbeur-profile/barbeur-profile.module').then( m => m.BarbeurProfilePageModule)
   },
 
   // {
@@ -124,7 +125,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })

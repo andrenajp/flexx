@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="back()">
+      <ion-back-button defaultHref="" text="" mode="md">
+        <img src="../../assets/images/back.svg" />
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">{{barbeur?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+
+  <div class="barbeur-info">
+    <ion-grid>
+      <ion-row>
+        <ion-col  size="3">
+          <ion-avatar>
+            <img src="http://157.230.232.108{{logo?.url}}">         
+          </ion-avatar> 
+        </ion-col>
+        <ion-col> 
+          <ion-badge color="warning">
+            <ion-icon name="star" class="white-star "></ion-icon> 3.5
+          </ion-badge>
+
+          <div class="address">
+            <ion-icon name="location" class="white-star "></ion-icon>{{salon?.address}}
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div class="service-list">
+    <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
+      <ion-slide *ngFor="let service of services">
+
+        <ion-card (click)="addService(service)">
+          <ion-card-header>
+            <ion-thumbnail>
+              <img  [ngClass]="{'selected' : isServSelect(service)}" src="http://157.230.232.108{{ service?.image.url }}">            
+            </ion-thumbnail>  
+          </ion-card-header>
+          <ion-card-content>
+            <P  class="service-name">{{service?.name}}</P>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+                   
+    <ion-fab vertical="bottom"  horizontal="end"  slot="fixed"> 
+      <ion-fab-button color="success" (click)="call()"> 
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </ion-fab-button>   
+    </ion-fab>
+
+</ion-content>

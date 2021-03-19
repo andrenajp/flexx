@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { PrivacyPolicyPage } from './privacy-policy.page';
@@ -7,7 +7,7 @@ describe('PrivacyPolicyPage', () => {
   let component: PrivacyPolicyPage;
   let fixture: ComponentFixture<PrivacyPolicyPage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PrivacyPolicyPage ],
       imports: [IonicModule.forRoot()]

@@ -13,11 +13,13 @@ import { LocationPage } from '../location/location.page';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  select:string="salon";
   nearbysalon: any = [ ];
   position:string="";
   rate: any = 1;
   services: any = []
   salons: any = [];
+  barbeurs:any =[];
 
   constructor(private nav: NavController, 
               private modalCtrl: ModalController,
@@ -33,6 +35,8 @@ export class HomePage {
       this.salons = salonsRep.data;
       const serviceRep = await axios.get('http://157.230.232.108/services');
       this.services = serviceRep.data;
+      const barbeurRep = await axios.get('http://157.230.232.108/barbeurs');
+      this.barbeurs=barbeurRep.data;
 
     } catch (error) {
       console.log(error.response);
@@ -62,6 +66,12 @@ export class HomePage {
     return await modal.present();
   }
 
+  barbeurProfile(barbeur: NavigationExtras)
+  {
+    this.router.navigate(["/barbeur-profile"], {
+      queryParams: barbeur,
+    });
+  }
   geolocaliseMoi()
   {
     this.geolocation.getCurrentPosition().then((resp) => {
