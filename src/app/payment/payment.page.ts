@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Storage} from '@ionic/storage';
 
 import { ModalController } from '@ionic/angular';
+import { VariableBinding } from '@angular/compiler';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.page.html',
@@ -52,8 +53,8 @@ export class PaymentPage implements OnInit {
   ngOnInit() 
   {
     
-    this.storage.get('appoint_salon').then((val) => {
-      axios.get('http://157.230.232.108/salons/'+Number(val)).then(response => {
+    this.storage.get('appoint_salon').then((res) => {
+      axios.get('http://157.230.232.108/salons/'+res.id).then(response => {
         this.salon=response.data;
         this.service=response.data.services;
       });
@@ -77,8 +78,9 @@ export class PaymentPage implements OnInit {
   makePayment() 
   {
       //this.appointRdv.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
-      //this.nav.navigateForward('booking-success');
-    
+    this.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
+    this.nav.navigateForward('booking-success');
+
   }
   
   private pay()

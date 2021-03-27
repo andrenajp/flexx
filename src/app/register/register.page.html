@@ -36,11 +36,11 @@
             <ion-row class="ion-padding-top">
                 <ion-col size="4" class="ion-no-padding">
                     <label class="container">M
-                        <input type="radio" checked="checked" name="radio">
+                        <input type="radio" checked="checked" name="radio" value="Homme" [(ngModel)]="sexe">
                         <span class="checkmark"></span>
                     </label></ion-col>
                 <ion-col size="4" class="ion-no-padding"> <label class="container">F
-                        <input type="radio" name="radio">
+                        <input type="radio" name="radio" value="Femme" [(ngModel)]="sexe">
                         <span class="checkmark"></span>
                     </label></ion-col>
             </ion-row>
@@ -75,7 +75,7 @@
             <ion-input type="number" placeholder="0694******" [(ngModel)]="contact"> </ion-input>
         </ion-label>
     </ion-item>
-    <ion-button expand="full" (click)="verify()">Créer un nouveau compte</ion-button>
+    <ion-button expand="full" (click)="signup()">Créer un nouveau compte</ion-button>
     <div class="ion-text-center">
         <div class="message">Vous avez déjà un compte ? <span class="login" (click)="login()">Connectez-vous !</span>
         </div>

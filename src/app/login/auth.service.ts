@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import  axios  from 'axios';
-
-import { BehaviorSubject, Observable, from, of, throwError } from "rxjs";
 import {Storage} from '@ionic/storage';
 
 @Injectable({
@@ -12,20 +10,57 @@ export class AuthService {
   constructor(private readonly storage:Storage) { }
 
 
-  useLogin(login: any): Observable<boolean> {
-    axios
+  async useLogin(login: any){
+    await axios
     .post('http://157.230.232.108/auth/local', {
       identifier: login.email,
-      password: login.password,
+      password: login.password
     })
-    .then(response => {
-      this.storage.set('access_token',response.data.jwt);
-      return true;
+    .then((response) => {
+      localStorage.setItem('access_token',response.data.jwt);
+      localStorage.setItem('_user',JSON.stringify(response.data.user));
+
     })
-    .catch(error => {
+    .catch((error) => {
       // Handle error.
       console.log('An error occurred:', error.response);
     });
-    return of(true);
    }
+   
+   isauthenticated()
+   {
+      if (localStorage.getItem('access_token')==null)
+        return false;
+      else
+        return true;
+   }
+
+   logout()
+   {
+     localStorage.removeItem('access_token');
+   }
+   checkPassword(login) 
+   {
+      axios
+      .post('http://157.230.232.108/auth/local', {
+        identifier: login.email,
+        password: login.password   
+      })
+   }
+
+   async resetPassword(mail)
+   {
+     console.log(mail);
+    await axios
+    .post('http://157.230.232.108/auth/forgot-password', {
+      email: mail 
+    })
+    .then(response => {
+      console.log('Your user received an email');
+    })
+    .catch(error => {
+      console.log('An error occurred:', error.response);
+    });
+   }
+   
 }

@@ -17,6 +17,8 @@ import { LocationPageModule } from './location/location.module';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { Network } from '@ionic-native/network/ngx';
+import { AuthService } from './login/auth.service'; 
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +31,8 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     OneSignal,
     Geolocation,
-    
+    Network,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

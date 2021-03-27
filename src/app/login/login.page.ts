@@ -23,28 +23,30 @@ export class LoginPage implements OnInit {
     private authService:AuthService
     ) { }
   check = '../../assets/images/check.svg'
-  ngOnInit() {
+  ngOnInit(){
+    if(this.authService.isauthenticated())
+      this.nav.navigateForward('tabs/home')
   }
-  login()
+  async login()
   {
+    await this.authService.useLogin(this.loginForm);
+    if(this.authService.isauthenticated())
+      this.nav.navigateForward('tabs/home')
+    else
+      console.log("Mauvais mot passe")
 
-    this.authService.useLogin(this.loginForm)
-    .subscribe(value => {
-      if(value){
-        alert('login success');
-      }
-      else{
-        alert('login fails')
-      }
-    },error => {
-      alert('login fails')
-    })
   }
-  register() {
+  backHome()
+  {
+    this.nav.navigateForward('tabs/home')
+
+  }
+  register() 
+  {
     this.nav.navigateForward('register')
   }
   forgot() {
-    //this.nav.navigateForward('forgot-password')
+    this.nav.navigateForward('forgot-password')
   }
   change() {
     this.check = this.check === '../../assets/images/check.svg' ? '../../assets/images/checkback.svg' : '../../assets/images/check.svg';

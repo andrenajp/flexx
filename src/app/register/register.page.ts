@@ -13,6 +13,7 @@ export class RegisterPage implements OnInit {
   password: any = '';
   confirmpassword: any = '';
   contact: any = '';
+  sexe:any=[{}]
   err: any = {};
   deviceToken: any;
   constructor(
@@ -26,21 +27,27 @@ export class RegisterPage implements OnInit {
   }
   signup() 
   {
-    const data = { 
-      "surname": this.name ,
-      "email": this.email,
-      "password":this.password
+    if(this.verify())
+    {
+      const data = { 
+        "surname": this.name ,
+        "email": this.email,
+        "password":this.password,
+        "sexe":this.sexe,
+        "phone":this.contact
+      }
+      this.register.sign(data);
+      this.nav.navigateForward('tabs/home')
+
     }
-    this.register.sign(data);
+    else
+      console.log("Aieieiei")
   }
   verify() 
   {
-    console.log('vérifie')
     if(this.password===this.confirmpassword)
-      this.signup();
+      return true;
     else
-      console.log('mot de passe pas identique')
-
-      
+      return false;
   }
 }

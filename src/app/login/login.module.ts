@@ -20,9 +20,6 @@ import { IonicStorageModule } from '@ionic/storage';
     LoginPageRoutingModule,    
     IonicStorageModule.forRoot()
   ],
-  providers:[
-    AuthService,
-  ],
   declarations: [LoginPage]
 })
 export class LoginPageModule {}

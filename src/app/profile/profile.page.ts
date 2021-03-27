@@ -3,6 +3,9 @@ import { ModalController, NavController } from '@ionic/angular';
 
 import { LanguagePage } from '../language/language.page';
 import { SharingPage } from '../sharing/sharing.page';
+import { AuthService } from '../login/auth.service';
+import { NavigationExtras, Router } from '@angular/router';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -10,14 +13,24 @@ import { SharingPage } from '../sharing/sharing.page';
 })
 export class ProfilePage implements OnInit {
   user: any;
-  constructor(private nav: NavController, private modalCtrl: ModalController) {
-
-
+  dateSign:any;
+  constructor(
+    private nav: NavController,
+    private modalCtrl: ModalController,
+    private authService:AuthService,
+    public router: Router,
+    ) 
+  {
+     if(!this.authService.isauthenticated())
+        router.navigate(['login']);
   }
   ionViewWillEnter() {
 
   }
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.user=JSON.parse(localStorage.getItem('_user'));
+    this.dateSign=new Date(this.user.created_at);
   }
   async shareWith() {
     const modal = await this.modalCtrl.create({
@@ -33,8 +46,20 @@ export class ProfilePage implements OnInit {
     });
     return await modal.present();
   }
+
+  uploadImg()
+  {
+    console.log("Insert img");
+  }
+
   editProfile() {
-    this.nav.navigateForward('edit-profile')
+    if(this.authService.isauthenticated())
+      this.nav.navigateForward('edit-profile')
+  }
+  changePassword()
+  {
+    if(this.authService.isauthenticated())
+      this.nav.navigateForward('change-password')
   }
   privacy() {
     this.nav.navigateForward('privacy-policy')
@@ -48,5 +73,13 @@ export class ProfilePage implements OnInit {
   logout() {
     localStorage.clear()
     this.nav.navigateForward('login')
+  }
+
+  haveProfileIMG()
+  {
+    if(this.user.profile_img!=null)
+      return true;
+
+    return false;
   }
 }

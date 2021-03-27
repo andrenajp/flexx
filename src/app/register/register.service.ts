@@ -8,13 +8,15 @@ import {Storage} from '@ionic/storage';
 export class RegisterService {
 
   constructor(private readonly storage:Storage) { }
-  sign(data: any)
+  async sign(data: any)
   {
-    axios
+    await axios
     .post('http://157.230.232.108/auth/local/register', {
       username: data.surname,
       email: data.email,
       password: data.password,
+      phone:data.phone,
+      sexe:data.sexe
     })
     .then(response => {
       this.storage.set('access_token',response.data.jwt);

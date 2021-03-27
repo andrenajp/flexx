@@ -82,7 +82,7 @@
                   <ion-card (click)="selectEmp(emp)">
                     <ion-card-header>
                       <ion-thumbnail>
-                        <img  [ngClass]="{'selected' : emp==empSelect}" src="">            
+                        <img  [ngClass]="{'selected' : emp==empSelect}" src="http://157.230.232.108{{ emp?.Photo?.url }}">            
                       </ion-thumbnail>  
                     </ion-card-header>
                     <ion-card-content>
@@ -116,7 +116,7 @@
               {{ item?.rate }}
             </span>
           </ion-col>
-          <ion-col size="9 " class="details_div ion-padding-end ion-padding-start">
+          <ion-col size="9" class="details_div ion-padding-end ion-padding-start">
             <ion-label>
               <p class="name ion-no-margin">
                 {{ item?.name }}<span class="ion-float-right">

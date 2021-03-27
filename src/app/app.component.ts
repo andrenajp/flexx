@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { OneSignal } from '@ionic-native/onesignal/ngx'; 
+import { Network } from '@ionic-native/network/ngx';
 
 @Component({
   selector: 'app-root',
@@ -60,14 +61,15 @@ export class AppComponent {
     });
     toast.present();
   }
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.overlaysWebView(true);
+  initializeApp() 
+  {
+    this.platform.ready().then((response) => {
       this.statusBar.styleLightContent();
       this.splashScreen.hide();
     });
 
   }
   ngOnInit() {
+
   }
 }

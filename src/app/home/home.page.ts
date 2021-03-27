@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController, NavController } from '@ionic/angular';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.prod'; 
 
 import axios from 'axios';
 
@@ -31,6 +31,7 @@ export class HomePage {
   {
     try 
     {
+
       const salonsRep = await axios.get('http://157.230.232.108/salons');
       this.salons = salonsRep.data;
       const serviceRep = await axios.get('http://157.230.232.108/services');
@@ -40,6 +41,8 @@ export class HomePage {
 
     } catch (error) {
       console.log(error.response);
+      console.log(error);
+      console.log("pas de connection")
     }
   }
   listeSalons(sercice: NavigationExtras) {
