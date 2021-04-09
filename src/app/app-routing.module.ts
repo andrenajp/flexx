@@ -95,7 +95,11 @@ const routes: Routes = [
   {
     path: 'barbeur-profile',
     loadChildren: () => import('./barbeur-profile/barbeur-profile.module').then( m => m.BarbeurProfilePageModule)
+  },  {
+    path: 'pay-whith-stripe',
+    loadChildren: () => import('./pay-whith-stripe/pay-whith-stripe.module').then( m => m.PayWhithStripePageModule)
   },
+
 
   // {
   //   path: 'location',

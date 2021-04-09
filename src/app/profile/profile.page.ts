@@ -4,7 +4,6 @@ import { ModalController, NavController } from '@ionic/angular';
 import { LanguagePage } from '../language/language.page';
 import { SharingPage } from '../sharing/sharing.page';
 import { AuthService } from '../login/auth.service';
-import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -18,11 +17,10 @@ export class ProfilePage implements OnInit {
     private nav: NavController,
     private modalCtrl: ModalController,
     private authService:AuthService,
-    public router: Router,
     ) 
   {
      if(!this.authService.isauthenticated())
-        router.navigate(['login']);
+     this.nav.navigateForward('login');
   }
   ionViewWillEnter() {
 
@@ -72,7 +70,7 @@ export class ProfilePage implements OnInit {
   }
   logout() {
     localStorage.clear()
-    this.nav.navigateForward('login')
+    this.nav.navigateForward('tabs/home')
   }
 
   haveProfileIMG()
@@ -81,5 +79,15 @@ export class ProfilePage implements OnInit {
       return true;
 
     return false;
+  }
+
+  login()
+  {
+    this.nav.navigateForward('login');
+
+  }
+  register()
+  {
+    this.nav.navigateForward('register');
   }
 }

@@ -45,7 +45,14 @@ export class EditProfilePage implements OnInit {
       sexe: this.sexe,
       phone:this.phone
     };
-    await axios.put('http://157.230.232.108/users/'+this.user.id,data);
+    await axios.put('http://157.230.232.108/users/'+this.user.id,data).then(()=>{
+        this.user.username=this.name;
+        this.user.email=this.email;
+        this.user.sexe=this.sexe;
+        this.user.phone=this.phone;
+        localStorage.removeItem('_user');
+        localStorage.setItem('_user',JSON.stringify(this.user));
+    });
     this.nav.navigateForward('tabs/profile')
 
   }

@@ -19,6 +19,7 @@ import {Storage} from '@ionic/storage';
 })
 export class SalonProfilePage implements OnInit {
   salon: any = [];
+  reviews:any=[];
   employee:any=[];
   services:any=[];
   select = "service";
@@ -64,87 +65,23 @@ export class SalonProfilePage implements OnInit {
       name: "Messy Wob",
     },
   ];
-  review: any = [
-    {
-      img: "../../assets/images/profile.png",
-      name: "Lisa Reaeldo",
-      rate: "1.5",
-      time: "15 Hours Ago.",
-      desc:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
-    },
-    {
-      img: "../../assets/images/profile.png",
-      name: "Mark Zing",
-      rate: "1.5",
-      time: "15 Hours Ago.",
-      desc:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
-    },
-    {
-      img: "../../assets/images/profile.png",
-      name: "Jems",
-      rate: "1.5",
-      time: "15 Hours Ago.",
-      desc:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
-    },
-    {
-      img: "../../assets/images/profile.png",
-      name: "Natasha",
-      rate: "1.5",
-      time: "15 Hours Ago.",
-      desc:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
-    },
-  ];
-
 
   serviceSlide = {
     slidesPerView: 3
   }
 
-  createBarChart() {
-    this.bars = new Chart(this.barChart.nativeElement, {
-      type: "bar",
-      data: {
-        labels: ["1", "2", "3", "4", "5"],
-        datasets: [
-          {
-            data: [500, 400, 300, 200, 100],
-            backgroundColor: "#F05860",
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: false,
-              },
-            },
-          ],
-        },
-      },
-    });
-  }
-  ionViewDidEnter() {
-    this.createBarChart();
-  }
-
   async ngOnInit() 
   {
-    
-    try
-    {
-     const res= await axios.get('http://157.230.232.108/salons/'+this.salon.id);
-        this.thesalon = res.data
-        this.employee=res.data.employees;
-        this.services=res.data.services;
-        this.logo=res.data.Logo;
-    }catch(error){console.log(error.response)}
+    await axios.get('http://157.230.232.108/salons/'+this.salon.id).then((res)=>{
+      this.thesalon = res.data
+      this.employee=res.data.employees;
+      this.services=res.data.services;
+      this.logo=res.data.Logo;
+      this.reviews=res.data.reviews;
+      console.log(this.reviews)
+
+    });
+
 
   }
 
@@ -153,7 +90,32 @@ export class SalonProfilePage implements OnInit {
 
   async reserver()
   {
-    if(this.empSelect==undefined || this.servicesSelect.length == 0)
+    if(localStorage.getItem('access_token') == null)
+    {
+      const alert = await this.alertController.create({
+        header: 'Login ??',
+        message: 'Vous devez être connecter pour prendre un rendez-vous',
+        buttons: [
+          {
+            text: 'Se connecter',
+            role: 'login',
+            handler: (blah) => {
+              this.nav.navigateForward('login');
+            }
+          }, {
+            text: 'Anuller',
+            role:'cancel',
+            handler: () => {
+              console.log('Cancel');
+            }
+          }
+        ],
+
+      });
+  
+      await alert.present();
+    }
+    else if(this.empSelect==undefined || this.servicesSelect.length == 0)
     {
       const alert = await this.alertController.create({
         header: 'Élément(s) manquant(s) ?',

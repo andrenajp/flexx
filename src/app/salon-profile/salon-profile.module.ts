@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { SalonProfilePageRoutingModule } from './salon-profile-routing.module';
 
 import { SalonProfilePage } from './salon-profile.page';
-import {AppointmentService} from '../Appointment/appointment.service';
 import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   imports: [
@@ -15,9 +14,6 @@ import { IonicStorageModule } from '@ionic/storage';
     FormsModule,
     IonicModule,
     SalonProfilePageRoutingModule
-  ],
-  providers:[
-    AppointmentService
   ],
   declarations: [SalonProfilePage]
 })

@@ -13,7 +13,7 @@
         </ion-segment>
     </div>
 </ion-header>
-<ion-content>
+<ion-content *ngIf='isLog()'>
     <div [ngSwitch]="selectAppointment">
         <div *ngSwitchCase="'upcoming'">
             <div class="salon-container" *ngFor="let item of upcoming">
@@ -70,9 +70,17 @@
                     </ion-label>
                 </ion-item>
                 <hr>
-                <p class="date">{{ item?.appointment_hours }}<span class="ion-float-right" (click)="rating()">Donnez une note</span>
+                <p class="date">{{ item?.appointment_date  | date:'dd-MM-yyyy HH:mm' }}<span class="ion-float-right" (click)="rating(item.salon?.id)">Donnez une note</span>
                 </p>
             </div>
         </div>
+    </div>
+</ion-content>
+<ion-content *ngIf='!isLog()' class="ion-text-center">
+    <div>
+        <p class=""><img src="../../assets/images/success.svg" height="160px" width="155px"> </p>
+        <p class="ion-padding-bottom ion-padding-start ion-padding-end">
+            Veuillez vous connecter pour pouvoir visualiser vos rendez-vous.
+        </p>
     </div>
 </ion-content>

@@ -2,20 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { DirectionPage } from '../direction/direction.page';
 import { GiveRatingPage } from '../give-rating/give-rating.page';
-
 import axios from "axios";
 import {Router} from '@angular/router';
+
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.page.html',
   styleUrls: ['./appointment.page.scss'],
 })
 export class AppointmentPage implements OnInit {
+  url=environment.BASE_URL;
   appoint:any={};
   selectAppointment = 'upcoming';
   rate: any = 1;
-  upcoming: any = [ ]
-  past: any = [ ]
+  upcoming: any = [ ];
+  past: any = [ ];
+  header={
+    Authorization : 'Bearer '+ localStorage.getItem('access_token')
+  };
+  user = JSON.parse(localStorage.getItem('_user'));
   constructor(
     private modalCtrl: ModalController, 
     private nav: NavController,
@@ -23,10 +29,10 @@ export class AppointmentPage implements OnInit {
     ) { }
   async ngOnInit() 
   {
-    try 
-    {
-      const res=await axios.get('http://157.230.232.108/appointments/');
-      const appoints=res.data;
+    if(this.isLog())
+    await axios.get(this.url+'appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
+      console.log(response.data)
+      const appoints=response.data;
       var idA;
       let  appoint;
       const today=new Date();
@@ -38,14 +44,17 @@ export class AppointmentPage implements OnInit {
         else
           this.past.push(appoint);
       } 
+    }).catch(error=>{console.log(error.response)});
 
-    }catch(error){ console.log(error.response)} 
 
   }
-  async rating() {
+  async rating(salon) {
+
     const modal = await this.modalCtrl.create({
       component: GiveRatingPage,
       cssClass: 'giverate_modal',
+      componentProps:{"salon" : salon}   
+
     });
     return await modal.present();
   }
@@ -62,5 +71,13 @@ export class AppointmentPage implements OnInit {
     this.router.navigate(["/appointment-detail"],{
       queryParams:{id:appoint.id},
     });
+  }
+
+
+  isLog()
+  {
+    if(localStorage.getItem('_user') ==null)
+      return false;
+    return true;
   }
 }

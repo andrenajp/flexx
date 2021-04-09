@@ -75,7 +75,6 @@ export class DateTimePage implements OnInit {
     //Ajouter l'heure à la date avec moment ?
     this.dateRDV = moment(this.dateRDV).hours(h).toDate();
     this.dateAff = moment(this.dateRDV).toDate().toLocaleString('fr-FR');
-    console.log(this.dateAff)
   }
   continue() 
   {

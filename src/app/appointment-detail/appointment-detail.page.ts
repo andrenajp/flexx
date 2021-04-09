@@ -17,6 +17,9 @@ export class AppointmentDetailPage implements OnInit {
   emp:any={};
   service:any=[];
   price:Number=0;
+  header={
+    Authorization : 'Bearer '+ localStorage.getItem('access_token')
+  };
   constructor(
     private nav: NavController, 
     private modal: ModalController,
@@ -32,7 +35,7 @@ export class AppointmentDetailPage implements OnInit {
   {
     this.route.queryParams.subscribe((res) => {
       const idA = res.id;
-      axios.get('http://157.230.232.108/appointments/'+idA).then(response => {
+      axios.get('http://157.230.232.108/appointments/'+idA,{headers:this.header}).then(response => {
         this.appointment=response.data;
         this.salon=response.data.salon;
         this.emp=response.data.employee;
@@ -56,7 +59,7 @@ export class AppointmentDetailPage implements OnInit {
           text:'Oui',
           role:'confirmation',
           handler:()=>{
-            axios.delete('http://157.230.232.108/appointments/'+this.appointment.id).then(response => {
+            axios.delete('http://157.230.232.108/appointments/'+this.appointment.id,{headers :this.header}).then(response => {
               this.nav.navigateForward('tabs/appointment');
           });
           }

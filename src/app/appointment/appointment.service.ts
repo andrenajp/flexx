@@ -1,34 +1,21 @@
 import { Injectable } from '@angular/core';
 
-import  axios  from 'axios';
-import {Storage} from '@ionic/storage';
+import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentService {
+  url=environment.BASE_URL;
+  constructor() 
+  { }
 
-  constructor(private readonly storage:Storage) { }
-  
-  setAppointment(salon,emp,date,s)
+  makeSalonAppointment(salon,service,hour,Employe)
   {
-    let idService=[];
-    for (var i in s)
-      idService.push({"id":s[i].id});
+
+  }
+
+  makeBarberAppointment(barber,address)
+  {
     
-    try
-    {
-      axios.post('http://157.230.232.108/appointments', {
-        appointment_date:date,
-        salon: {"id":salon},
-        employee: {"id":emp},
-        services:idService
-      });
-      this.storage.remove("appoint_salon");
-      this.storage.remove("appoint_Emp");
-      this.storage.remove("appoint_Emp");
-      this.storage.remove("appoint_services");
-    }catch(error){console.log(error.response)}
-
-
   }
 }

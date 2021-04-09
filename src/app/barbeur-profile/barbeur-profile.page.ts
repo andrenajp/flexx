@@ -3,6 +3,7 @@ import {  ActivatedRoute,Router,} from "@angular/router";
 import { NavController } from "@ionic/angular";
 import axios from 'axios';
 import { AlertController } from '@ionic/angular';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-barbeur-profile',
@@ -10,11 +11,12 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./barbeur-profile.page.scss'],
 })
 export class BarbeurProfilePage implements OnInit {
-
+  url=environment.BASE_URL;
   barbeur: any = [];
   services:any=[];
   logo:any;
   servicesSelect:any=[];
+  address:any=null;
 
   serviceSlide = {
     slidesPerView: 3
@@ -34,7 +36,7 @@ export class BarbeurProfilePage implements OnInit {
 
   ngOnInit() 
   {
-    axios.get('http://157.230.232.108/barbeurs/'+this.barbeur.id).then((response)=>{
+    axios.get(this.url+'barbeurs/'+this.barbeur.id).then((response)=>{
       this.services=response.data.services
     });
     
@@ -45,11 +47,11 @@ export class BarbeurProfilePage implements OnInit {
   }
   async reserver()
   {
-    if(this.servicesSelect.length == 0)
+    if(this.servicesSelect.length === 0 || this.address===null)
     {
       const alert = await this.alertController.create({
         header: 'Élément(s) manquant(s) ?',
-        message: 'Veuillez sélectionner un (ou plusieurs) service(s) pour pouvoir prendre un rendez-vous',
+        message: 'Veuillez sélectionner un (ou plusieurs) service(s) et indiquer l\' adresse pour pouvoir prendre un rendez-vous',
         buttons: ['OK']
       });
   
@@ -57,6 +59,7 @@ export class BarbeurProfilePage implements OnInit {
     }
     else
     {   
+      console.log("fonctionne " + this.address)
     }
   }
 

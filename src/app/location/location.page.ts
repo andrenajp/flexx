@@ -46,7 +46,6 @@ export class LocationPage implements OnInit {
 
     mapboxgl.accessToken =environment.mapboxKey;
     axios.get('https://api-adresse.data.gouv.fr/search/?q='+this.salon.address+"&limit=1").then(response => {
-      console.log(response.data);
       this.longitude=response.data.features[0].geometry.coordinates[0];
       this.latitude=response.data.features[0].geometry.coordinates[1];
       this.drawMap();

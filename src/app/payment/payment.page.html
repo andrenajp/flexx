@@ -5,7 +5,7 @@
                 <img src="../../assets/images/back.svg">
             </ion-back-button>
         </ion-buttons>
-        <ion-title mode="ios">Make a Payment</ion-title>
+        <ion-title mode="ios">Ticket de paiement</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -15,7 +15,7 @@
             <p class="salon_name">{{salon.name}}</p>
             <p class="address">{{salon.address}}</p>
             <p class="rate_div">
-                <img class="star_img" src="../../assets/images/star.svg" height="22px" width="22px">4.0<img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px"><span class="ion-text-right">2.6km</span>
+                <img class="star_img" src="../../assets/images/star.svg" height="22px" width="22px">4.0<img class="circle_icon" src="../../assets/images/circle.svg" height="6px" width="6px">
             </p>
         </ion-label>
     </div>
@@ -23,7 +23,7 @@
     <div class="main_head ion-padding-start">Rendez-vous avec
     </div>
     <ion-item lines="none">
-        <img slot="start" class="emp_img" src="../../assets/images/profile.png">
+        <img slot="start" class="emp_img"  src="http://157.230.232.108{{ emp?.Photo?.url }}">
         <ion-label>{{emp.fullname}}</ion-label>
 
     </ion-item>
@@ -60,10 +60,10 @@
     </div>
     <div class="payment_method ion-margin-horizontal">
         <div class="pay_div" >
-            <div *ngFor="let pay of payment"><img src="{{pay.icon}}" height="22px" width="22px">
+            <div *ngFor="let pay of payment"><img src="{{pay?.icon}}" height="22px" width="22px">
                 <p>{{pay.name}}</p>
                 <label class="container">
-                    <input type="radio" name="radio" [ngModel]=paymentWith>
+                    <input type="radio" name="radio" value="{{pay.name}}" [(ngModel)]='paymentWith'>
                     <span class="checkmark"></span>
                 </label>
             </div>
@@ -77,7 +77,7 @@
             <div class="total ion-text-left ion-margin-start ion-margin-top">Total :{{ totalPrice }}€</div>
         </ion-col>
         <ion-col size="6">
-            <ion-button expand="block" (click)="makePayment()">Make a Payment</ion-button>
+            <ion-button expand="block" (click)="makePayment()">Valider le paiement</ion-button>
         </ion-col>
     </ion-row>
 

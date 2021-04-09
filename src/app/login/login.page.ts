@@ -39,7 +39,6 @@ export class LoginPage implements OnInit {
   backHome()
   {
     this.nav.navigateForward('tabs/home')
-
   }
   register() 
   {

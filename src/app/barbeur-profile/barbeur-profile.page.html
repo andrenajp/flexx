@@ -47,9 +47,15 @@
             <P  class="service-name">{{service?.name}}</P>
           </ion-card-content>
         </ion-card>
-
       </ion-slide>
     </ion-slides>
+
+    <ion-item>
+      <ion-label position="stacked">Adresse du rendez-vous</ion-label>
+      <ion-input name="adrs" [(ngModel)]='address'></ion-input>
+    </ion-item>
+    <ion-button slot="start" expand="block" (click)="reserver()">Prendre rendez-vous</ion-button>
+
   </div>
 
 
