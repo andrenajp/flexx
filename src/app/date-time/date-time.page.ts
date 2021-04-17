@@ -79,6 +79,6 @@ export class DateTimePage implements OnInit {
   continue() 
   {
     this.storage.set('appoint_date',this.dateRDV);
-    this.nav.navigateForward('payment')
+    this.nav.navigateForward('payment');
   }
 }

@@ -72,14 +72,14 @@ export class SalonProfilePage implements OnInit {
 
   async ngOnInit() 
   {
+    this.storage.clear();
+
     await axios.get('http://157.230.232.108/salons/'+this.salon.id).then((res)=>{
       this.thesalon = res.data
       this.employee=res.data.employees;
       this.services=res.data.services;
       this.logo=res.data.Logo;
       this.reviews=res.data.reviews;
-      console.log(this.reviews)
-
     });
 
 
@@ -126,7 +126,8 @@ export class SalonProfilePage implements OnInit {
       await alert.present();
     }
     else
-    {   
+    { 
+      this.storage.set('typeRDV','Salon');
       this.storage.set('appoint_salon',this.salon);
       this.storage.set('appoint_Emp',JSON.stringify(this.empSelect));
       this.storage.set('appoint_services',this.servicesSelect);

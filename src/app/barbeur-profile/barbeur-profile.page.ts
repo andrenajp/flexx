@@ -4,6 +4,7 @@ import { NavController } from "@ionic/angular";
 import axios from 'axios';
 import { AlertController } from '@ionic/angular';
 import { environment } from 'src/environments/environment.prod';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-barbeur-profile',
@@ -12,7 +13,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class BarbeurProfilePage implements OnInit {
   url=environment.BASE_URL;
-  barbeur: any = [];
+  barber: any = [];
   services:any=[];
   logo:any;
   servicesSelect:any=[];
@@ -24,19 +25,20 @@ export class BarbeurProfilePage implements OnInit {
 
   constructor(
     private nav: NavController,
-    private router: Router,
+    private readonly storage: Storage,
     private route: ActivatedRoute,
     public alertController: AlertController
   )
   {
     this.route.queryParams.subscribe((res) => {
-      this.barbeur = res;
+      this.barber = res;
     });
   }
 
   ngOnInit() 
   {
-    axios.get(this.url+'barbeurs/'+this.barbeur.id).then((response)=>{
+    this.storage.clear();
+    axios.get(this.url+'barbeurs/'+this.barber.id).then((response)=>{
       this.services=response.data.services
     });
     
@@ -58,8 +60,12 @@ export class BarbeurProfilePage implements OnInit {
       await alert.present();
     }
     else
-    {   
-      console.log("fonctionne " + this.address)
+    { 
+      this.storage.set('typeRDV','Barber');
+      this.storage.set('appoint_barber',this.barber);
+      this.storage.set('appoint_address',this.address);
+      this.storage.set('appoint_services',this.servicesSelect);
+      this.nav.navigateForward("date-time");
     }
   }
 

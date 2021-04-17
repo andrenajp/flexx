@@ -30,22 +30,41 @@ export class AppointmentPage implements OnInit {
   async ngOnInit() 
   {
     if(this.isLog())
-    await axios.get(this.url+'appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
-      console.log(response.data)
-      const appoints=response.data;
-      var idA;
-      let  appoint;
-      const today=new Date();
-      for(idA in appoints)
-      {
-        appoint=appoints[idA];
-        if(new Date(appoint.appointment_date).getTime() > today.getTime())
-          this.upcoming.push(appoint);
-        else
-          this.past.push(appoint);
-      } 
-    }).catch(error=>{console.log(error.response)});
+    {
+      await axios.get(this.url+'salon-appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
+        const appoints=response.data;
+        var idA;
+        let  appoint;
+        const today=new Date();
+        for(idA in appoints)
+        {
+          appoint=appoints[idA];
+          appoint.type="Salon";
+          if(new Date(appoint.day).getTime() > today.getTime())
+            this.upcoming.push(appoint);
+          else
+            this.past.push(appoint);
+        } 
+      }).catch(error=>{console.log(error.response)});
 
+      await axios.get(this.url+'barber-appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
+        const appoints=response.data;
+        var idA;
+        let  appoint;
+        const today=new Date();
+        for(idA in appoints)
+        {
+          appoint=appoints[idA];
+          appoint.type="Barber";
+          if(new Date(appoint.day).getTime() > today.getTime())
+            this.upcoming.push(appoint);
+          else
+            this.past.push(appoint);
+        } 
+      });
+
+      console.log(this.upcoming);
+    }
 
   }
   async rating(salon) {

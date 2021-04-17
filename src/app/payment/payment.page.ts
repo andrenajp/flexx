@@ -9,9 +9,8 @@ import { VariableBinding } from '@angular/compiler';
 
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
 import { Stripe as Strp} from '@ionic-native/stripe/ngx';
-import Stripe from 'stripe';
+import stripe from 'stripe';
 import { environment } from 'src/environments/environment.prod';
-import {PayWhithStripePage} from '../pay-whith-stripe/pay-whith-stripe.page';
 
 @Component({
   selector: 'app-payment',
@@ -22,10 +21,12 @@ export class PaymentPage implements OnInit {
   
   stripeKey=environment.stripeToken;
   url=environment.BASE_URL;
+  AppointType:any;
   salon:any={};
+  barber:any={};
   emp:any={};
-  service:any={};
   serviceSelect:any=[];
+  address:any;
   date:Date;
   price:Number=0;
   serviceCharge:Number=5;
@@ -78,25 +79,35 @@ export class PaymentPage implements OnInit {
     public modalCtrl:ModalController,
     private payPal: PayPal,
     private strp:Strp
-    )
-  {
-
-  }
+    ){  }
 
   ngOnInit() 
   {
-    
-    this.storage.get('appoint_salon').then((res) => {
-      axios.get(this.url+'salons/'+res.id).then(response => {
-        this.salon=response.data;
-        this.service=response.data.services;
-      });
+    this.storage.get('typeRDV').then((value)=>{
+      this.AppointType=value;
+      if(this.AppointType =='Salon')
+      {
+        this.storage.get('appoint_salon').then((res) => {
+          axios.get(this.url+'salons/'+res.id).then(response => {
+            this.salon=response.data;
+          });
+        });
+        this.storage.get('appoint_Emp').then((val) => {
+          this.emp=JSON.parse(val);
+        });
+      }else if(this.AppointType =='Barber')
+      {
+        this.storage.get('appoint_address').then((val)=>{
+          this.address=val;
+        });
+        this.storage.get('appoint_barber').then((val)=>{
+          this.barber=val;
+        })
+      }
+
     });
-    this.storage.get('appoint_Emp').then((val) => {
-      this.emp=JSON.parse(val);
-    });
-    this.storage.get('appoint_services').then((val) => {
-      
+
+    this.storage.get('appoint_services').then((val) => {  
       this.serviceSelect=val;
       for(var i in this.serviceSelect)
         this.price=Number(this.price) + Number(this.serviceSelect[i].price);
@@ -104,23 +115,24 @@ export class PaymentPage implements OnInit {
     });
     this.storage.get('appoint_date').then((val) => {
       this.date=val;
-
     });
 
   }
   makePayment() 
   {
-    /*
-    if(this.paymentWith == 'Paypal')
-      this.withPayPal();
-    else if(this.paymentWith == 'Stripe')
-      this.withStripe();
-    */
-    this.setAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect)
+
+    this.payWithStripe();
+   /*
+    if( this.AppointType=='Salon')
+      this.setSalonAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect);
+    else if(this.AppointType =='Barber')
+      this.setBarberAppointment(this.serviceSelect,this.address,this.date);
+    
     this.nav.navigateForward('booking-success');
+    */
 
   }
-  
+
   withPayPal()
   {
     
@@ -164,73 +176,52 @@ export class PaymentPage implements OnInit {
       // Error in initialization, maybe PayPal isn't supported or something else
     });
   }
-
-  async withStripe()
-  {
-    this.strp.setPublishableKey(this.stripeKey);
-
-    const modal = await this.modalCtrl.create({
-      component: PayWhithStripePage,
-      componentProps:{'price':'2000.00€'}
-    });
-
-    await modal.present();
-    
-    const data  = await modal.onWillDismiss();
-    if(data.role === "pay")
-    {
-      const c=data.data;
-      let card = {
-        number: c.number,
-        expMonth: Number(c.month),
-        expYear: Number(c.year),
-        cvc: c.cvv
-      }
-      this.strp.createCardToken(card).then((token) => {
-      /*
-        const stripe = new Stripe(environment.stripeToken, {
-          apiVersion: '2020-08-27'
-        });
-    
-        const paymentIntent = stripe.paymentIntents.create({
-          amount: 1000,
-          currency: 'eur',
-          payment_method_types: ['card'],
-          receipt_email: 'jenny.rosen@example.com',
-        }).then((response)=>{
-          alert('GOOD')
-        });
-      */
-      }).catch(error => console.error(error));
-    } 
-  }
-
-  setAppointment(salon,emp,date,s)
+  
+  setSalonAppointment(salon,employee,date,services)
   {
     let idService=[];
-    for (var i in s)
-      idService.push({"id":s[i].id});
+    for (var i in services)
+      idService.push({"id":services[i].id});
     
-    try
-    {
-      axios.post(this.url+'appointments', {
-        appointment_date:date,
+    axios.post(this.url+'salon-appointments', {
+        day:date,
         salon: {"id":salon},
         user:this.user.id,
-        employee: {"id":emp},
-        services:idService
-      },{headers:this.header});
-      this.storage.remove("appoint_salon");
-      this.storage.remove("appoint_Emp");
-      this.storage.remove("appoint_Emp");
-      this.storage.remove("appoint_services");
-    }catch(error){console.log(error.response)}
- 
+        employee: {"id":employee},
+        services:idService,
+        price:this.totalPrice
+      },{headers:this.header}).then(()=>{
+        this.storage.remove("appoint_salon");
+        this.storage.remove("appoint_Emp");
+        this.storage.remove("appoint_date");
+        this.storage.remove("appoint_services");
+    });
   }
 
-  ssss()
+  setBarberAppointment(services,address,date)
   {
-    //const stripe=Stripe('pk_test_51IbTqSKwIBcjbfsZothkCdbahP9Mr4zfmYooDds9UBedlRHP6OSEzSZLKkREOe5r769OHtBhKzHWY4T2r6SfhSoN00d1QRShpY')
+    let idService=[];
+    for (var i in services)
+      idService.push({"id":services[i].id});
+    
+    axios.post(this.url+'barber-appointments', {
+        day:date,
+        barber:this.barber,
+        user:this.user.id,
+        services:idService,
+        address:address
+      },{headers:this.header}).then(()=>{
+        this.storage.remove("appoint_address");
+        this.storage.remove("appoint_date");
+        this.storage.remove("appoint_services");
+    }).catch((error)=>{
+      console.log(error.response);
+    });
+  }
+
+  async payWithStripe()
+  {
+
   }
 
 }
