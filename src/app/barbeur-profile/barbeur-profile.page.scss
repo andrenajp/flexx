@@ -16,7 +16,21 @@ ion-header {
 ion-content {
     --background: var(--background-theme);
 
-    .salon-info {
+    .swiper-slide {
+        display: block;
+    }
+    .swiper-slide img {
+        max-height: 200px;
+        max-width: 100%;
+        min-width: 92%;
+        pointer-events: none;
+        margin-top: 15px;
+        border-radius: 15px;
+    }
+
+
+
+    .barbeur-info {
         height: 100px;
         width: 90%;
         margin-left: 5%;

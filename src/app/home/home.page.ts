@@ -13,13 +13,13 @@ import { LocationPage } from '../location/location.page';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  base_url=environment.BASE_URL;
   select:string="salon";
   nearbysalon: any = [ ];
   position:string="";
   rate: any = 1;
-  services: any = []
   salons: any = [];
-  barbeurs:any =[];
+  barbers:any =[];
 
   constructor(private nav: NavController, 
               private modalCtrl: ModalController,
@@ -32,23 +32,14 @@ export class HomePage {
     try 
     {
 
-      const salonsRep = await axios.get('http://157.230.232.108/salons');
+      const salonsRep = await axios.get(this.base_url+'/salons');
       this.salons = salonsRep.data;
-      const serviceRep = await axios.get('http://157.230.232.108/services');
-      this.services = serviceRep.data;
-      const barbeurRep = await axios.get('http://157.230.232.108/barbeurs');
-      this.barbeurs=barbeurRep.data;
+      const barbeurRep = await axios.get(this.base_url+'/barbers');
+      this.barbers=barbeurRep.data;
 
     } catch (error) {
       console.log(error.response);
-      console.log(error);
-      console.log("pas de connection")
     }
-  }
-  listeSalons(sercice: NavigationExtras) {
-    this.router.navigate(["/select-service"], {
-      queryParams: sercice,
-    });
   }
   salonProfile(salon: NavigationExtras) {
     this.router.navigate(["/salon-profile"], {
@@ -69,10 +60,10 @@ export class HomePage {
     return await modal.present();
   }
 
-  barbeurProfile(barbeur: NavigationExtras)
+  barbeurProfile(barbers: NavigationExtras)
   {
     this.router.navigate(["/barbeur-profile"], {
-      queryParams: barbeur,
+      queryParams: barbers,
     });
   }
   geolocaliseMoi()

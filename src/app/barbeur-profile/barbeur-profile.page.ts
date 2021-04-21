@@ -16,8 +16,11 @@ export class BarbeurProfilePage implements OnInit {
   barber: any = [];
   services:any=[];
   logo:any;
+  slider:any;
   servicesSelect:any=[];
   address:any=null;
+  fixSegment: any = 1;
+  select = "service";
 
   serviceSlide = {
     slidesPerView: 3
@@ -38,8 +41,10 @@ export class BarbeurProfilePage implements OnInit {
   ngOnInit() 
   {
     this.storage.clear();
-    axios.get(this.url+'barbeurs/'+this.barber.id).then((response)=>{
-      this.services=response.data.services
+    axios.get(this.url+'/barbers/'+this.barber.id).then((response)=>{
+      this.services=response.data.services;
+      this.logo=response.data.logo;
+      this.slider=response.data.slider;
     });
     
   }
@@ -47,6 +52,14 @@ export class BarbeurProfilePage implements OnInit {
   {
     this.nav.navigateForward("tabs/home");
   }
+  logScrolling(ev) {
+    if (ev.detail.scrollTop >= 410) {
+      this.fixSegment = 2;
+    } else {
+      this.fixSegment = 1;
+    }
+  }
+
   async reserver()
   {
     if(this.servicesSelect.length === 0 || this.address===null)

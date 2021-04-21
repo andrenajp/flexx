@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 import axios from 'axios';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,7 +10,10 @@ import axios from 'axios';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-
+  url=environment.BASE_URL;
+  header={
+    Authorization : 'Bearer '+ localStorage.getItem('access_token')
+  };
   user:any;
   name:any;
   email:any; 
@@ -45,7 +49,7 @@ export class EditProfilePage implements OnInit {
       sexe: this.sexe,
       phone:this.phone
     };
-    await axios.put('http://157.230.232.108/users/'+this.user.id,data).then(()=>{
+    await axios.put(this.url+'/users/'+this.user.id,data,{headers : this.header}).then(()=>{
         this.user.username=this.name;
         this.user.email=this.email;
         this.user.sexe=this.sexe;

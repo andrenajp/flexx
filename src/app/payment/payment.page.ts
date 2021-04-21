@@ -9,9 +9,9 @@ import { VariableBinding } from '@angular/compiler';
 
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
 import { Stripe as Strp} from '@ionic-native/stripe/ngx';
-import stripe from 'stripe';
 import { environment } from 'src/environments/environment.prod';
 
+import { loadStripe } from '@stripe/stripe-js';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.page.html',
@@ -33,10 +33,6 @@ export class PaymentPage implements OnInit {
   totalPrice:Number=0;
   payment:any=[
     {
-      "name":"Paypal",
-      "icon":"../../assets/images/paypal.svg"
-    },
-    {
       "name":"Stripe",
       "icon":"../../assets/images/stripe.svg"
     },
@@ -46,27 +42,7 @@ export class PaymentPage implements OnInit {
     },
     
   ];
-
-  paymentBis:any=[
-    {
-      "name":"Paypal",
-      "icon":"../../assets/images/paypal.svg"
-    },
-    {
-      "name":"Razorpay",
-      "icon":"../../assets/images/razorpay.svg"
-    },
-    {
-      "name":"Stripe",
-      "icon":"../../assets/images/stripe.svg"
-    },
-    {
-      "name":"COD",
-      "icon":"../../assets/images/cod.svg"
-    },
-    
-  ];
-  paymentWith:any;
+  paymentWith:any="Stripe";
 
   header={
     Authorization : 'Bearer '+ localStorage.getItem('access_token')
@@ -88,7 +64,7 @@ export class PaymentPage implements OnInit {
       if(this.AppointType =='Salon')
       {
         this.storage.get('appoint_salon').then((res) => {
-          axios.get(this.url+'salons/'+res.id).then(response => {
+          axios.get(this.url+'/salons/'+res.id).then(response => {
             this.salon=response.data;
           });
         });
@@ -121,96 +97,64 @@ export class PaymentPage implements OnInit {
   makePayment() 
   {
 
-    this.payWithStripe();
-   /*
+    //this.payWithStripe();
+   
     if( this.AppointType=='Salon')
       this.setSalonAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect);
     else if(this.AppointType =='Barber')
-      this.setBarberAppointment(this.serviceSelect,this.address,this.date);
+      this.setBarberAppointment(this.serviceSelect,this.date);
     
-    this.nav.navigateForward('booking-success');
-    */
+    //this.nav.navigateForward('booking-success');
+
 
   }
 
-  withPayPal()
-  {
-    
-    this.payPal.init({
-      PayPalEnvironmentProduction: 'ATdhzByIIbA6XAEImyv0jq4R5y8xZTBMzmyEZBmnFt9T6iOqjfc6CaLoM2S3DtyIYplDKJFo9LK53EjY',
-      PayPalEnvironmentSandbox: 'ATtRebYCXAAK7Sx-9kngpN8F8kXw20ADz3o0Gavtv75_6iOTEcxkNYkewm3ljzcZ7zUEkgLXLQYcRTCf'
-    }).then(() => {
-      // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
-      this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
-        // Only needed if you get an "Internal Service Error" after PayPal login!
-        payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
-      })).then(() => {
-        let payment = new PayPalPayment(''+this.totalPrice, 'EUR', 'Description', 'sale');
-        this.payPal.renderSinglePaymentUI(payment).then((response) => {
-          // {
-          //   "client": {
-          //     "environment": "sandbox",
-          //     "product_name": "PayPal iOS SDK",
-          //     "paypal_sdk_version": "2.16.0",
-          //     "platform": "iOS"
-          //   },
-          //   "response_type": "payment",
-          //   "response": {
-          //     "id": "PAY-1AB23456CD789012EF34GHIJ",
-          //     "state": "approved",
-          //     "create_time": "2016-10-03T13:33:33Z",
-          //     "intent": "sale"
-          //   }
-          // }
-        }, (error) => {
-          console.log('erreur'+ error)
-          console.log(error.response)
-          // Error or render dialog closed without being successful
-        });
-      }, (error) => {
-        console.log(error.response)
-        // Error in configuration
-      });
-    }, (error) => {
-      console.log(error.response)
-      // Error in initialization, maybe PayPal isn't supported or something else
-    });
-  }
-  
   setSalonAppointment(salon,employee,date,services)
   {
     let idService=[];
     for (var i in services)
       idService.push({"id":services[i].id});
     
-    axios.post(this.url+'salon-appointments', {
-        day:date,
-        salon: {"id":salon},
+    axios.post(this.url+'/appointments', {
         user:this.user.id,
         employee: {"id":employee},
         services:idService,
-        price:this.totalPrice
-      },{headers:this.header}).then(()=>{
+        "status":"upcoming",
+        "type":"salon",
+        day:date,
+        price:this.totalPrice,
+        salon: {"id":salon}
+      },{headers:this.header}).then((response)=>{
+        const data=response.data;
+        this.payWithStripe(data.id)
+
         this.storage.remove("appoint_salon");
         this.storage.remove("appoint_Emp");
         this.storage.remove("appoint_date");
         this.storage.remove("appoint_services");
+
+
     });
   }
 
-  setBarberAppointment(services,address,date)
+  setBarberAppointment(services,date)
   {
     let idService=[];
     for (var i in services)
       idService.push({"id":services[i].id});
     
-    axios.post(this.url+'barber-appointments', {
-        day:date,
-        barber:this.barber,
+    axios.post(this.url+'/appointments', {
         user:this.user.id,
         services:idService,
-        address:address
-      },{headers:this.header}).then(()=>{
+        "status":"upcoming",
+        "type":"salon",
+        day:date,
+        price:this.totalPrice,
+        barber:this.barber
+
+      },{headers:this.header}).then((response)=>{
+        const data=response.data;
+        this.payWithStripe(data.id)
         this.storage.remove("appoint_address");
         this.storage.remove("appoint_date");
         this.storage.remove("appoint_services");
@@ -219,9 +163,20 @@ export class PaymentPage implements OnInit {
     });
   }
 
-  async payWithStripe()
+  async payWithStripe(appointment)
   {
+    const data={
+      "appointment":{"id":appointment}
+    }
+    
+    const stripe = await loadStripe(this.stripeKey);
+      await axios.post(this.url+'/orders',data,{headers :this.header}).then((response)=>{
+        const sessionId=response.data.id;
+        stripe.redirectToCheckout({sessionId: sessionId}).then((response)=>{
+          console.log(response);
+        })
 
+      })
   }
 
 }

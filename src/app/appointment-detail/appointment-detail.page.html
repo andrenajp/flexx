@@ -43,10 +43,10 @@
     </ion-row>
     <div class="main_head ion-padding-start ion-padding-top">Total<span class="total ion-float-end ion-padding-end">{{price}}€</span>
     </div>
-    <div class="cancel ion-text-center ion-padding-top ion-padding-bottom">
+    <div *ngIf="appointment?.status=='upcoming'" class="cancel ion-text-center ion-padding-top ion-padding-bottom">
         <ion-button expand="full" color="danger" (click)="cancelAppoint()">Annuler le rendez-vous</ion-button>
     </div>
 </ion-content>
-<ion-footer class="ion-no-border">
+<ion-footer  *ngIf="appointment?.status=='upcoming'" class="ion-no-border">
     <ion-button (click)="getDirection()" expand="full">Get Direction</ion-button>
 </ion-footer>

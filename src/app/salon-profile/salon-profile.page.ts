@@ -51,20 +51,6 @@ export class SalonProfilePage implements OnInit {
     });
   }
   bars: any;
-  hairArray: any = [
-    {
-      price: "$200",
-      name: "Smoothed Out Pixie",
-    },
-    {
-      price: "$200",
-      name: "Long Bob With Side Bangs",
-    },
-    {
-      price: "$200",
-      name: "Messy Wob",
-    },
-  ];
 
   serviceSlide = {
     slidesPerView: 3

@@ -49,6 +49,14 @@ ion-content {
                 right: 20px;
                 top: 70px;
             }
+            .prfl-img {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
             svg {
                 position: absolute;
                 right: 29px;

@@ -9,6 +9,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let banner of slider">
+      <div class="slide">
+        <img src="http://157.230.232.108{{ banner?.url }}" height="200px" width="340px" />
+      </div>
+    </ion-slide>
+  </ion-slides>
+
 
   <div class="barbeur-info">
     <ion-grid>
@@ -20,17 +28,33 @@
         </ion-col>
         <ion-col> 
           <ion-badge color="warning">
-            <ion-icon name="star" class="white-star "></ion-icon> 3.5
+            <ion-icon name="star" class="white-star "></ion-icon>{{barber?.rate}}
           </ion-badge>
 
           <div class="address">
-            <ion-icon name="location" class="white-star "></ion-icon>{{salon?.address}}
+            <ion-icon name="location" class="white-star "></ion-icon>{{barber?.address}}
           </div>
 
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
+  <div class="border_bottom"></div>
+  <div class="address ion-padding-start">
+    {{barber?.description}}
+  </div>
+  <div class="border_bottom"></div>
+  <div class="section" [ngClass]="{'fix-segment': fixSegment==2}">
+    <ion-segment mode="md" [(ngModel)]="select" value="all">
+      <ion-segment-button mode="md" value="service">Service
+        <div *ngIf="select == 'service'" class="seg-button"></div>
+      </ion-segment-button>
+      <ion-segment-button mode="md" value="review">Avis
+        <div *ngIf="select == 'review'" class="seg-button2"></div>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="border"></div>
 
 
   <div class="service-list">

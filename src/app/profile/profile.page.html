@@ -8,6 +8,7 @@
         <div class="img_div">
             <img *ngIf="haveProfileIMG()" src="{{user?.profile_img?.url}}" class="user_img" height="111px" width="111px">
             <img src="../../assets/images/back_img.svg" class="back_img">
+            <input type="file" class="prfl-img" name="image"/>
             <img src="../../assets/images/round.svg" class="camera_img" height="35px" width="35px" (click)="uploadImg()">
             <svg xmlns="http://www.w3.org/2000/svg" width="15.002" height="12.502" viewBox="0 0 15.002 12.502">
                 <g id="photo-camera" transform="translate(0 0)">

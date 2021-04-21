@@ -21,13 +21,13 @@
 
     <div *ngSwitchCase="'salon'">
 
-      <div class="salon-item"  *ngFor="let item of salons" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;">
+      <div class="salon-item"  *ngFor="let item of salons" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;" (click)="salonProfile(item)"  >
         <ion-avatar>
             <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
         </ion-avatar>
         <div class="salon-infos">
             <div>
-                <a class="salon-name" (click)="salonProfile(item)" >{{ item?.name }}</a>                        
+                <a class="salon-name" >{{ item?.name }}</a>                        
                 <p class="salon-addr">{{ item?.address }}</p>
             </div>                           
         </div>    
@@ -37,13 +37,13 @@
 
     <div [hidden]="select !='barber'">
       
-      <div class="salon-item"  *ngFor="let item of barbeurs" style="background-image:url('http://157.230.232.108{{ item?.Logo?.url }}');background-size:cover;">
+      <div class="salon-item"  *ngFor="let item of barbers" style="background-image:url('http://157.230.232.108{{ item?.logo?.url }}');background-size:cover;" (click)="barbeurProfile(item)" >
         <ion-avatar>
-            <img src="http://157.230.232.108{{ item?.Logo?.url }}">         
+            <img src="http://157.230.232.108{{ item?.logo?.url }}">         
         </ion-avatar>
         <div class="salon-infos">
             <div>
-                <a class="salon-name" (click)="barbeurProfile(item)" >{{ item?.name }}</a>
+                <a class="salon-name" >{{ item?.name }}</a>
                 <p class="salon-addr">{{ item?.address }}</p>
             </div>                           
         </div>    

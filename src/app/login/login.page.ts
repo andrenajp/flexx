@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
     email:'',
     password:''
   };
-
+  error:string="";
   constructor(
     private nav: NavController,
     private authService:AuthService
@@ -31,10 +31,13 @@ export class LoginPage implements OnInit {
   {
     await this.authService.useLogin(this.loginForm);
     if(this.authService.isauthenticated())
-      this.nav.navigateForward('tabs/home')
+      this.nav.navigateForward('tabs/home');
     else
-      console.log("Mauvais mot passe")
-
+    {
+      this.loginForm.password="";
+      this.error="Mauvais mot de passe ou email !!"
+    }
+    return false;
   }
   backHome()
   {

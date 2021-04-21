@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { DirectionPage } from '../direction/direction.page';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-appointment-detail',
@@ -12,6 +13,7 @@ import { DirectionPage } from '../direction/direction.page';
   styleUrls: ['./appointment-detail.page.scss'],
 })
 export class AppointmentDetailPage implements OnInit {
+  url=environment.BASE_URL;
   appointment:any={};
   salon:any={};
   emp:any={};
@@ -35,7 +37,7 @@ export class AppointmentDetailPage implements OnInit {
   {
     this.route.queryParams.subscribe((res) => {
       const idA = res.id;
-      axios.get('http://157.230.232.108/appointments/'+idA,{headers:this.header}).then(response => {
+      axios.get(this.url+'/appointments/'+idA,{headers:this.header}).then(response => {
         this.appointment=response.data;
         this.salon=response.data.salon;
         this.emp=response.data.employee;
@@ -58,8 +60,8 @@ export class AppointmentDetailPage implements OnInit {
         {
           text:'Oui',
           role:'confirmation',
-          handler:()=>{
-            axios.delete('http://157.230.232.108/appointments/'+this.appointment.id,{headers :this.header}).then(response => {
+          handler:async ()=>{
+            await axios.put(this.url+'/appointments/'+this.appointment.id,{"status":"canceled"},{headers :this.header}).then(response => {
               this.nav.navigateForward('tabs/appointment');
           });
           }

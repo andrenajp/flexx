@@ -18,6 +18,7 @@ export class AppointmentPage implements OnInit {
   rate: any = 1;
   upcoming: any = [ ];
   past: any = [ ];
+  cancel: any=[ ];
   header={
     Authorization : 'Bearer '+ localStorage.getItem('access_token')
   };
@@ -31,48 +32,33 @@ export class AppointmentPage implements OnInit {
   {
     if(this.isLog())
     {
-      await axios.get(this.url+'salon-appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
+      await axios.get(this.url+'/appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
         const appoints=response.data;
+        console.log(appoints);
         var idA;
         let  appoint;
         const today=new Date();
         for(idA in appoints)
         {
           appoint=appoints[idA];
-          appoint.type="Salon";
-          if(new Date(appoint.day).getTime() > today.getTime())
+          //if(new Date(appoint.day).getTime() > today.getTime())
+          if(appoint.status=="upcoming")
             this.upcoming.push(appoint);
-          else
+          else if(appoint.status=="completed")
             this.past.push(appoint);
+          else if((new Date(appoint.day).getTime() > today.getTime() ) ||appoint.status=="canceled" )
+            this.cancel.push(appoint);
         } 
       }).catch(error=>{console.log(error.response)});
-
-      await axios.get(this.url+'barber-appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
-        const appoints=response.data;
-        var idA;
-        let  appoint;
-        const today=new Date();
-        for(idA in appoints)
-        {
-          appoint=appoints[idA];
-          appoint.type="Barber";
-          if(new Date(appoint.day).getTime() > today.getTime())
-            this.upcoming.push(appoint);
-          else
-            this.past.push(appoint);
-        } 
-      });
-
-      console.log(this.upcoming);
     }
 
   }
-  async rating(salon) {
+  async rating(salon,appoint) {
 
     const modal = await this.modalCtrl.create({
       component: GiveRatingPage,
       cssClass: 'giverate_modal',
-      componentProps:{"salon" : salon}   
+      componentProps:{"salon" : salon,"appoint" : appoint}   
 
     });
     return await modal.present();
@@ -92,11 +78,11 @@ export class AppointmentPage implements OnInit {
     });
   }
 
-
   isLog()
   {
     if(localStorage.getItem('_user') ==null)
       return false;
     return true;
   }
+
 }

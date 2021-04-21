@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import axios from 'axios';
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-give-rating',
   templateUrl: './give-rating.page.html',
@@ -8,6 +9,8 @@ import axios from 'axios';
 })
 export class GiveRatingPage implements OnInit {
   @Input() salon;
+  @Input() appoint;
+  url=environment.BASE_URL;
   rate: any = 3;
   comment:any;
   user=JSON.parse(localStorage.getItem('_user'));
@@ -17,8 +20,7 @@ export class GiveRatingPage implements OnInit {
   constructor(private modal: ModalController) { }
 
   async ngOnInit()
-  {
-  }
+  {  }
   setRate(val) {
     let rating = val;
     this.rate = rating;
@@ -33,8 +35,8 @@ export class GiveRatingPage implements OnInit {
       rate: this.rate,
       date: dateComment
     };
-    await axios.post('http://157.230.232.108/reviews',data,{headers : this.header});
-    console.log('Merci pour avoir donner votre avis')
+    await axios.post(this.url+'/reviews',data,{headers : this.header});
+    await axios.put(this.url+'/appointments/'+this.appoint,{alreadyGiveReview: true,rate:this.rate},{headers : this.header});
     this.modal.dismiss();
   }
 }

@@ -30,6 +30,7 @@
     "@ionic-native/stripe": "^5.31.1",
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.3.1",
+    "@stripe/stripe-js": "^1.13.2",
     "axios": "^0.21.1",
     "cordova-browser": "6.0.0",
     "ion2-calendar": "^3.0.0-rc.0",
@@ -90,7 +91,9 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-geolocation": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
       "cordova-plugin-network-information": {},
       "cordova-plugin-advanced-http": {},
       "com.paypal.cordova.mobilesdk": {},
