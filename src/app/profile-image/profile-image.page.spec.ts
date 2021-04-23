@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PayWhithStripePage } from './pay-whith-stripe.page';
+import { ProfileImagePage } from './profile-image.page';
 
-describe('PayWhithStripePage', () => {
-  let component: PayWhithStripePage;
-  let fixture: ComponentFixture<PayWhithStripePage>;
+describe('ProfileImagePage', () => {
+  let component: ProfileImagePage;
+  let fixture: ComponentFixture<ProfileImagePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PayWhithStripePage ],
+      declarations: [ ProfileImagePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PayWhithStripePage);
+    fixture = TestBed.createComponent(ProfileImagePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -19,6 +19,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { Network } from '@ionic-native/network/ngx';
 import { AuthService } from './login/auth.service'; 
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { AuthService } from './login/auth.service';
     Geolocation,
     Network,
     AuthService,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -16,7 +16,8 @@ export class LocationPage implements OnInit {
   @Input () salon:any;
   @Input () salons:any;
 
-  location: any = [ ]
+  location: any = [ ];
+  defaultSalon:any=[];
   map: any;
   iconFeature2;
   private geoCoder;
@@ -43,7 +44,7 @@ export class LocationPage implements OnInit {
       this.salons.splice(indexOf, 1);
       this.salons.splice(0,0,this.salon);
     }
-
+    this.defaultSalon=this.salon;
     mapboxgl.accessToken =environment.mapboxKey;
     axios.get('https://api-adresse.data.gouv.fr/search/?q='+this.salon.address+"&limit=1").then(response => {
       this.longitude=response.data.features[0].geometry.coordinates[0];

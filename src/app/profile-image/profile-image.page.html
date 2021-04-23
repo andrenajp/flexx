@@ -1,0 +1,16 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title mode="ios">Selectionner l'image de profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" (click)="getCamera()">
+      <div slot="start"><ion-icon name="camera"></ion-icon></div>
+      <div>Appareil photo</div>
+  </ion-item>
+  <ion-item lines="none" (click)="getGallery()">
+      <div slot="start"><ion-icon name="image"></ion-icon></div>
+      <div>Gallerie</div>
+  </ion-item>
+</ion-content>

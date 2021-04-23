@@ -5,7 +5,7 @@
         <img src="../../assets/images/back.svg" />
       </ion-back-button>
     </ion-buttons>
-    <ion-title mode="ios">{{barbeur?.name}}</ion-title>
+    <ion-title mode="ios">{{barber?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
@@ -34,13 +34,13 @@
           <div class="address">
             <ion-icon name="location" class="white-star "></ion-icon>{{barber?.address}}
           </div>
-
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
+  
   <div class="border_bottom"></div>
-  <div class="address ion-padding-start">
+  <div class="description ion-padding-start">
     {{barber?.description}}
   </div>
   <div class="border_bottom"></div>
@@ -56,29 +56,36 @@
   </div>
   <div class="border"></div>
 
+  <div [ngSwitch]="select">
+    <div *ngSwitchCase="'service'">
+      <div class="service-list">
+        <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
+          <ion-slide *ngFor="let service of services">
 
-  <div class="service-list">
-    <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
-      <ion-slide *ngFor="let service of services">
+            <ion-card (click)="addService(service)">
+              <ion-card-header>
+                <ion-thumbnail>
+                  <img  [ngClass]="{'selected' : isServSelect(service)}" src="http://157.230.232.108{{ service?.image.url }}">            
+                </ion-thumbnail>  
+              </ion-card-header>
+              <ion-card-content>
+                <P  class="service-name">{{service?.name}}</P>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
 
-        <ion-card (click)="addService(service)">
-          <ion-card-header>
-            <ion-thumbnail>
-              <img  [ngClass]="{'selected' : isServSelect(service)}" src="http://157.230.232.108{{ service?.image.url }}">            
-            </ion-thumbnail>  
-          </ion-card-header>
-          <ion-card-content>
-            <P  class="service-name">{{service?.name}}</P>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
+        <ion-item>
+          <ion-label position="stacked">Adresse du rendez-vous</ion-label>
+          <ion-input name="adrs" value="address" [(ngModel)]='address'></ion-input>
+        </ion-item>
+        <ion-button slot="start" expand="block" (click)="reserver()">Prendre rendez-vous</ion-button>
+      </div>
+    </div>
 
-    <ion-item>
-      <ion-label position="stacked">Adresse du rendez-vous</ion-label>
-      <ion-input name="adrs" [(ngModel)]='address'></ion-input>
-    </ion-item>
-    <ion-button slot="start" expand="block" (click)="reserver()">Prendre rendez-vous</ion-button>
+    <div [hidden]="select !='review'">
+
+    </div>
 
   </div>
 

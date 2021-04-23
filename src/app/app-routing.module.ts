@@ -95,9 +95,21 @@ const routes: Routes = [
   {
     path: 'barbeur-profile',
     loadChildren: () => import('./barbeur-profile/barbeur-profile.module').then( m => m.BarbeurProfilePageModule)
+  },
+  {
+    path: 'profile-image',
+    loadChildren: () => import('./profile-image/profile-image.module').then( m => m.ProfileImagePageModule)
   },  {
-    path: 'pay-whith-stripe',
-    loadChildren: () => import('./pay-whith-stripe/pay-whith-stripe.module').then( m => m.PayWhithStripePageModule)
+    path: 'success',
+    loadChildren: () => import('./success/success.module').then( m => m.SuccessPageModule)
+  },
+  {
+    path: 'cancel',
+    loadChildren: () => import('./cancel/cancel.module').then( m => m.CancelPageModule)
+  },
+  {
+    path: 'address',
+    loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
   },
 
 

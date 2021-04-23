@@ -81,6 +81,13 @@
         --backdrop-opacity: var(--ion-backdrop-opacity, 0.1) !important;
     }
     
+    .ProfileImagePage {
+        padding: 0;
+        padding-top: 490px!important;
+        // height: 25%!important;
+        --backdrop-opacity: var(--ion-backdrop-opacity, 0.1) !important;
+    }
+
     .sc-ion-searchbar-ios-h {
         --background: white !important;
         --border-radius: 13px;

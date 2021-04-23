@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PayWhithStripePageRoutingModule } from './pay-whith-stripe-routing.module';
+import { AddressPageRoutingModule } from './address-routing.module';
 
-import { PayWhithStripePage } from './pay-whith-stripe.page';
+import { AddressPage } from './address.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PayWhithStripePageRoutingModule
+    AddressPageRoutingModule
   ],
-  declarations: [PayWhithStripePage]
+  declarations: [AddressPage]
 })
-export class PayWhithStripePageModule {}
+export class AddressPageModule {}

@@ -29,7 +29,6 @@ ion-content {
     }
 
 
-
     .barbeur-info {
         height: 100px;
         width: 90%;
@@ -55,6 +54,14 @@ ion-content {
     ion-card {
         background: #FAFAFA;
         box-shadow: none;
+    }
+    .description{
+        font-size: 14px;
+        word-spacing: normal;
+        font-family: var(--regular-font);
+        color: var(--gray-color);
+        padding-right: 10px;
+        text-align: inherit;
     }
     .service-list {
         img{

@@ -10,7 +10,7 @@ export class BookingSuccessPage implements OnInit {
   ngOnInit() {
   }
   gotoHome() {
-    this.nav.navigateForward('tabs/home')
+    this.nav.navigateForward('tabs/home');
   }
   seeBooking() {
     this.nav.navigateForward('tabs/appointment');

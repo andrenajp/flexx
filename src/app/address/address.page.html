@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/profile" text="" mode="md">
+              <img src="../../assets/images/back.svg">
+          </ion-back-button>
+      </ion-buttons>
+      <ion-title mode="ios">Editer l'adresse pour rendez-vous avec barbeur</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item lines="none">
+      <div slot="start">
+          <img class="" src="../../assets/images/user.svg" height="32px" width="32px">
+      </div>
+      <ion-label>
+          <div class="name">Adresse de rendez-vous</div>
+          <ion-textarea type="text" placeholder="Adresse de rendez-vous" [(ngModel)]="address"></ion-textarea>
+      </ion-label>
+  </ion-item>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-button expand="full" (click)="edit()">Changer l'adresse</ion-button>
+</ion-footer>

@@ -56,8 +56,9 @@ export class EditProfilePage implements OnInit {
         this.user.phone=this.phone;
         localStorage.removeItem('_user');
         localStorage.setItem('_user',JSON.stringify(this.user));
+        this.nav.navigateForward('tabs/profile'); 
+
     });
-    this.nav.navigateForward('tabs/profile')
 
   }
 }

@@ -3,6 +3,7 @@ import { ModalController, NavController } from '@ionic/angular';
 
 import { LanguagePage } from '../language/language.page';
 import { SharingPage } from '../sharing/sharing.page';
+import { ProfileImagePage } from '../profile-image/profile-image.page';
 import { AuthService } from '../login/auth.service';
 
 @Component({
@@ -19,15 +20,18 @@ export class ProfilePage implements OnInit {
     private authService:AuthService,
     ) 
   {
-     if(!this.authService.isauthenticated())
-     this.nav.navigateForward('login');
+    if(localStorage.getItem('_user') == null)
+      this.nav.navigateForward('login');
   }
   ionViewWillEnter() {
 
   }
-  ngOnInit() 
+  async ngOnInit() 
   {
-    this.user=JSON.parse(localStorage.getItem('_user'));
+    if(localStorage.getItem('_user') == null)
+     await this.nav.navigateForward('login');
+
+    this.user=await JSON.parse(localStorage.getItem('_user'));
     this.dateSign=new Date(this.user.created_at);
   }
   async shareWith() {
@@ -45,14 +49,24 @@ export class ProfilePage implements OnInit {
     return await modal.present();
   }
 
-  uploadImg()
+  async upload()
   {
-    console.log("Insert img");
+    const modal = await this.modalCtrl.create({
+      component: ProfileImagePage,
+      cssClass: 'ProfileImagePage',
+      componentProps:{user:this.user.id}
+    });
+    return await modal.present(); 
   }
 
-  editProfile() {
+  async editProfile() {
     if(this.authService.isauthenticated())
-      this.nav.navigateForward('edit-profile')
+      await this.nav.navigateForward('edit-profile');
+  }
+  async address()
+  {
+    await this.nav.navigateForward('address');
+
   }
   changePassword()
   {

@@ -46,7 +46,10 @@ export class BarbeurProfilePage implements OnInit {
       this.logo=response.data.logo;
       this.slider=response.data.slider;
     });
-    
+
+    const user=JSON.parse(localStorage.getItem("_user"));
+    if(user.address!= null)
+      this.address=user.address;
   }
   back() 
   {

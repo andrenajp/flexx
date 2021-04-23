@@ -5,8 +5,6 @@ import axios from 'axios';
 import {Storage} from '@ionic/storage';
 
 import { ModalController } from '@ionic/angular';
-import { VariableBinding } from '@angular/compiler';
-
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
 import { Stripe as Strp} from '@ionic-native/stripe/ngx';
 import { environment } from 'src/environments/environment.prod';
@@ -96,17 +94,12 @@ export class PaymentPage implements OnInit {
   }
   makePayment() 
   {
-
-    //this.payWithStripe();
-   
     if( this.AppointType=='Salon')
       this.setSalonAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect);
     else if(this.AppointType =='Barber')
       this.setBarberAppointment(this.serviceSelect,this.date);
-    
-    //this.nav.navigateForward('booking-success');
-
-
+    if(this.paymentWith=="Stripe")
+      this.nav.navigateForward('booking-success');
   }
 
   setSalonAppointment(salon,employee,date,services)
@@ -126,7 +119,8 @@ export class PaymentPage implements OnInit {
         salon: {"id":salon}
       },{headers:this.header}).then((response)=>{
         const data=response.data;
-        this.payWithStripe(data.id)
+        if(this.paymentWith=="Stripe")
+          this.payWithStripe(data.id)
 
         this.storage.remove("appoint_salon");
         this.storage.remove("appoint_Emp");
@@ -154,7 +148,8 @@ export class PaymentPage implements OnInit {
 
       },{headers:this.header}).then((response)=>{
         const data=response.data;
-        this.payWithStripe(data.id)
+        if(this.paymentWith=="Stripe")
+          this.payWithStripe(data.id);
         this.storage.remove("appoint_address");
         this.storage.remove("appoint_date");
         this.storage.remove("appoint_services");
@@ -170,13 +165,10 @@ export class PaymentPage implements OnInit {
     }
     
     const stripe = await loadStripe(this.stripeKey);
-      await axios.post(this.url+'/orders',data,{headers :this.header}).then((response)=>{
+    await axios.post(this.url+'/orders',data,{headers :this.header}).then((response)=>{
         const sessionId=response.data.id;
-        stripe.redirectToCheckout({sessionId: sessionId}).then((response)=>{
-          console.log(response);
-        })
-
-      })
+        stripe.redirectToCheckout({sessionId: sessionId});
+      });
   }
 
 }

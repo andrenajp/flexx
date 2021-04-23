@@ -6,10 +6,10 @@
 <ion-content *ngIf="authService.isauthenticated()">
     <div class="profile_div ion-text-center">
         <div class="img_div">
-            <img *ngIf="haveProfileIMG()" src="{{user?.profile_img?.url}}" class="user_img" height="111px" width="111px">
+            <img src="{{user?.profile_img?.url}}" class="user_img" height="111px" width="111px" (click)="upload()">
             <img src="../../assets/images/back_img.svg" class="back_img">
-            <input type="file" class="prfl-img" name="image"/>
-            <img src="../../assets/images/round.svg" class="camera_img" height="35px" width="35px" (click)="uploadImg()">
+            <input id="upPrfl-img"type="file" class="prfl-img" name="image"/>
+            <img src="../../assets/images/round.svg" class="camera_img" height="35px" width="35px" (click)="upload()">
             <svg xmlns="http://www.w3.org/2000/svg" width="15.002" height="12.502" viewBox="0 0 15.002 12.502">
                 <g id="photo-camera" transform="translate(0 0)">
                     <g id="Group_120" data-name="Group 120" transform="translate(0 0)">
@@ -37,6 +37,9 @@
     </ion-item>
     <ion-item lines="none" (click)="changePassword()">
         <div>Changer le mot de passe</div>
+    </ion-item>
+    <ion-item lines="none"  (click)="address()">
+        <div>Adresse</div>
     </ion-item>
     <div class="border_bottom"></div>
     <ion-item lines="none" (click)="shareWith()">
