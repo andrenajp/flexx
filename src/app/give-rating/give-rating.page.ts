@@ -30,7 +30,7 @@ export class GiveRatingPage implements OnInit {
     const dateComment=new Date();
     const data={
       content: this.comment,
-      user: this.user.username,
+      user: this.user,
       salon: this.salon,
       rate: this.rate,
       date: dateComment

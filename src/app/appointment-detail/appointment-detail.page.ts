@@ -62,7 +62,7 @@ export class AppointmentDetailPage implements OnInit {
           role:'confirmation',
           handler:async ()=>{
             await axios.put(this.url+'/appointments/'+this.appointment.id,{"status":"canceled"},{headers :this.header}).then(response => {
-              this.nav.navigateForward('tabs/appointment');
+              this.nav.navigateRoot(['tabs/appointment']);
           });
           }
         },

@@ -33,7 +33,7 @@ export class AppointmentPage implements OnInit {
     if(this.isLog())
     {
       await axios.get(this.url+'/appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
-        const appoints=response.data;
+        const appoints= response.data;
         console.log(appoints);
         var idA;
         let  appoint;

@@ -107,7 +107,7 @@
 
         <ion-row class="ion-padding-top ion-margin-bottom" *ngFor="let item of reviews ">
           <ion-col size="3" class="ion-no-padding ion-padding-start">
-            <img src="{{ item?.user?.img }}" height="35px" width="35px" /><br /><span class="rate_div">
+            <img src="http://157.230.232.108{{ item?.user?.profile_img?.url }}" height="35px" width="35px" /><br /><span class="rate_div">
               <img class="star_img" src="../../assets/images/star.svg " height="11px " width="11px " />
               {{ item?.rate }}
             </span>
@@ -115,7 +115,7 @@
           <ion-col size="9" class="details_div ion-padding-end ion-padding-start">
             <ion-label>
               <p class="name ion-no-margin">
-                {{ item.user }}<span class="ion-float-right">
+                .....<span class="ion-float-right">
                   {{ item.date | date:'dd-MM-yyyy HH:mm' }}</span>
               </p>
               <p class="detail ion-no-margin">{{ item?.content }}</p>

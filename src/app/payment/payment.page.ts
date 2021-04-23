@@ -98,8 +98,9 @@ export class PaymentPage implements OnInit {
       this.setSalonAppointment(this.salon.id,this.emp.id,this.date,this.serviceSelect);
     else if(this.AppointType =='Barber')
       this.setBarberAppointment(this.serviceSelect,this.date);
-    if(this.paymentWith=="Stripe")
-      this.nav.navigateForward('booking-success');
+
+      if(this.paymentWith=="Espèce")
+      this.nav.navigateRoot(['booking-success']);
   }
 
   setSalonAppointment(salon,employee,date,services)
@@ -119,15 +120,13 @@ export class PaymentPage implements OnInit {
         salon: {"id":salon}
       },{headers:this.header}).then((response)=>{
         const data=response.data;
-        if(this.paymentWith=="Stripe")
-          this.payWithStripe(data.id)
 
+        if(this.paymentWith=="Stripe")
+          this.payWithStripe(data.id);
         this.storage.remove("appoint_salon");
         this.storage.remove("appoint_Emp");
         this.storage.remove("appoint_date");
         this.storage.remove("appoint_services");
-
-
     });
   }
 
@@ -153,6 +152,7 @@ export class PaymentPage implements OnInit {
         this.storage.remove("appoint_address");
         this.storage.remove("appoint_date");
         this.storage.remove("appoint_services");
+
     }).catch((error)=>{
       console.log(error.response);
     });

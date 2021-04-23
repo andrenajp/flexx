@@ -7,10 +7,11 @@ import {
 } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Chart } from "chart.js";
-
+import {Location} from "@angular/common"
 import axios from 'axios';
 import { AlertController } from '@ionic/angular';
 import {Storage} from '@ionic/storage';
+import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: "app-salon-profile",
@@ -18,6 +19,7 @@ import {Storage} from '@ionic/storage';
   styleUrls: ["./salon-profile.page.scss"],
 })
 export class SalonProfilePage implements OnInit {
+  url=environment.BASE_URL;
   salon: any = [];
   reviews:any=[];
   employee:any=[];
@@ -43,6 +45,7 @@ export class SalonProfilePage implements OnInit {
     private nav: NavController,
     private router: Router,
     private route: ActivatedRoute,
+    private location : Location,
     public alertController: AlertController,
     private readonly storage:Storage
   ) {
@@ -59,15 +62,14 @@ export class SalonProfilePage implements OnInit {
   async ngOnInit() 
   {
     this.storage.clear();
-
     await axios.get('http://157.230.232.108/salons/'+this.salon.id).then((res)=>{
       this.thesalon = res.data
       this.employee=res.data.employees;
       this.services=res.data.services;
       this.logo=res.data.Logo;
       this.reviews=res.data.reviews;
+      
     });
-
 
   }
 
@@ -127,7 +129,7 @@ export class SalonProfilePage implements OnInit {
   }
 
   back() {
-    this.nav.navigateForward("tabs/home");
+    this.nav.navigateRoot(['tabs/home']);
   }
 
 
@@ -213,4 +215,5 @@ export class SalonProfilePage implements OnInit {
     });
     await alert.present();
   }
+
 }

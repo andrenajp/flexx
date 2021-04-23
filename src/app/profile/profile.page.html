@@ -6,7 +6,7 @@
 <ion-content *ngIf="authService.isauthenticated()">
     <div class="profile_div ion-text-center">
         <div class="img_div">
-            <img src="{{user?.profile_img?.url}}" class="user_img" height="111px" width="111px" (click)="upload()">
+            <img src="http://157.230.232.108{{user?.profile_img?.url}}" class="user_img" height="111px" width="111px" (click)="upload()">
             <img src="../../assets/images/back_img.svg" class="back_img">
             <input id="upPrfl-img"type="file" class="prfl-img" name="image"/>
             <img src="../../assets/images/round.svg" class="camera_img" height="35px" width="35px" (click)="upload()">

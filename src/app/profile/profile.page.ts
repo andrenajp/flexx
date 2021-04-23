@@ -21,7 +21,10 @@ export class ProfilePage implements OnInit {
     ) 
   {
     if(localStorage.getItem('_user') == null)
-      this.nav.navigateForward('login');
+      this.nav.navigateRoot(['login']);
+
+    this.user=JSON.parse(localStorage.getItem('_user'));
+
   }
   ionViewWillEnter() {
 
@@ -29,7 +32,7 @@ export class ProfilePage implements OnInit {
   async ngOnInit() 
   {
     if(localStorage.getItem('_user') == null)
-     await this.nav.navigateForward('login');
+     await this.nav.navigateRoot(['login']);
 
     this.user=await JSON.parse(localStorage.getItem('_user'));
     this.dateSign=new Date(this.user.created_at);
@@ -61,47 +64,39 @@ export class ProfilePage implements OnInit {
 
   async editProfile() {
     if(this.authService.isauthenticated())
-      await this.nav.navigateForward('edit-profile');
+      await this.nav.navigateRoot(['edit-profile']);
   }
   async address()
   {
-    await this.nav.navigateForward('address');
+    await this.nav.navigateRoot(['address']);
 
   }
   changePassword()
   {
     if(this.authService.isauthenticated())
-      this.nav.navigateForward('change-password')
+      this.nav.navigateRoot(['change-password'])
   }
   privacy() {
-    this.nav.navigateForward('privacy-policy')
+    this.nav.navigateRoot(['privacy-policy'])
   }
   terms() {
-    this.nav.navigateForward('terms-condition');
+    this.nav.navigateRoot(['terms-condition']);
   }
   aboutUs() {
-    this.nav.navigateForward('about')
+    this.nav.navigateRoot(['about'])
   }
   logout() {
     localStorage.clear()
-    this.nav.navigateForward('tabs/home')
-  }
-
-  haveProfileIMG()
-  {
-    if(this.user.profile_img!=null)
-      return true;
-
-    return false;
+    this.nav.navigateRoot(['tabs/home'])
   }
 
   login()
   {
-    this.nav.navigateForward('login');
+    this.nav.navigateRoot(['login']);
 
   }
   register()
   {
-    this.nav.navigateForward('register');
+    this.nav.navigateRoot(['register']);
   }
 }
