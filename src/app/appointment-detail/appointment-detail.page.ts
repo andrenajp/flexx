@@ -15,10 +15,14 @@ import { environment } from 'src/environments/environment.prod';
 export class AppointmentDetailPage implements OnInit {
   url=environment.BASE_URL;
   appointment:any={};
+  type;
   salon:any={};
   emp:any={};
   service:any=[];
-  price:Number=0;
+  price:number=0;
+  barber:any={};
+  order:any={};
+  charge:number=400;
   header={
     Authorization : 'Bearer '+ localStorage.getItem('access_token')
   };
@@ -39,9 +43,17 @@ export class AppointmentDetailPage implements OnInit {
       const idA = res.id;
       axios.get(this.url+'/appointments/'+idA,{headers:this.header}).then(response => {
         this.appointment=response.data;
-        this.salon=response.data.salon;
-        this.emp=response.data.employee;
+        this.type=response.data.type;
+        if(this.type=="salon")
+        {
+          this.salon=response.data.salon;
+          this.emp=response.data.employee;
+          
+        }else
+          this.barber=response.data.barber;
+
         this.service=response.data.services;
+        this.order=response.data.order
         for(var i in this.service)
         {
           this.price=this.price + this.service[i].price;
@@ -52,6 +64,11 @@ export class AppointmentDetailPage implements OnInit {
 
   async cancelAppoint()
   {
+    const data={
+      appointment:this.appointment.id,
+      order:this.order.id,
+      pay_int:this.order.payment_intent
+    }
 
     const alert = await this.alertController.create({
       header: 'Annuler le rendez-vous',
@@ -61,8 +78,8 @@ export class AppointmentDetailPage implements OnInit {
           text:'Oui',
           role:'confirmation',
           handler:async ()=>{
-            await axios.put(this.url+'/appointments/'+this.appointment.id,{"status":"canceled"},{headers :this.header}).then(response => {
-              this.nav.navigateRoot(['tabs/appointment']);
+            await axios.post(this.url+'/appointments/cancel',data,{headers :this.header}).then(async () => {
+              await this.nav.navigateRoot(['cancel-appointment']);
           });
           }
         },
@@ -77,6 +94,20 @@ export class AppointmentDetailPage implements OnInit {
     await alert.present();
   }
 
+  async successAppoint()
+  {
+    const data={
+      appointment:this.appointment.id,
+      order:this.order.id,
+      price:(this.price - this.charge)*100,
+      strp_connect:(this.type=='salon') ? this.salon.strp_connect : this.barber.strp_connect,
+      transfer_group:this.order.transfer_group,
+      salon:(this.type=='salon') ? this.salon.id : null,
+      barber:(this.type=='barber') ? this.barber.id : null
+    }
+    await axios.post(this.url+'/appointments/confirm',data,{headers:this.header}).catch((error)=>{console.log(error.response)});
+  
+  }
   async getDirection()
   {
     const modal = await this.modal.create({

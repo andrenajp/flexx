@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title mode="ios">Paiement</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="info">
+    <p>Nom: {{ user.username}}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Téléphone: {{ user.phone }}</p>
+  </div>
+  <div class="cell " id="formPay">
+    <form id="payment-form">
+      <fieldset>
+        <div class="row">
+          <div id="card"></div>
+        </div>
+      </fieldset>
+      <button type="submit">payer {{ price }}€</button>
+    </form>
+  </div>
+  <div>
+    <ion-button id="cancel" color="danger" (click)="close()">Annuler</ion-button>
+  </div>
+
+</ion-content>

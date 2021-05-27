@@ -1,0 +1,22 @@
+<ion-content>
+  <div *ngIf="!sbSelected">
+    <ion-segment  (ionChange)="choose($event)">
+      <ion-segment-button  value="salon">
+        <ion-label>Salon</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="barbeur">
+        <ion-label>Barbeur</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div *ngIf="sbSelected">
+    <ion-segment (ionChange)="chooseSexe($event)">
+      <ion-segment-button class="homme" value="Homme">
+        <ion-label>Homme</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="femme" value="Femme">
+        <ion-label>Femme</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-content>

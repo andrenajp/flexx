@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Router,NavigationExtras} from '@angular/router';
 import { DirectionPage } from '../direction/direction.page';
 import { LocationPage } from '../location/location.page';
+import { environment } from 'src/environments/environment.prod';
 
 
 
@@ -14,6 +15,7 @@ import { LocationPage } from '../location/location.page';
   styleUrls: ['./search-layout.page.scss'],
 })
 export class SearchLayoutPage implements OnInit {
+  url=environment.BASE_URL;
   salons:any=[];
   searchSalon: any = [ ]
   rate: any = 1;
@@ -63,7 +65,7 @@ export class SearchLayoutPage implements OnInit {
   {
     try
     {
-      const response = await axios.get('http://157.230.232.108/salons?_where[address_contains]=%'+s+'%');
+      const response = await axios.get(this.url+'/salons?_where[address_contains]=%'+s+'%');
       this.searchSalon=response.data;
 
     }
@@ -87,7 +89,7 @@ export class SearchLayoutPage implements OnInit {
     else 
       clientèle=this.filtre.SF;
 
-    const response = await axios.get('http://157.230.232.108/salons?_where'+filtreS+"&rate_gte="+this.filtre.rate+
+    const response = await axios.get(this.url+'/salons?_where'+filtreS+"&rate_gte="+this.filtre.rate+
     "&client_type="+clientèle);
     this.searchSalon=response.data;
   }

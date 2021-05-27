@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 @Component({
   selector: 'app-booking-success',
   templateUrl: './booking-success.page.html',
   styleUrls: ['./booking-success.page.scss'],
 })
 export class BookingSuccessPage implements OnInit {
-  constructor(private nav: NavController) { }
+  constructor(
+    private nav: NavController,
+    private platform: Platform
+    )
+  { 
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.nav.navigateForward('tabs/home');
+    
+    });
+  }
   ngOnInit() {
   }
   gotoHome() {

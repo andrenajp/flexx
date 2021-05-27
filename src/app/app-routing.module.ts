@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: 'choose',
     pathMatch: 'full'
   },
   {
@@ -89,17 +89,14 @@ const routes: Routes = [
     loadChildren: () => import('./set-location/set-location.module').then(m => m.SetLocationPageModule)
   },
   {
-    path: 'select-service',
-    loadChildren: () => import('./select-service/select-service.module').then( m => m.SelectServicePageModule)
-  },
-  {
     path: 'barbeur-profile',
     loadChildren: () => import('./barbeur-profile/barbeur-profile.module').then( m => m.BarbeurProfilePageModule)
   },
   {
     path: 'profile-image',
     loadChildren: () => import('./profile-image/profile-image.module').then( m => m.ProfileImagePageModule)
-  },  {
+  },
+  {
     path: 'success',
     loadChildren: () => import('./success/success.module').then( m => m.SuccessPageModule)
   },
@@ -111,6 +108,14 @@ const routes: Routes = [
     path: 'address',
     loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
   },
+  {
+    path: 'choose',
+    loadChildren: () => import('./choose/choose.module').then( m => m.ChoosePageModule)
+  },  {
+    path: 'cancel-appointment',
+    loadChildren: () => import('./cancel-appointment/cancel-appointment.module').then( m => m.CancelAppointmentPageModule)
+  },
+
 
 
   // {

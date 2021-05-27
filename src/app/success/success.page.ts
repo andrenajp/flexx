@@ -24,10 +24,9 @@ export class SuccessPage implements OnInit {
 
   ngOnInit() 
   {
-    axios.post(this.url+'/orders/confirm',this.session_id,{headers: this.header});
-    setTimeout(() => {
-      this.router.navigate(['booking-success']);
-  }, 5000);
+      setTimeout(() => {
+        this.router.navigate(['booking-success']);
+    }, 5000);
   }
 
 }

@@ -20,20 +20,15 @@ export class ProfilePage implements OnInit {
     private authService:AuthService,
     ) 
   {
-    if(localStorage.getItem('_user') == null)
-      this.nav.navigateRoot(['login']);
-
     this.user=JSON.parse(localStorage.getItem('_user'));
-
   }
   ionViewWillEnter() {
 
   }
   async ngOnInit() 
   {
-    if(localStorage.getItem('_user') == null)
-     await this.nav.navigateRoot(['login']);
-
+    this.isLogin();
+    
     this.user=await JSON.parse(localStorage.getItem('_user'));
     this.dateSign=new Date(this.user.created_at);
   }
@@ -98,5 +93,11 @@ export class ProfilePage implements OnInit {
   register()
   {
     this.nav.navigateRoot(['register']);
+  }
+
+  isLogin()
+  {
+    if(localStorage.getItem('_user') == null)
+      this.nav.navigateRoot(['login']);
   }
 }

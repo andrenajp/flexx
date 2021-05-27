@@ -1,0 +1,29 @@
+ion-content {
+    ion-segment {
+        position: fixed;
+        top: 40%;
+        --background:lightgrey;
+
+        ion-segment-button {
+            border: 2px solid black;
+            height: 80px;
+            min-height: 30px;
+            --border-radius: 4px;
+            --border-color:black;
+            --border-width:2px;
+            --color-checked:green;
+
+            ion-label {
+                margin: 0;
+            }
+        }
+
+        .homme {
+            --background: rgb(102, 102, 231);
+        }
+
+        .femme {
+            --background: rgb(231, 142, 157);
+        }
+    }
+}

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SelectServicePage } from './select-service.page';
+import { ChoosePage } from './choose.page';
 
-describe('SelectServicePage', () => {
-  let component: SelectServicePage;
-  let fixture: ComponentFixture<SelectServicePage>;
+describe('ChoosePage', () => {
+  let component: ChoosePage;
+  let fixture: ComponentFixture<ChoosePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectServicePage ],
+      declarations: [ ChoosePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SelectServicePage);
+    fixture = TestBed.createComponent(ChoosePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

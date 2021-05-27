@@ -46,6 +46,9 @@
     <div *ngIf="appointment?.status=='upcoming'" class="cancel ion-text-center ion-padding-top ion-padding-bottom">
         <ion-button expand="full" color="danger" (click)="cancelAppoint()">Annuler le rendez-vous</ion-button>
     </div>
+    <div *ngIf="false" class="cancel ion-text-center ion-padding-top ion-padding-bottom">
+        <ion-button expand="full" color="success" (click)="successAppoint()">Valider</ion-button>
+    </div>
 </ion-content>
 <ion-footer  *ngIf="appointment?.status=='upcoming'" class="ion-no-border">
     <ion-button (click)="getDirection()" expand="full">Get Direction</ion-button>

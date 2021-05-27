@@ -56,7 +56,7 @@
 
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="SaB">
   <div class="section" [ngClass]="{'fix-segment': fixSegment==2}">
     <ion-segment mode="md" [(ngModel)]="select" value="all">
       <ion-segment-button mode="md" value="salon">Salon

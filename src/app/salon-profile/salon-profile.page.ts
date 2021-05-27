@@ -5,7 +5,7 @@ import {
   NavigationExtras,
   Router,
 } from "@angular/router";
-import { NavController } from "@ionic/angular";
+import { NavController, Platform } from "@ionic/angular";
 import { Chart } from "chart.js";
 import {Location} from "@angular/common"
 import axios from 'axios';
@@ -39,6 +39,11 @@ export class SalonProfilePage implements OnInit {
   empSelect:any;
   servicesSelect:any=[];
   thesalon;
+  bars: any;
+
+  serviceSlide = {
+    slidesPerView: 3
+  }
 
   @ViewChild("barChart") barChart;
   constructor(
@@ -47,22 +52,21 @@ export class SalonProfilePage implements OnInit {
     private route: ActivatedRoute,
     private location : Location,
     public alertController: AlertController,
-    private readonly storage:Storage
-  ) {
+    private readonly storage:Storage,
+    private platform: Platform
+  )
+  {
     this.route.queryParams.subscribe((res) => {
       this.salon = res;
     });
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.nav.navigateRoot('tabs/home',{replaceUrl:true});  
+    });
   }
-  bars: any;
-
-  serviceSlide = {
-    slidesPerView: 3
-  }
-
   async ngOnInit() 
   {
     this.storage.clear();
-    await axios.get('http://157.230.232.108/salons/'+this.salon.id).then((res)=>{
+    await axios.get(this.url+'/salons/'+this.salon.id).then((res)=>{
       this.thesalon = res.data
       this.employee=res.data.employees;
       this.services=res.data.services;
@@ -129,31 +133,12 @@ export class SalonProfilePage implements OnInit {
   }
 
   back() {
-    this.nav.navigateRoot(['tabs/home']);
+    // this.router.navigate(['tabs/home'],{replaceUrl:true});
+    
+    this.nav.navigateRoot('tabs/home',{replaceUrl:true});
   }
 
 
-  show() {
-    this.isShow = !this.isShow;
-    this.hair =
-      this.hair === "../../assets/images/down.svg"
-        ? "../../assets/images/up.svg"
-        : "../../assets/images/down.svg";
-  }
-  color() {
-    this.isColor = !this.isColor;
-    this.colorChange =
-      this.colorChange === "../../assets/images/down.svg"
-        ? "../../assets/images/up.svg"
-        : "../../assets/images/down.svg";
-  }
-  facial() {
-    this.isfacial = !this.isfacial;
-    this.facialChange =
-      this.facialChange === "../../assets/images/down.svg"
-        ? "../../assets/images/up.svg"
-        : "../../assets/images/down.svg";
-  }
   logScrolling(ev) {
     if (ev.detail.scrollTop >= 410) {
       this.fixSegment = 2;
