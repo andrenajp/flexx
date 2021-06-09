@@ -124,7 +124,7 @@ export class SalonProfilePage implements OnInit {
       this.storage.set('appoint_Emp',JSON.stringify(this.empSelect));
       this.storage.set('appoint_services',this.servicesSelect);
 
-      this.router.navigate(["/date-time"], {
+      this.router.navigate(["day"], {
         queryParams: { 
           employee:JSON.stringify(this.empSelect)
         },

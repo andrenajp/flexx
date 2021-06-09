@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="day" text="" mode="md">
+          <img src="../../assets/images/back.svg">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>RENDEZ-VOUS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="days" *ngFor="let day of days" (click)="setDay(day)" >
+    <div class="infos">
+      <h1 class="day">{{day.d}}</h1> 
+      <p class="date">{{ day.affiche}}</p> 
+    </div>
+  </div>
+  <div class="days" (click)="otherDate()">
+    <h1 class="day">Autre date</h1> 
+    <p class="date">Voir le calendrier</p> 
+  </div>
+  
+
+</ion-content>

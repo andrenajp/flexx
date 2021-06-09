@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import * as moment from "moment";
-
 import {Storage} from '@ionic/storage';
 
 @Component({
@@ -11,22 +10,17 @@ import {Storage} from '@ionic/storage';
   styleUrls: ['./date-time.page.scss'],
 })
 export class DateTimePage implements OnInit {
-  idEmp;
-  horaires;
-  date: any;
-  dateAff: any;
+
+  date: any=[];
+  day:any;
+  daySelect:any=null;
   type: 'string';
-  dateRDV: Date;
-  selectTime: any
+
   constructor(
-    private nav: NavController,
-    private route: ActivatedRoute,
     private router: Router,
-    private readonly storage:Storage
+    public alrtCtrl: AlertController
   ) {
-    this.route.queryParams.subscribe((res) => {
-      this.idEmp = res;
-    });
+
   }
   time: any = [
     {
@@ -64,21 +58,41 @@ export class DateTimePage implements OnInit {
       hours: 19
     }]
   async ngOnInit() {
+    moment.locale('fr');
   }
   onChange($event) {
     $event.preventdefault;
-    this.dateRDV = moment(this.date).toDate();
-    this.dateAff = moment(this.dateRDV).toDate().toLocaleString('fr-FR');
+    this.daySelect=moment(this.date);
+    this.day={'d':this.daySelect.format('dddd'),'affiche':this.daySelect.format('ddd D MMMM'),'date':this.daySelect.format()}
+    ;
+
   }
-  activeSlot(i, h) {
-    this.selectTime = i;
-    //Ajouter l'heure à la date avec moment ?
-    this.dateRDV = moment(this.dateRDV).hours(h).toDate();
-    this.dateAff = moment(this.dateRDV).toDate().toLocaleString('fr-FR');
-  }
-  continue() 
+  async continue() 
   {
-    this.storage.set('appoint_date',this.dateRDV);
-    this.nav.navigateForward('payment');
+    if(this.checkDdate())
+      this.router.navigate(['hour'],{queryParams:this.day});
+    else{
+      const alert = await this.alrtCtrl.create({
+        header: 'Date ??',
+        message: 'Veuillez sélectionner une date ou une date différente d\'aujourd\'hui',
+        buttons: [
+          {
+            text: 'OK',
+            role:'cancel'
+          }
+        ],
+
+      });
+  
+      await alert.present();
+    }
+  }
+
+  checkDdate()
+  {
+    if (this.daySelect == null || moment().format("YYYY-MM-DD")== this.daySelect.format("YYYY-MM-DD"))
+      return false;
+    else
+      return true;
   }
 }

@@ -1,0 +1,40 @@
+ion-content{
+    --background: var(--background-theme);
+
+    .day-select{
+        text-align: center;
+        color: white;
+        height: 75px;
+        width: 35%;
+        display: inline-block; 
+        margin: 9px;
+        background-color: rgb(226, 118, 46);
+        border-radius: 2%;
+        .day{
+            font-size:18px ;
+            text-transform: capitalize;
+        }
+        .date{
+            font-size:14px ;
+            font-style: oblique;
+        }
+    }
+    .section{
+        color :rgb(226, 118, 46);
+        font-size:14px ;
+        text-align: center;
+        font-weight: bold;
+    }
+    .hour{ 
+        border: 2px solid lightgray;
+        text-align: center;
+        height: 50px;
+        width: 20%;
+        display: inline-block;
+        background: white;
+    }
+    .active {
+        background: green;
+        color: white;
+    }
+}

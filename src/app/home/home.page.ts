@@ -64,7 +64,6 @@ export class HomePage {
           )
           .then((response) => {
             this.barbers = response.data;
-            console.log(this.barbers);
           });
       }
     }else 

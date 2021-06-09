@@ -7,8 +7,8 @@
             <ion-segment-button mode="md" value="upcoming">A venir
                 <div *ngIf="selectAppointment == 'upcoming'" class="seg-button"></div>
             </ion-segment-button>
-            <ion-segment-button mode="md" value="past">Complété
-                <div *ngIf="selectAppointment == 'past'" class="seg-button2"></div>
+            <ion-segment-button mode="md" value="valide">Valider
+                <div *ngIf="selectAppointment == 'valide'" class="seg-button2"></div>
             </ion-segment-button>
             <ion-segment-button mode="md" value="cancel">Annuler
                 <div *ngIf="selectAppointment == 'cancel'" class="seg-button3"></div>
@@ -49,8 +49,8 @@
                 </p>
             </div>
         </div>
-        <div *ngSwitchCase="'past'">
-            <div class="salon-container" *ngFor="let item of past">
+        <div *ngSwitchCase="'valide'">
+            <div class="salon-container" *ngFor="let item of valide">
                 <ion-item lines="none" class="ion-no-padding" (click)="detail(item)">
                     <ion-thumbnail>
                         <img src="http://157.230.232.108{{ item.salon?.Logo?.url }}" height="80px" width="80px">

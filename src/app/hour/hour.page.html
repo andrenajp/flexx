@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="day" text="" mode="md">
+          <img src="../../assets/images/back.svg">
+      </ion-back-button>
+  </ion-buttons>
+    <ion-title>RENDEZ-VOUS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="dateS">
+  <div class="day-select">
+      <h1 class="day">{{day}}</h1>
+      <p class="date">{{aff}}</p>
+  </div>
+</div>
+
+<div class="morning">
+  <h1 class="section">MATIN</h1>
+  <div color="medium" class="hour" *ngFor="let slot of morning" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'" (click)="activeSlot(slot.start_time,slot.hours)" >
+      <p>{{slot.start_time}}</p>
+  </div>
+</div>
+<div class="afternoon">
+  <h1 class="section">APRÉS-MIDI</h1>
+  <div color="medium" class="hour" *ngFor="let slot of afternoon" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'" (click)="activeSlot(slot.start_time,slot.hours)" >
+    <p>{{slot.start_time}}</p>
+  </div>
+</div>
+<div class="evening">
+  <h1 class="section">SOIRÉE</h1>
+  <div color="medium" class="hour" *ngFor="let slot of evening" [ngClass]="selectTime == slot.start_time ? 'active' : 'segment_btn'" (click)="activeSlot(slot.start_time,slot.hours)" >
+    <p>{{slot.start_time}}</p>
+  </div>
+</div>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-button color="danger"  expand="full" (click)="continue()">continuer</ion-button>
+</ion-footer>

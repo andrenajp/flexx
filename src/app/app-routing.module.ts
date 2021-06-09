@@ -115,6 +115,18 @@ const routes: Routes = [
     path: 'cancel-appointment',
     loadChildren: () => import('./cancel-appointment/cancel-appointment.module').then( m => m.CancelAppointmentPageModule)
   },
+  {
+    path: 'hour',
+    loadChildren: () => import('./hour/hour.module').then( m => m.HourPageModule)
+  },
+  {
+    path: 'day',
+    loadChildren: () => import('./day/day.module').then( m => m.DayPageModule)
+  },
+  {
+    path: 'first-page',
+    loadChildren: () => import('./first-page/first-page.module').then( m => m.FirstPagePageModule)
+  },
 
 
 

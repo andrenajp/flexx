@@ -1,0 +1,26 @@
+ion-content{
+    --background: var(--background-theme);
+    .days{
+        background: white;
+        text-transform: capitalize;
+        text-align: center; 
+        box-shadow: inset; 
+        opacity: .75;
+        border-radius: 2%; 
+        height: 95px;
+        width: 45%;
+        display: inline-block; 
+        margin: 9px;
+        .day{
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .date{
+            color:gray;
+            font-style: italic;
+            font-size: 14px;
+        }
+    }
+
+}

@@ -81,30 +81,3 @@ ion-content {
     }
 }
 
-ion-footer {
-    ion-item {
-        .detail {
-            font-family: var(--regular-font);
-            font-size: 13px;
-            color: var(--gray-color);
-        }
-        .total_price {
-            font-family: var(--bold-font);
-            font-size: 20px;
-            color: var(--ion-black);
-        }
-        ion-button {
-            overflow: hidden;
-            font-size: 15px;
-            font-family: var(--regular-font);
-            text-transform: none;
-            margin: 0;
-            height: 40px;
-            --color: white;
-            --background: var(--theme-color);
-            --border-radius: 10px;
-            width: 110px;
-            margin-left: 14px;
-        }
-    }
-}

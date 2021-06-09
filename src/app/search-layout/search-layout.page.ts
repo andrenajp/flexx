@@ -41,10 +41,16 @@ export class SearchLayoutPage implements OnInit {
       this.filtre=s;
       this.addFiltre();
     }
+    else if(role=="Reset"){
+      const response = await axios.get(this.url+'/salons');
+      this.searchSalon=response.data;
+    }
   }
   async ngOnInit() 
   {
-      this.search("");
+    await axios.get(this.url+'/salons').then((response)=>{
+      this.searchSalon=response.data;
+    });
   }
 
   salonProfile(salon:NavigationExtras) {

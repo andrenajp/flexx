@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import axios from 'axios';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-filter',
@@ -10,6 +11,7 @@ import axios from 'axios';
 export class FilterPage implements OnInit {
 
   @Input() filtre:any;
+  url=environment.BASE_URL;
   rate: any = 3;
   servicesFor:any=["Homme & Femme","Homme","Femme"];
   serviceFor:string="";
@@ -31,7 +33,7 @@ export class FilterPage implements OnInit {
       this.sortBy=this.filtre.SB;
       this.servicesSelect=this.filtre.servicesSelect;
     }
-    await axios.get('http://157.230.232.108/services/').then((res)=>{
+    await axios.get(this.url+'/services/').then((res)=>{
       this.services=res.data;
     });
   }
@@ -70,5 +72,9 @@ export class FilterPage implements OnInit {
   setFiltre()
   {
     this.modalctrl.dismiss({"SB":this.sortBy,"SF":this.serviceFor,"servicesSelect":this.servicesSelect,"rate":this.rate },"Filtre");
+  }
+  reset()
+  {
+    this.modalctrl.dismiss(null,"Reset");
   }
 }

@@ -17,7 +17,7 @@ export class AppointmentPage implements OnInit {
   selectAppointment = 'upcoming';
   rate: any = 1;
   upcoming: any = [ ];
-  past: any = [ ];
+  valide: any = [ ];
   cancel: any=[ ];
   header={
     Authorization : 'Bearer '+ localStorage.getItem('access_token')
@@ -34,7 +34,6 @@ export class AppointmentPage implements OnInit {
     {
       await axios.get(this.url+'/appointments?user='+this.user.id,{headers :this.header}).then((response)=>{
         const appoints= response.data;
-        console.log(appoints);
         var idA;
         let  appoint;
         const today=new Date();
@@ -45,7 +44,7 @@ export class AppointmentPage implements OnInit {
           if(appoint.status=="upcoming")
             this.upcoming.push(appoint);
           else if(appoint.status=="completed")
-            this.past.push(appoint);
+            this.valide.push(appoint);
           else if((new Date(appoint.day).getTime() > today.getTime() ) ||appoint.status=="canceled" )
             this.cancel.push(appoint);
         } 
@@ -61,7 +60,22 @@ export class AppointmentPage implements OnInit {
       componentProps:{"salon" : salon,"appoint" : appoint}   
 
     });
-    return await modal.present();
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    
+    await axios.get(this.url+'/reviews?salon='+salon,{headers :this.header}).then(async(response)=>{
+
+      const reviews=response.data;
+      var rate:number=0;
+      var nbReview=0;
+      reviews.forEach(review => {
+        rate+=review.rate;
+        nbReview++;
+      });
+      const salonRate=rate/nbReview;
+      await axios.put(this.url+"/salons/"+salon,{rate: salonRate},{headers :this.header})
+    });
+
   }
   async direction(salon) {
     const modal = await this.modalCtrl.create({
