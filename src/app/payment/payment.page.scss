@@ -213,6 +213,20 @@ ion-content {
             margin-bottom: 10px;
         }
     }
+    .promo{
+        .code{
+            display: inline-block;
+            background: white;
+            border: 2px black solid;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bolder;
+        }
+        .promo-error{
+            color:red;
+            font-style: italic;
+        }
+    }
 }
 
 ion-footer {

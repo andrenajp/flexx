@@ -50,9 +50,7 @@ export class BarbeurProfilePage implements OnInit {
     if (user != null) if (user.address != null) this.address = user.address;
   }
   back() {
-    this.router.navigate(['tabs/home'], {
-      queryParams: { choose :true},
-    });
+    this.nav.navigateRoot('tabs/home',{replaceUrl:true});
   }
   logScrolling(ev) {
     if (ev.detail.scrollTop >= 410) {
@@ -77,7 +75,7 @@ export class BarbeurProfilePage implements OnInit {
       this.storage.set("appoint_barber", this.barber);
       this.storage.set("appoint_address", this.address);
       this.storage.set("appoint_services", this.servicesSelect);
-      this.nav.navigateForward("date-time");
+      this.nav.navigateForward(['day']);
     }
   }
 
@@ -93,31 +91,8 @@ export class BarbeurProfilePage implements OnInit {
     else return false;
   }
 
-  async call() {
-    const alert = await this.alertController.create({
-      header: "Numéro whatsapp",
-      inputs: [
-        {
-          name: "name1",
-          type: "text",
-          value: "+594694012345",
-        },
-      ],
-      buttons: [
-        {
-          text: "Ajouter",
-          role: "add",
-          handler: () => {
-            console.log("rien");
-          },
-        },
-        {
-          text: "Annuler",
-          role: "cancel",
-          handler: () => {},
-        },
-      ],
-    });
-    await alert.present();
+  async chat(){
+    this.nav.navigateForward(['chat']);
+  
   }
 }

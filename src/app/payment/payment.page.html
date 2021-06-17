@@ -53,7 +53,19 @@
         <ion-col size="10" class="service_name ion-no-padding">Service Charge</ion-col>
         <ion-col size="2" class="price ion-no-padding">{{serviceCharge}}€</ion-col>
     </ion-row>
+    <ion-row class="ion-padding-start" *ngIf="goodPromoCode">
+        <ion-col size="10" class="service_name ion-no-padding">Code Promo</ion-col>
+        <ion-col size="2" class="price ion-no-padding">{{amountPromo}}€</ion-col>
+    </ion-row>
     <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">{{ totalPrice }}€</span>
+    </div>
+    <div class="border_bottom"></div>
+    <div class="main_head ion-padding-start ">Code promo</div>
+    <div class="promo">
+        <div class="promo-error" *ngIf="goodPromoCode==false" >{{ errorPromoCode }}</div>
+        <ion-input disabled *ngIf="goodPromoCode" class="code" value="promoCode" [(ngModel)]="promoCode"></ion-input>
+        <ion-input *ngIf="!goodPromoCode" class="code" value="promoCode" [(ngModel)]="promoCode"></ion-input>
+        <ion-button *ngIf='!goodPromoCode' expand="block"  fill="outline" (click)="applyPromo()">Valider</ion-button>
     </div>
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start ">Sélectionnez le mode de paiement
@@ -111,6 +123,14 @@
         <ion-col size="2" class="price ion-no-padding">{{serviceCharge}}€</ion-col>
     </ion-row>
     <div class="main_head ion-padding-start ion-padding-top">Grand Total<span class="total ion-float-end ion-padding-end">{{ totalPrice }}€</span>
+    </div>
+    <div class="border_bottom"></div>
+    <div class="main_head ion-padding-start ">Code promo</div>
+    <div class="promo">
+        <div class="promo-error" *ngIf="goodPromoCode==false" >{{ errorPromoCode }}</div>
+        <ion-input disabled *ngIf="goodPromoCode" class="code" value="promoCode" [(ngModel)]="promoCode"></ion-input>
+        <ion-input *ngIf="!goodPromoCode" class="code" value="promoCode" [(ngModel)]="promoCode"></ion-input>
+        <ion-button *ngIf='!goodPromoCode' expand="block"  fill="outline" (click)="applyPromo()">Valider</ion-button>
     </div>
     <div class="border_bottom"></div>
     <div class="main_head ion-padding-start ">Sélectionnez le mode de paiement

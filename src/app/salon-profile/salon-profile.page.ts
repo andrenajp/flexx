@@ -82,32 +82,7 @@ export class SalonProfilePage implements OnInit {
 
   async reserver()
   {
-    if(localStorage.getItem('access_token') == null)
-    {
-      const alert = await this.alertController.create({
-        header: 'Login ??',
-        message: 'Vous devez être connecter pour prendre un rendez-vous',
-        buttons: [
-          {
-            text: 'Se connecter',
-            role: 'login',
-            handler: (blah) => {
-              this.nav.navigateForward('login');
-            }
-          }, {
-            text: 'Anuller',
-            role:'cancel',
-            handler: () => {
-              console.log('Cancel');
-            }
-          }
-        ],
-
-      });
-  
-      await alert.present();
-    }
-    else if(this.empSelect==undefined || this.servicesSelect.length == 0)
+    if(this.empSelect==undefined || this.servicesSelect.length == 0)
     {
       const alert = await this.alertController.create({
         header: 'Élément(s) manquant(s) ?',
@@ -170,35 +145,15 @@ export class SalonProfilePage implements OnInit {
   }
 
   
-  async call()
+  async chat()
   {
-
-    const alert = await this.alertController.create({
-      header: 'Numéro whatsapp',
-      inputs: [
-        {
-          name: 'name1',
-          type: 'text',
-          value: '+594694012345'
-        }, 
-      ],
-      buttons: [
-        {
-          text:'Ajouter',
-          role:'add',
-          handler:()=>{
-              console.log("rien")
-          }
-        },
-        {
-          text:'Annuler',
-          role:'cancel',
-          handler:()=>{
-            
-          }
-        }]
-    });
-    await alert.present();
+    if(localStorage.getItem('_user'))
+      this.router.navigate(["/chat"], {
+        queryParams: this.salon,
+      });
+    else{
+      console.log("nop !!!!")
+    }
   }
 
 }

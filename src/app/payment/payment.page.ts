@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NavController } from "@ionic/angular";
+import { AlertController, NavController } from "@ionic/angular";
 
 import axios from "axios";
 import { Storage } from "@ionic/storage";
@@ -24,9 +24,9 @@ export class PaymentPage implements OnInit {
   serviceSelect: any = [];
   address: any;
   date: Date;
-  price: Number = 0;
-  serviceCharge: Number = 5;
-  totalPrice: Number = 0;
+  price: number = 0;
+  serviceCharge: number = 5;
+  totalPrice: number = 0;
   payment: any = [
     {
       name: "Stripe",
@@ -44,10 +44,15 @@ export class PaymentPage implements OnInit {
   };
   user = JSON.parse(localStorage.getItem("_user"));
   pay = false;
+  promoCode:string;
+  goodPromoCode:boolean;
+  errorPromoCode:any;
+  amountPromo:number;
   constructor(
     private nav: NavController,
     private readonly storage: Storage,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public alrtCtrl: AlertController
   ) {}
 
   ngOnInit() {
@@ -82,8 +87,33 @@ export class PaymentPage implements OnInit {
       this.date = val;
     });
   }
-  makePayment() {
-    if (this.AppointType == "Salon")
+  async makePayment() {
+    if(localStorage.getItem('access_token') == null)
+    {
+      const alert = await this.alrtCtrl.create({
+        header: 'Utilisateur ??',
+        message: 'Vous devez être connecter pour prendre un rendez-vous',
+        buttons: [
+          {
+            text: 'Se connecter',
+            role: 'login',
+            handler: (blah) => {
+              this.nav.navigateForward(['login']);
+            }
+          }, {
+            text: 'Anuller',
+            role:'cancel',
+            handler: () => {
+              console.log('Cancel');
+            }
+          }
+        ],
+
+      });
+  
+      await alert.present();
+    }
+    else if (this.AppointType == "Salon")
       this.setSalonAppointment(
         this.salon.id,
         this.emp.id,
@@ -189,6 +219,39 @@ export class PaymentPage implements OnInit {
     }
   }
 
+  async applyPromo()
+  {
+    if(this.promoCode==undefined || this.promoCode.length <= 4){
+      const alert = await this.alrtCtrl.create({
+        header: 'Code Promo',
+        message: 'Veuillez entrer un code promo plus de 4 lettres minimum!',
+        buttons: [
+          {
+            text: 'OK',
+            role:'cancel'
+          }
+        ],
+
+      });
+  
+      await alert.present();
+    }
+    else
+    {
+      await axios.post(this.url+'/promos/apply',{code:this.promoCode.toUpperCase()}).then( async (response)=>{
+        this.goodPromoCode=response.data.res
+        if(!this.goodPromoCode){
+          this.errorPromoCode=response.data.message
+        }
+        else{
+          this.amountPromo=response.data.amount;
+          this.totalPrice=this.totalPrice - this.amountPromo;
+        }
+
+      }).catch((error)=>{console.log(error.response)});
+    }
+  }
+
   async isPay(secret,order,appoinment) {
     const stripe = await loadStripe(this.stripeKey);
     var res=true;
@@ -208,4 +271,5 @@ export class PaymentPage implements OnInit {
 
     return res;
   }
+  
 }

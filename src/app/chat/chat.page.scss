@@ -1,0 +1,63 @@
+ion-content {
+    --background: var(--background-theme);
+
+    .day
+    {
+        width: 100%;
+        height: 2px;
+        text-align: center;
+    }
+    .message {
+        border: .5px solid black;
+        font-size: 16px;
+        font-style: oblique;
+        max-width: 75%;
+        min-width: 55%;
+        min-height: 50px;
+        margin: 7px;
+        position: relative;
+        .message-hour{
+            position: absolute;
+            right:0;
+            bottom: 0;
+        }
+    }
+    .message-content{
+        display: inline;
+        padding: 6px;
+        width: 80%;
+    }
+
+    .salon {
+        background: rgb(78, 216, 226);
+        float: left;
+
+    }
+
+    .user {
+        background: rgb(79, 223, 79);
+        float: right;
+    }
+
+
+
+}
+
+ion-footer {
+    .f {
+        .chat {
+            display: inline-block;
+            width: 85%;
+
+            ion-textarea {
+                border: .75px black solid;
+                margin: 0;
+            }
+        }
+
+        .btn-send {
+            display: inline-block;
+            width: 15%;
+        }
+    }
+}

@@ -5,7 +5,7 @@ import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment.prod';
 import axios from 'axios';
 import { Platform } from '@ionic/angular';
-
+import { OpenWithPage } from '../open-with/open-with.page';
 
 @Component({
   selector: 'app-direction',
@@ -30,13 +30,13 @@ export class DirectionPage implements OnInit {
   constructor(
     private nav: NavController,
     private platform: Platform,
-    private modal: ModalController,
+    private modalctrl: ModalController,
     private geolocation:Geolocation
     ) {
   }
   back() 
   {
-    this.modal.dismiss()
+    this.modalctrl.dismiss()
   }
   async ngOnInit() 
   {
@@ -64,8 +64,8 @@ export class DirectionPage implements OnInit {
       center: [this.longitude, this.latitude], // starting position
       zoom: 18 // starting zoom
       });
-      new mapboxgl.Marker({color:"red"}).setLngLat([this.longitude, this.latitude]).addTo(this.map);
-      new mapboxgl.Marker({color:"red"}).setLngLat([this.long, this.lat]).addTo(this.map);
+      new mapboxgl.Marker({color:"red"}).setLngLat([this.longitude, this.latitude]).setPopup(new mapboxgl.Popup().setHTML("<h1>"+this.salon.name+"</h1>")).addTo(this.map);
+      new mapboxgl.Marker({color:"blue"}).setLngLat([this.long, this.lat]).addTo(this.map);
 
       this.map.addControl(
         new mapboxgl.GeolocateControl({
@@ -75,7 +75,7 @@ export class DirectionPage implements OnInit {
         trackUserLocation: true
         })
       );
-        this.getRoute([this.longitude,this.latitude]);
+      this.getRoute([this.longitude,this.latitude]);
 
   }
 
@@ -116,6 +116,14 @@ export class DirectionPage implements OnInit {
       
   }
 
+  async openWith()
+  {
+    const modal = await this.modalctrl.create({
+      component: OpenWithPage,
+      cssClass: 'OpenWithPage'
+    });
+    return await modal.present();
+  }
   
 }
 

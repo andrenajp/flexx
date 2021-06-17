@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { PaymentPageRoutingModule } from './payment-routing.module';
 
 import { PaymentPage } from './payment.page';
-import { ServicesModalComponent } from '../services-modal/services-modal.component';
 import { PayPal } from '@ionic-native/paypal/ngx';
 import { Stripe } from '@ionic-native/stripe/ngx';
 @NgModule({
@@ -17,8 +16,7 @@ import { Stripe } from '@ionic-native/stripe/ngx';
     IonicModule,
     PaymentPageRoutingModule
   ],
-  declarations: [PaymentPage,ServicesModalComponent],
-  providers:[PayPal,Stripe],
-  entryComponents:[ServicesModalComponent]
+  declarations: [PaymentPage],
+  providers:[PayPal,Stripe]
 })
 export class PaymentPageModule {}

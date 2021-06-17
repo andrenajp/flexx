@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="back()">
+      <ion-back-button defaultHref="" text="" mode="md">
+        <img src="../../assets/images/back.svg" />
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">{{salon.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div *ngFor="let m of messages">
+      <div class="message salon" *ngIf="m.sender=='salon'">
+        <p class="message-content"> {{m.message}}</p>
+        <span class="message-hour">{{m.time | date:'HH:mm' }}</span>
+      </div>
+      <div class="message user" *ngIf="m.sender=='user'">
+        <p class="message-content">{{m.message}}</p>
+        <span class="message-hour">{{m.time | date:'HH:mm' }}</span>
+      </div>
+      <div class="day" *ngIf="false">aaaaaaaaaaaaaaa</div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="f">
+    <div class="chat">
+      <ion-textarea value="message" [(ngModel)]="message" ></ion-textarea>
+    </div>
+    <div class="btn-send" (click)="send()"> 
+      <ion-button slot="end" expand="block" fill="clear" color="primary" >
+        <ion-icon name="paper-plane-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-footer>

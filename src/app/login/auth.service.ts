@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import  axios  from 'axios';
 import {Storage} from '@ionic/storage';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  url=environment.BASE_URL;
   constructor(private readonly storage:Storage) { }
 
 
@@ -42,7 +44,7 @@ export class AuthService {
    checkPassword(login) 
    {
       axios
-      .post('http://157.230.232.108/auth/local', {
+      .post(this.url+'/auth/local', {
         identifier: login.email,
         password: login.password   
       })
@@ -52,7 +54,7 @@ export class AuthService {
    {
      console.log(mail);
     await axios
-    .post('http://157.230.232.108/auth/forgot-password', {
+    .post(this.url+'/auth/forgot-password', {
       email: mail 
     })
     .then(response => {

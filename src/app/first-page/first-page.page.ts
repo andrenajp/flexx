@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-first-page',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirstPagePage implements OnInit {
 
-  constructor() { }
+  constructor(public navCtrl:NavController) { 
+    if(localStorage.getItem('_user'))
+    this.navCtrl.navigateForward(['choose']);
+  }
 
   ngOnInit() {
+    
+  }
+
+  login()
+  {
+    this.navCtrl.navigateForward(['login']);
+  }
+
+  continuer()
+  {
+    this.navCtrl.navigateForward(['choose']);
   }
 
 }

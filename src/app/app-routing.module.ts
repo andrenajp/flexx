@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'choose',
+    redirectTo: 'first-page',
     pathMatch: 'full'
   },
   {
@@ -111,7 +111,8 @@ const routes: Routes = [
   {
     path: 'choose',
     loadChildren: () => import('./choose/choose.module').then( m => m.ChoosePageModule)
-  },  {
+  },
+  {
     path: 'cancel-appointment',
     loadChildren: () => import('./cancel-appointment/cancel-appointment.module').then( m => m.CancelAppointmentPageModule)
   },
@@ -126,7 +127,15 @@ const routes: Routes = [
   {
     path: 'first-page',
     loadChildren: () => import('./first-page/first-page.module').then( m => m.FirstPagePageModule)
+  },  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   },
+  {
+    path: 'open-with',
+    loadChildren: () => import('./open-with/open-with.module').then( m => m.OpenWithPageModule)
+  },
+
 
 
 

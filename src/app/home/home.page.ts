@@ -75,7 +75,7 @@ export class HomePage {
         this.barbers = response.data;
       });
     }
-
+    this.geolocaliseMoi();
   }
 
   salonProfile(salon: NavigationExtras) {

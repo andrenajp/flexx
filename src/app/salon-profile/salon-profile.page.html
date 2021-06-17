@@ -20,115 +20,106 @@
   <div class="salon-info">
     <ion-grid>
       <ion-row>
-        <ion-col  size="3">
+        <ion-col size="3">
           <ion-avatar>
-            <img src="http://157.230.232.108{{logo?.url}}">         
-          </ion-avatar> 
-        </ion-col>
-        <ion-col> 
-          <ion-badge color="warning">
-            <ion-icon name="star" class="white-star "></ion-icon> {{salon?.rate}}
-          </ion-badge>
+            <img src="http://157.230.232.108{{logo?.url}}">         </ion-avatar> </ion-col> <ion-col>
+            <ion-badge color="warning">
+              <ion-icon name="star" class="white-star "></ion-icon> {{salon?.rate}}
+            </ion-badge>
 
-          <div class="address">
-            <ion-icon name="location" class="white-star "></ion-icon>{{salon?.address}}
-          </div>
+            <div class="address">
+              <ion-icon name="location" class="white-star "></ion-icon>{{salon?.address}}
+            </div>
 
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 
-    <div class="border_bottom"></div>
-    <div class="address ion-padding-start">
-      {{salon.description}}
-    </div>
-    <div class="border_bottom"></div>
-    <div class="section" [ngClass]="{'fix-segment': fixSegment==2}">
-      <ion-segment mode="md" [(ngModel)]="select" value="all">
-        <ion-segment-button mode="md" value="service">Service
-          <div *ngIf="select == 'service'" class="seg-button"></div>
-        </ion-segment-button>
-        <ion-segment-button mode="md" value="review">Avis
-          <div *ngIf="select == 'review'" class="seg-button2"></div>
-        </ion-segment-button>
-      </ion-segment>
-    </div>
-    <div class="border"></div>
-    <div [ngSwitch]="select">
-      <div *ngSwitchCase="'service'">
-        <div>
-          <div class=" service-list">
+  <div class="border_bottom"></div>
+  <div class="address ion-padding-start">
+    {{salon.description}}
+  </div>
+  <div class="border_bottom"></div>
+  <div class="border"></div>
+  <div>
+    <div>
+      <div>
+        <div class=" service-list">
+          <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
+            <ion-slide *ngFor="let service of services">
+
+              <ion-card (click)="addService(service)">
+                <ion-card-header>
+                  <ion-thumbnail>
+                    <img  [ngClass]="{'selected' : isServSelect(service)}"
+                      src="http://157.230.232.108{{ service?.image.url }}">            
+                  </ion-thumbnail>  
+                </ion-card-header>
+                <ion-card-content>
+                  <P class="service-name">{{service?.name}}</P>
+                </ion-card-content>
+              </ion-card>
+
+            </ion-slide>
+          </ion-slides>
+          <div>
             <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
-              <ion-slide *ngFor="let service of services">
-        
-                <ion-card (click)="addService(service)">
+              <ion-slide *ngFor="let emp of employee">
+
+                <ion-card (click)="selectEmp(emp)">
                   <ion-card-header>
                     <ion-thumbnail>
-                      <img  [ngClass]="{'selected' : isServSelect(service)}" src="http://157.230.232.108{{ service?.image.url }}">            
+                      <img  [ngClass]="{'selected' : emp==empSelect}"
+                        src="http://157.230.232.108{{ emp?.Photo?.url }}">            
                     </ion-thumbnail>  
                   </ion-card-header>
                   <ion-card-content>
-                    <P  class="service-name">{{service?.name}}</P>
+                    <P class="service-name">{{emp?.fullname}}</P>
                   </ion-card-content>
                 </ion-card>
-        
+
               </ion-slide>
             </ion-slides>
-            <div>
-              <ion-slides pager="false" scrollbar="false" [options]="serviceSlide">
-                <ion-slide *ngFor="let emp of employee">
-          
-                  <ion-card (click)="selectEmp(emp)">
-                    <ion-card-header>
-                      <ion-thumbnail>
-                        <img  [ngClass]="{'selected' : emp==empSelect}" src="http://157.230.232.108{{ emp?.Photo?.url }}">            
-                      </ion-thumbnail>  
-                    </ion-card-header>
-                    <ion-card-content>
-                      <P  class="service-name">{{emp?.fullname}}</P>
-                    </ion-card-content>
-                  </ion-card>
-          
-                </ion-slide>
-              </ion-slides>
-            </div>
-            <ion-button slot="start" expand="block" (click)="reserver()">Prendre rendez-vous</ion-button>
-
           </div>
+          <ion-button slot="start" expand="block" (click)="reserver()">Prendre rendez-vous</ion-button>
 
         </div>
-      </div>
-      <div [hidden]="select !='review'">
 
-        <div class="review_head ion-padding-start ion-padding-bottom">
-          Total avis ({{reviews.length}})
-        </div>
-
-        <ion-row class="ion-padding-top ion-margin-bottom" *ngFor="let item of reviews ">
-          <ion-col size="3" class="ion-no-padding ion-padding-start">
-            <img src="http://157.230.232.108{{ item?.user?.profile_img?.url }}" height="35px" width="35px" /><br /><span class="rate_div">
-              <img class="star_img" src="../../assets/images/star.svg " height="11px " width="11px " />
-              {{ item?.rate }}
-            </span>
-          </ion-col>
-          <ion-col size="9" class="details_div ion-padding-end ion-padding-start">
-            <ion-label>
-              <p class="name ion-no-margin">
-                .....<span class="ion-float-right">
-                  {{ item.date | date:'dd-MM-yyyy HH:mm' }}</span>
-              </p>
-              <p class="detail ion-no-margin">{{ item?.content }}</p>
-            </ion-label>
-          </ion-col>
-        </ion-row>
       </div>
     </div>
-                   
-    <ion-fab vertical="bottom"  horizontal="end"  slot="fixed"> 
-      <ion-fab-button color="success" (click)="call()"> 
-        <ion-icon name="logo-whatsapp"></ion-icon>
-      </ion-fab-button>   
-    </ion-fab>
+  </div>
+
+  <div>
+    <div class="border_bottom"></div>
+    <div class="review_head ion-padding-start ion-padding-bottom">
+      Total avis ({{reviews.length}})
+    </div>
+
+    <ion-row class="ion-padding-top ion-margin-bottom" *ngFor="let item of reviews ">
+      <ion-col size="3" class="ion-no-padding ion-padding-start">
+        <img src="http://157.230.232.108{{ item?.user?.profile_img?.url }}" height="35px" width="35px" /><br /><span
+          class="rate_div">
+          <img class="star_img" src="../../assets/images/star.svg " height="11px " width="11px " />
+          {{ item?.rate }}
+        </span>
+      </ion-col>
+      <ion-col size="9" class="details_div ion-padding-end ion-padding-start">
+        <ion-label>
+          <p class="name ion-no-margin">
+            .....<span class="ion-float-right">
+              {{ item.date | date:'dd-MM-yyyy HH:mm' }}</span>
+          </p>
+          <p class="detail ion-no-margin">{{ item?.content }}</p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </div>    
+
+  <ion-fab vertical="bottom"  horizontal="end"  slot="fixed"> 
+    <ion-fab-button (click)="chat()"> 
+      <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+    </ion-fab-button>   
+  </ion-fab>
 
 </ion-content>
