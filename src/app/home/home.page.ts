@@ -76,12 +76,20 @@ export class HomePage {
       });
     }
     this.geolocaliseMoi();
+  
+  }
+
+  ngOnDestroy(){}
+  ionViewWillEnter(){ }
+  ionViewWillLeave()
+  {
+    this.ngOnDestroy();
   }
 
   salonProfile(salon: NavigationExtras) {
-    this.router.navigate(["/salon-profile"], {
+    this.nav.navigateRoot(["/salon-profile"], {
       queryParams: salon,
-    });
+    })
   }
   setLocation() {
     this.nav.navigateForward("set-location");
@@ -95,7 +103,7 @@ export class HomePage {
   }
 
   barbeurProfile(barbers: NavigationExtras) {
-    this.router.navigate(["/barbeur-profile"], {
+    this.nav.navigateRoot(["/barbeur-profile"], {
       queryParams: barbers,
     });
   }
@@ -124,4 +132,5 @@ export class HomePage {
         console.log("Error getting location", error);
       });
   }
+
 }

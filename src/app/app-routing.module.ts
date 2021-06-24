@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { AuthGuardGuard  as AuthGuard} from './Guard/auth-guard.guard';
+import { LoginGuardGuard as LogGuard } from './Guard/login-guard.guard';
+import { ChatGuardGuard as ChatGuard } from './Guard/chat-guard.guard';
 const routes: Routes = [
   {
     path: 'home',
@@ -45,6 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
+    canActivate:[AuthGuard],
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
   },
   {
@@ -126,9 +129,12 @@ const routes: Routes = [
   },
   {
     path: 'first-page',
+    canActivate:[LogGuard],
     loadChildren: () => import('./first-page/first-page.module').then( m => m.FirstPagePageModule)
-  },  {
+  },
+  {
     path: 'chat',
+    canActivate:[ChatGuard],
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   },
   {

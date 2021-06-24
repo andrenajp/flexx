@@ -14,13 +14,14 @@
     <div *ngFor="let m of messages">
       <div class="message salon" *ngIf="m.sender=='salon'">
         <p class="message-content"> {{m.message}}</p>
-        <span class="message-hour">{{m.time | date:'HH:mm' }}</span>
+        <span *ngIf="isToday(m.time)" class="message-hour">{{m.time | date:'HH:mm' }}</span>
+        <span *ngIf="!isToday(m.time)" class="message-hour">Le {{m.time | date:'d/M/yy' }} à {{m.time | date:'HH:mm' }}</span>
       </div>
       <div class="message user" *ngIf="m.sender=='user'">
         <p class="message-content">{{m.message}}</p>
-        <span class="message-hour">{{m.time | date:'HH:mm' }}</span>
+        <span *ngIf="isToday(m.time)" class="message-hour">{{m.time | date:'HH:mm' }}</span>
+        <span *ngIf="!isToday(m.time)" class="message-hour">Le {{m.time | date:'d/M/yy' }} à {{m.time | date:'HH:mm' }}</span>
       </div>
-      <div class="day" *ngIf="false">aaaaaaaaaaaaaaa</div>
     </div>
   </div>
 </ion-content>

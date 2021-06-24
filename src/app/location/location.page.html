@@ -8,8 +8,8 @@
     </div>
     <div id="map8" class="map"></div>
     <div class="scroll-container">
-        <div class="scroll-div" *ngFor="let item of salons"(click)="details(item)">
-            <ion-item lines="none" >
+        <div class="scroll-div" *ngFor="let item of salons" ontouchend="getPos($event)"  (click)="openWith()">
+            <ion-item lines="none">
                 <img slot="start" class="salon_img" src="http://157.230.232.108{{ item?.Logo?.url }}">
                 <ion-label>
                     <p class="salon_name">{{ item?.name }}</p>

@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import  axios  from 'axios';
 import {Storage} from '@ionic/storage';
 import { environment } from 'src/environments/environment.prod';
+import { CanActivate, Router, ActivatedRouteSnapshot,RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService{
 
   url=environment.BASE_URL;
-  constructor(private readonly storage:Storage) { }
-
+  constructor(
+    private readonly storage:Storage
+    ) { }
 
   async useLogin(login: any){
     await axios
@@ -29,7 +31,7 @@ export class AuthService {
     });
    }
    
-   isauthenticated()
+   isAuthenticated()
    {
       if (localStorage.getItem('access_token')==null)
         return false;

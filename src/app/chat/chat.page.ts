@@ -14,16 +14,20 @@ export class ChatPage implements OnInit {
   name:string;
   messages:any=[];
   message:string;
+  dateMessage:Date;
+  alreadyShow:number=0;
   today:Date=new Date();
+
   user;
-  header = {
-    Authorization: "Bearer " + localStorage.getItem("access_token"),
-  };
+  header;
   constructor(
     public router: Router,
     public atvRoute: ActivatedRoute) 
   {
     this.user=JSON.parse(localStorage.getItem('_user'));
+    this.header= {
+      Authorization: "Bearer " + localStorage.getItem("access_token")
+    };
     this.atvRoute.queryParams.subscribe((res) => {
       this.salon = res;
     });
@@ -95,14 +99,19 @@ export class ChatPage implements OnInit {
     }
     await sortArr.sort(comp);
     this.messages=await sortArr;
+    if(this.messages.length > 0)
+      this.dateMessage=new Date(this.messages[0].time);
   }
-
-  notSameDate(d)
+  isToday(d)
   {
-    // const date=new Date(d);
-    console.log(d);
-
+    const date=new Date(d);
+    if(date.getDate() == this.today.getDate() && date.getMonth() == this.today.getMonth() && date.getFullYear() == this.today.getFullYear())
+    {
+      return true;
+    }
+    return false;
   }
+  
   async send()
   {
     const data={

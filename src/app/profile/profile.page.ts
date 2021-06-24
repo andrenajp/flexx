@@ -5,6 +5,7 @@ import { LanguagePage } from '../language/language.page';
 import { SharingPage } from '../sharing/sharing.page';
 import { ProfileImagePage } from '../profile-image/profile-image.page';
 import { AuthService } from '../login/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -18,20 +19,18 @@ export class ProfilePage implements OnInit {
     private nav: NavController,
     private modalCtrl: ModalController,
     private authService:AuthService,
+    private router:Router
     ) 
   {
     this.user=JSON.parse(localStorage.getItem('_user'));
   }
-  ionViewWillEnter() {
-
-  }
   async ngOnInit() 
   {
-    this.isLogin();
-    
     this.user=await JSON.parse(localStorage.getItem('_user'));
     this.dateSign=new Date(this.user.created_at);
   }
+
+
   async shareWith() {
     const modal = await this.modalCtrl.create({
       component: SharingPage,
@@ -57,8 +56,8 @@ export class ProfilePage implements OnInit {
     return await modal.present(); 
   }
 
-  async editProfile() {
-    if(this.authService.isauthenticated())
+  async editProfile() 
+  {
       await this.nav.navigateRoot(['edit-profile']);
   }
   async address()
@@ -68,8 +67,7 @@ export class ProfilePage implements OnInit {
   }
   changePassword()
   {
-    if(this.authService.isauthenticated())
-      this.nav.navigateRoot(['change-password'])
+    this.nav.navigateRoot(['change-password'])
   }
   privacy() {
     this.nav.navigateRoot(['privacy-policy'])
@@ -81,23 +79,10 @@ export class ProfilePage implements OnInit {
     this.nav.navigateRoot(['about'])
   }
   logout() {
-    localStorage.clear()
-    this.nav.navigateRoot(['tabs/home'])
-  }
-
-  login()
-  {
-    this.nav.navigateRoot(['login']);
-
+    this.authService.logout();
   }
   register()
   {
     this.nav.navigateRoot(['register']);
-  }
-
-  isLogin()
-  {
-    if(localStorage.getItem('_user') == null)
-      this.nav.navigateRoot(['login']);
   }
 }

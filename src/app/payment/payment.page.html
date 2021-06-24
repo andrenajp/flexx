@@ -68,6 +68,7 @@
         <ion-button *ngIf='!goodPromoCode' expand="block"  fill="outline" (click)="applyPromo()">Valider</ion-button>
     </div>
     <div class="border_bottom"></div>
+    <!--
     <div class="main_head ion-padding-start ">Sélectionnez le mode de paiement
     </div>
     <div class="payment_method ion-margin-horizontal">
@@ -81,6 +82,7 @@
             </div>
         </div>
     </div>
+    -->
 </ion-content>
 
 <ion-content *ngIf="AppointType=='Barber'">
@@ -133,10 +135,11 @@
         <ion-button *ngIf='!goodPromoCode' expand="block"  fill="outline" (click)="applyPromo()">Valider</ion-button>
     </div>
     <div class="border_bottom"></div>
-    <div class="main_head ion-padding-start ">Sélectionnez le mode de paiement
+    <!--<div class="main_head ion-padding-start ">Sélectionnez le mode de paiement
     </div>
     <div class="payment_method ion-margin-horizontal">
         <div class="pay_div" >
+            <ion-icon name="card-outline"></ion-icon>
             <div *ngFor="let pay of payment"><img src="{{pay?.icon}}" height="22px" width="22px">
                 <p>{{pay.name}}</p>
                 <label class="container">
@@ -145,7 +148,7 @@
                 </label>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </ion-content>
 

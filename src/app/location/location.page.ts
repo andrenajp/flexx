@@ -4,6 +4,7 @@ import { NavigationExtras, Router } from '@angular/router';
 
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment.prod';
+import { OpenWithPage } from '../open-with/open-with.page';
 import axios from 'axios';
 
 declare var ol: any;
@@ -64,5 +65,18 @@ export class LocationPage implements OnInit {
       zoom: 18 // starting zoom
       });
       new mapboxgl.Marker({color:"red"}).setLngLat([this.longitude, this.latitude]).addTo(this.map);
+  }
+
+  getPos(event)
+  {
+    console.log("BOOOOOO")
+  }
+  async openWith()
+  {
+    const modal = await this.modalCtrl.create({
+      component: OpenWithPage,
+      cssClass: 'OpenWithPage'
+    });
+    return await modal.present();
   }
 }

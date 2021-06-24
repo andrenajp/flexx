@@ -77,8 +77,16 @@ export class SalonProfilePage implements OnInit {
 
   }
 
-  ionViewWillEnter() { }
+  ngOnDestroy(){}
+  ionViewWillEnter() 
+  { }
 
+  ionViewWillLeave()
+  { }
+  ionViewDidLeave()
+  {
+    this.ngOnDestroy();
+  }
 
   async reserver()
   {
@@ -108,9 +116,9 @@ export class SalonProfilePage implements OnInit {
   }
 
   back() {
-    // this.router.navigate(['tabs/home'],{replaceUrl:true});
-    
-    this.nav.navigateRoot('tabs/home',{replaceUrl:true});
+    this.router.navigate(['/tabs/home']);
+    // this.router.navigateByUrl('tabs/home')
+    // this.nav.navigateRoot('tabs/home',{replaceUrl:true});
   }
 
 

@@ -24,14 +24,15 @@ export class LoginPage implements OnInit {
     ) { }
   check = '../../assets/images/check.svg'
   ngOnInit(){
-    if(this.authService.isauthenticated())
+    if(this.authService.isAuthenticated())
       this.nav.navigateForward('tabs/home')
   }
   async login()
   {
     await this.authService.useLogin(this.loginForm);
-    if(this.authService.isauthenticated())
-      this.nav.navigateForward('tabs/home');
+    if(this.authService.isAuthenticated())
+      this.nav.back();
+      // this.nav.navigateForward('tabs/home');
     else
     {
       this.loginForm.password="";

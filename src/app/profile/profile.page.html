@@ -3,7 +3,7 @@
         <ion-title mode="ios">Profil</ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="authService.isauthenticated()">
+<ion-content>
     <div class="profile_div ion-text-center">
         <div class="img_div">
             <img src="http://157.230.232.108{{user?.profile_img?.url}}" class="user_img" height="111px" width="111px" (click)="upload()">
@@ -66,11 +66,4 @@
         <div>Déconnexion</div>
     </ion-item>
     <div class="border_bottom"></div>
-</ion-content>
-<ion-content *ngIf="!authService.isauthenticated()">
-    <p class="ion-padding-bottom ion-padding-start ion-padding-end">
-        Vous n'êtes pas connecté veuillez vous connecter.
-    </p>
-    <ion-button color="danger" expand="full" (click)="login()">Se connecter</ion-button>
-    <ion-button color="danger" expand="full" (click)="register()">S'inscrire</ion-button>
 </ion-content>
